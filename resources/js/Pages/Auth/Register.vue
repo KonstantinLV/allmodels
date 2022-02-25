@@ -55,8 +55,8 @@
                                 <option>Professional 3D modeller</option>
                                 <option>Buyer</option>
                             </select>
-                        </div> 
-                        <i class="fa fa-angle-down" style="color: white;" aria-hidden="true"></i>
+                            <i class="fa fa-angle-down" style="color: black; position: absolute; right: 10px; top: 4px;" aria-hidden="true"></i>
+                        </div>                     
                     </div>
                     <div class="model_choose">
                         <p class="model_choose_text">I'm here to (choose one or more):</p>
@@ -249,6 +249,7 @@ import Label from '../../Jetstream/Label.vue'
     font-size: 16px;
     line-height: 20px;
     color: #000000;
+    box-shadow: none;
 }
 .register_form_item::placeholder{
     color: #000000;
@@ -283,17 +284,20 @@ import Label from '../../Jetstream/Label.vue'
     line-height: 20px;
     color: #000000;
 }
+.model_box {
+    width: 216px;
+    height: 20px;
+    margin-left: 14px;
+    position: relative;
+}
 .model_box_select {
-    border: none;
-    outline: none;
-}
-.model_box_select:active {
-    border: none;
-    outline: none;
-}
-.model_box_select:focus {
-    border: none;
-    outline: none;
+    appearance: none;
+    box-shadow: none;
+    background-image: none;
+    width: 216px;
+    border: 0;
+    padding: 0;
+    position: relative;
 }
 .model_box_select option{
     font-family: Montserrat;
