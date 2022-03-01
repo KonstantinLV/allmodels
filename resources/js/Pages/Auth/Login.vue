@@ -7,13 +7,13 @@
             </div>
             <div class="coll_slider_group">
                 <div class="coll_slider_icons">
-                    <img :src="'/images/collection/image 38.jpg'" alt="icon" class="coll_slider_icon" />
+                    <img :src="'/images/collection/image 38.jpg'" style="width: 232px;" alt="icon" class="coll_slider_icon" />
                     <img :src="'/images/collection/image 30.jpg'" alt="icon" class="coll_slider_icon" />
                     <img :src="'/images/collection/image 32.jpg'" alt="icon" class="coll_slider_icon" />
                     <img :src="'/images/collection/image 34.jpg'" alt="icon" class="coll_slider_icon" />
-                    <img :src="'/images/collection/image 36.jpg'" alt="icon" class="coll_slider_icon" />
+                    <img :src="'/images/collection/4.jpg'" alt="icon" class="coll_slider_icon" />
                     <img :src="'/images/collection/image 40.jpg'" alt="icon" class="coll_slider_icon" />
-                    <img :src="'/images/collection/image 37.jpg'" alt="icon" class="coll_slider_icon" />
+                    <img :src="'/images/collection/image 37.jpg'" style="width:232px;" alt="icon" class="coll_slider_icon" />
                     <img :src="'/images/collection/image 29.jpg'" alt="icon" class="coll_slider_icon" />
                     <img :src="'/images/collection/image 31.jpg'" alt="icon" class="coll_slider_icon" />
                     <img :src="'/images/collection/image 33.jpg'" alt="icon" class="coll_slider_icon" />
@@ -76,11 +76,11 @@
             <div class="coll_sort">
                 <div class="coll_sort_block">
                     <div class="coll_sort_search">
-                        <img class="coll_sort_logo_icon" style="width: 12px; height: 44px; color: black;" :src="'/images/[.svg'" alt="[" />
+                        <img class="coll_sort_logo_icon" style="width: 12px; height: 44px;" :src="'/images/collection/sk.png'" alt="sk" />
                         <p>Search within the collection</p>
                         <input type="text" class="coll_sort_search_text"/>
-                        <img class="coll_sort_search_icon" style="width: 14px; height: 14px;" :src="'/images/search.svg'" alt="cart" />
-                        <img class="coll_sort_logo_icon" style="width: 12px; height: 44px; color: black;" :src="'/images/].svg'" alt="]" />
+                        <img class="coll_sort_search_icon" style="width: 14px; height: 14px;" :src="'/images/collection/search.png'" alt="cart" />
+                        <img class="coll_sort_logo_icon" style="width: 12px; height: 44px;" :src="'/images/collection/ks.png'" alt="ks" />
                     </div>
                     <div class="coll_sort_date">
                         <select class="coll_box_select">
@@ -222,7 +222,10 @@
                 <h3 class="coll_order_name">Order collections like this one</h3>
                 <div class="coll_order_block">
                     <div class="coll_order_items">
-                        <img :src="'/images/collection/22.png'" alt="" class="coll_order_foto">
+                        <div class="call_order_image_group">
+                            <img :src="'/images/collection/22.png'" alt="" class="coll_order_foto" />
+                            <div class="coll_order_image_border"></div>
+                        </div>                        
                         <div class="coll_order_items_text">
                             <p class="coll_order_item_text">From artists</p>
                             <div class="coll_order_icon">
@@ -238,7 +241,10 @@
                         </div>
                     </div>
                     <div class="coll_order_items">
-                        <img :src="'/images/collection/21.png'" alt="" class="coll_order_foto">
+                        <div class="call_order_image_group">
+                            <img :src="'/images/collection/21.png'" alt="" class="coll_order_foto">
+                            <div class="coll_order_image_border"></div>
+                        </div>
                         <div class="coll_order_items_text">
                             <p class="coll_order_item_text">3D Portraits</p>
                             <div class="coll_order_icon">
@@ -254,7 +260,10 @@
                         </div>
                     </div>
                     <div class="coll_order_items">
-                        <img :src="'/images/collection/23.png'" alt="" class="coll_order_foto">
+                        <div class="call_order_image_group">
+                            <img :src="'/images/collection/23.png'" alt="" class="coll_order_foto">
+                            <div class="coll_order_image_border"></div>
+                        </div>
                         <div class="coll_order_items_text">
                             <p class="coll_order_item_text">Environment</p>
                             <div class="coll_order_icon">
@@ -611,9 +620,24 @@ h4.coll_username {
     width: 470px;
     height: 290px;
 }
+.call_order_image_group {
+    position: relative;
+    width: 460px;
+    height: 260px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .coll_order_foto {
     width: 460px;
     height: 260px;
+}
+.coll_order_image_foto {
+    width: 435px;
+    height: 235px;
+    border: 1px dashed #fff;
+    box-sizing: border-box;
+    position: absolute;
 }
 .coll_order_items_text {
     display: flex;
