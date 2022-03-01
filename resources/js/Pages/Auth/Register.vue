@@ -333,6 +333,7 @@ import Label from '../../Jetstream/Label.vue'
     height: 29px;
     border: 1px solid #000000;
     box-sizing: border-box;
+    box-shadow: none;
 }
 .model_checkbox label{
     font-family: Montserrat;
