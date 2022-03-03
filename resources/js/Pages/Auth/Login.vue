@@ -1,31 +1,7 @@
 <template>
     <section class="all_collection">
         <header-collection></header-collection>
-        <div class="coll_slider">
-            <div class="coll_path">
-                <a href="#" class="coll_path_text">All 3D Models</a> / <a class="current">Collection: Awesome Crocodiles</a>
-            </div>
-            <div class="coll_slider_group">
-                <div class="coll_slider_icons">
-                    <img :src="'/images/collection/image 38.jpg'" style="width: 232px;" alt="icon" class="coll_slider_icon" />
-                    <img :src="'/images/collection/image 30.jpg'" alt="icon" class="coll_slider_icon" />
-                    <img :src="'/images/collection/image 32.jpg'" alt="icon" class="coll_slider_icon" />
-                    <img :src="'/images/collection/image 34.jpg'" alt="icon" class="coll_slider_icon" />
-                    <img :src="'/images/collection/4.jpg'" alt="icon" class="coll_slider_icon" />
-                    <img :src="'/images/collection/image 40.jpg'" alt="icon" class="coll_slider_icon" />
-                    <img :src="'/images/collection/image 37.jpg'" style="width:232px;" alt="icon" class="coll_slider_icon" />
-                    <img :src="'/images/collection/image 29.jpg'" alt="icon" class="coll_slider_icon" />
-                    <img :src="'/images/collection/image 31.jpg'" alt="icon" class="coll_slider_icon" />
-                    <img :src="'/images/collection/image 33.jpg'" alt="icon" class="coll_slider_icon" />
-                    <img :src="'/images/collection/image 35.jpg'" alt="icon" class="coll_slider_icon" />
-                    <img :src="'/images/collection/image 39.jpg'" alt="icon" class="coll_slider_icon" />
-                </div>
-                <div class="coll_slider_buttons">
-                    <div class="coll_slider_left"></div>
-                    <div class="coll_slider_right"></div>
-                </div>
-            </div>
-        </div>
+        <slider-collection></slider-collection>
         <main class="coll_main">
             <div class="main_info">
                 <div class="coll_desk">
@@ -52,13 +28,19 @@
                             <p class="coll_okko_text">10k.</p>
                         </div>
                         <div class="coll_like_group">
-                            <div class="coll_like">
-                                <img :src="'/images/collection/like.png'" style="width: 17px; height: 15px; margin-right: 5px;" alt="like" class="coll_okko_icon">
-                                <p class="coll_okko_text">1890</p>
+                            <div class="coll_like_block">
+                                <div class="coll_like">
+                                    <img :src="'/images/collection/like.png'" style="width: 17px; height: 15px; margin-right: 5px;" alt="like" class="coll_okko_icon">
+                                    <p class="coll_okko_text">1890</p>
+                                </div>
+                                <div class="coll_like" style="justify-content: flex-end;">
+                                    <img :src="'/images/collection/dislike.png'" style="width: 17px; height: 15px; margin-right: 5px;" alt="dislike" class="coll_okko_icon">
+                                    <p class="coll_okko_text">49</p>
+                                </div>
                             </div>
-                            <div class="coll_like">
-                                <img :src="'/images/collection/dislike.png'" style="width: 17px; height: 15px; margin-right: 5px;" alt="dislike" class="coll_okko_icon">
-                                <p class="coll_okko_text">49</p>
+                            <div class="coll_like_meter">
+                                <span class="coll_like_meter_plus"></span>
+                                <span class="coll_like_meter_minus"></span>
                             </div>
                         </div>
                         <div class="coll_mark_link">
@@ -290,12 +272,14 @@
 
 <script>
 import HeaderCollection from '@/Common/HeaderCollection.vue'
+import SliderCollection from '@/Common/SliderCollection.vue'
 import MyFooter from '@/Common/Footer.vue'
 
 export default {
     name: 'all-collection',
     components: {
         HeaderCollection,
+        SliderCollection,
         MyFooter
     }
 }
@@ -304,39 +288,6 @@ export default {
 <style scoped>
 .all_collection {
     position: relative;    
-}
-.coll_slider {
-    position: relative;
-    width: 100%;
-    max-height: 400px;
-}
-.coll_path {
-    position: absolute;
-    left: 13%;
-    top: 9%;
-    width: 690px;
-    height: 17px;
-    display: flex;
-    align-items: center;
-}
-.coll_path_text, .current {
-    font-family: Montserrat;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 14px;
-    line-height: 17px;
-    display: flex;
-    align-items: center;
-    color: #000000;
-    padding: 0 5px;
-}
-.coll_slider_icons {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-}
-.coll_slider_icon {
-    height: 200px;
 }
 .coll_main {
     width: 1450px;
@@ -427,14 +378,36 @@ export default {
 }
 .coll_like_group {
     display: flex;
+    flex-direction: column;
+    width: 130px;
+    position: relative;
+}
+.coll_like_block {
+    display: flex;
     justify-content: center;
     align-items: center;
-    width: 160px;
+    width: 130px;
     height: 18px;
+}
+.coll_like_meter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 130px;
+    position: absolute;
+    bottom: -13px;
+}
+.coll_like_meter_plus {
+    width: 85%;
+    border-bottom: 2px solid #F09FE8;
+}
+.coll_like_meter_minus {
+    width: 15%;
+    border-bottom: 2px solid #541B1B;
 }
 .coll_like {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     width: 80px;
     height: 17px;
@@ -474,12 +447,6 @@ export default {
     align-items: center;
     margin: 25px 0;
 }
-.coll_sort_logo_icon {
-    color: #000000;
-}
-.coll_sort_search_icon {
-    color: #000000;
-}
 .coll_sort_search p {
     font-family: Montserrat-Italic;
     font-size: 16px;
@@ -500,6 +467,7 @@ export default {
     border-right: 0;
     width: 290px;
     height: 0;
+    box-shadow: none;
 }
 .coll_sort_date {
     position: relative;

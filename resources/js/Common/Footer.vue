@@ -136,6 +136,7 @@ export default {
     border-right: 0;
     width: 252px;
     height: 0;
+    box-shadow: none;
 }
 .footer_sub {
     width: 90px;

@@ -18,7 +18,7 @@
             <div class="header_search">
                 <img class="header_logo_icon" style="width: 12px; height: 44px;" :src="'/images/[.svg'" alt="[" />
                 <p>Search</p>
-                <input type="text" class="header_search-text"/>
+                <input type="text" class="header_search_text"/>
                 <img class="header_search_icon" style="width: 14px; height: 14px;" :src="'/images/search.svg'" alt="cart" />
                 <img class="header_logo_icon" style="width: 12px; height: 44px;" :src="'/images/].svg'" alt="]" />
             </div>
@@ -114,7 +114,7 @@ export default {
         color: #FFFFFF;
         font-style: italic;
     }
-    .header_search-text {
+    .header_search_text {
         background: none;
         margin-bottom: 4px;
         line-height: 2.4em;
@@ -125,6 +125,8 @@ export default {
         border-right: 0;
         width: 470px;
         height: 0;
+        box-shadow: none;
+        color: #fff;
     }
     .header_cart {
         width: 35px;
