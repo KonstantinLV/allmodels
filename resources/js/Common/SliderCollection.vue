@@ -4,35 +4,95 @@
             <a href="#" class="coll_path_text">All 3D Models</a> / <a class="current">Collection: Awesome Crocodiles</a>
         </div>
         <div class="coll_slider_group">
-            <div class="coll_slider_icons">
-                <img :src="'/images/collection/image 38.jpg'" style="width: 232px;" alt="icon" class="coll_slider_icon" />
-                <img :src="'/images/collection/image 30.jpg'" alt="icon" class="coll_slider_icon" />
-                <img :src="'/images/collection/image 32.jpg'" alt="icon" class="coll_slider_icon" />
-                <img :src="'/images/collection/image 34.jpg'" alt="icon" class="coll_slider_icon" />
-                <img :src="'/images/collection/4.jpg'" alt="icon" class="coll_slider_icon" />
-                <img :src="'/images/collection/image 40.jpg'" alt="icon" class="coll_slider_icon" />
-                <img :src="'/images/collection/image 37.jpg'" style="width:232px;" alt="icon" class="coll_slider_icon" />
-                <img :src="'/images/collection/image 29.jpg'" alt="icon" class="coll_slider_icon" />
-                <img :src="'/images/collection/image 31.jpg'" alt="icon" class="coll_slider_icon" />
-                <img :src="'/images/collection/image 33.jpg'" alt="icon" class="coll_slider_icon" />
-                <img :src="'/images/collection/image 35.jpg'" alt="icon" class="coll_slider_icon" />
-                <img :src="'/images/collection/image 39.jpg'" alt="icon" class="coll_slider_icon" />
-            </div>
-            <div class="coll_slider_buttons">
-                <div class="coll_slider_left"></div>
-                <div class="coll_slider_right"></div>
-            </div>
+            <transition-group name="fade" tag="div">
+                <div class="coll_slider_icons" v-for="i in [currentIndex]" :key="i">
+                    <img class="coll_slider_icon" :src="currentImg.src" alt="icon"/>
+                </div>
+            </transition-group>
+            <a class="prev" @click="prev" href="#">&#10094;</a>
+            <a class="next" @click="next" href="#">&#10095;</a>
         </div>
     </div>
 </template>
 
 <script>
 export default {
-    name: 'slider-collection'
-}
+    name: 'slider-collection',
+    data() {
+        return {
+            images: [
+                    {src: ["/images/collection/1.jpg", "/images/collection/6.png", "/images/collection/7.png"]},
+                    {src: "/images/collection/2.jpg"},
+                    {src: "/images/collection/3.png"},
+                    {src: "/images/collection/4.jpg"},
+                    {src: "/images/collection/5.png"}
+            ],
+            timer: null,
+            currentIndex: 0
+        };
+    },
+
+    methods: {
+        next: function() {
+            this.currentIndex += 1;
+        },
+        prev: function() {
+            this.currentIndex -= 1;
+        }
+    },
+
+    computed: {
+        currentImg: function() {
+            return this.images[Math.abs(this.currentIndex) % this.images.length];
+        }
+    }
+};
 </script>
 
 <style scoped>
+.fade-enter-active,
+.fade-leave-active {
+    transition: all 0.9s ease;
+    overflow: hidden;
+    visibility: visible;
+    position: absolute;
+    width: 100%;
+    opacity: 1;
+}
+.fade-enter,
+.fade-leave-to {
+    visibility: hidden;
+    width: 100%;
+    opacity: 0;
+}
+img {
+    height: 600px;
+    width: 100%;
+}
+.prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 40%;
+    width: auto;
+    padding: 16px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.7s ease;
+    border-radius: 0 4px 4px 0;
+    text-decoration: none;
+    user-select: none;
+}
+.next {
+    right: 0;
+}
+.prev {
+    left: 0;
+}
+.prev:hover, .next:hover {
+    background-color: rgba(0,0,0,0.9);
+}
+
 .coll_slider {
     position: relative;
     width: 100%;
@@ -57,6 +117,11 @@ export default {
     align-items: center;
     color: #000000;
     padding: 0 5px;
+}
+.coll_slider_group {
+    position: relative;
+    width: 100%;
+    max-height: 400px;
 }
 .coll_slider_icons {
     display: flex;
