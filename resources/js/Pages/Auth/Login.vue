@@ -59,8 +59,7 @@
                 <div class="coll_sort_block">
                     <div class="coll_sort_search">
                         <img class="coll_sort_logo_icon" style="width: 12px; height: 44px;" :src="'/images/collection/sk.png'" alt="sk" />
-                        <p>Search within the collection</p>
-                        <input type="text" class="coll_sort_search_text"/>
+                        <input type="text" class="coll_sort_search_text" placeholder="Search within the collection"/>
                         <img class="coll_sort_search_icon" style="width: 14px; height: 14px;" :src="'/images/collection/search.png'" alt="cart" />
                         <img class="coll_sort_logo_icon" style="width: 12px; height: 44px;" :src="'/images/collection/ks.png'" alt="ks" />
                     </div>
@@ -446,8 +445,6 @@ export default {
     justify-content: space-between;
     align-items: center;
     margin: 25px 0;
-}
-.coll_sort_search p {
     font-family: Montserrat-Italic;
     font-size: 16px;
     line-height: 20px;
@@ -465,9 +462,13 @@ export default {
     border-top: 0;
     border-left: 0;
     border-right: 0;
-    width: 290px;
+    width: 510px;
     height: 0;
     box-shadow: none;
+    padding-left: 0;
+}
+.coll_sort_search_text::placeholder {
+    color: black;
 }
 .coll_sort_date {
     position: relative;

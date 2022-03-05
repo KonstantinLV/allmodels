@@ -4,9 +4,12 @@
             <a href="#" class="coll_path_text">All 3D Models</a> / <a class="current">Collection: Awesome Crocodiles</a>
         </div>
         <div class="coll_slider_group">
-            <transition-group name="fade" tag="div">
-                <div class="coll_slider_icons" v-for="i in [currentIndex]" :key="i">
-                    <img class="coll_slider_icon" :src="currentImg.src" alt="icon"/>
+            <transition-group style="display: flex;" name="fade" tag="div">
+                <div class="coll_slider_icons" v-for="img in images" :key="img">
+                    <img class="" style="width: 355px; height: 200px;" :src="img.src" alt="image"/>
+                    <div >
+                        <img class="" style="width: 355px; height: 200px;" :src="img.thumbnail" alt="image"/>
+                    </div>
                 </div>
             </transition-group>
             <a class="prev" @click="prev" href="#">&#10094;</a>
@@ -21,11 +24,12 @@ export default {
     data() {
         return {
             images: [
-                    {src: ["/images/collection/1.jpg", "/images/collection/6.png", "/images/collection/7.png"]},
-                    {src: "/images/collection/2.jpg"},
-                    {src: "/images/collection/3.png"},
-                    {src: "/images/collection/4.jpg"},
-                    {src: "/images/collection/5.png"}
+                {src: '/images/collection/1.jpg', thumbnail: '/images/collection/7.png'},
+                {src: '/images/collection/2.jpg', thumbnail: '/images/collection/8.png'},
+                {src: '/images/collection/3.png', thumbnail: '/images/collection/9.png'},
+                {src: '/images/collection/4.jpg', thumbnail: '/images/collection/10.png'},
+                {src: '/images/collection/5.png', thumbnail: '/images/collection/11.png'},
+                {src: '/images/collection/6.png', thumbnail: '/images/collection/12.png'},
             ],
             timer: null,
             currentIndex: 0
