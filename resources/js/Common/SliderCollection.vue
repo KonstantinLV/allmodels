@@ -4,11 +4,10 @@
             <a href="#" class="coll_path_text">All 3D Models</a> / <a class="current">Collection: Awesome Crocodiles</a>
         </div>
         <div class="coll_slider_group">
-            <transition-group style="display: flex;" name="fade" tag="div">
-                <div class="coll_slider_icons" v-for="img in images" :key="img">
-                    <img class="" style="width: 355px; height: 200px;" :src="img.src" alt="image"/>
-                    <div >
-                        <img class="" style="width: 355px; height: 200px;" :src="img.thumbnail" alt="image"/>
+            <transition-group style="display: flex; transition: all 0.9s ease;" name="fade" tag="div">
+                <div class="coll_slider_icons" v-for="(img, index) in [currentImg]" :key="index">
+                    <div class="coll_slider_circle" v-for="item in img.list" :key="item">
+                        <div class="coll_slicer_curcle_image" v-bind:style='"background-image: url(" + item + ")"' ></div>
                     </div>
                 </div>
             </transition-group>
@@ -23,15 +22,58 @@ export default {
     name: 'slider-collection',
     data() {
         return {
-            images: [
-                {src: '/images/collection/1.jpg', thumbnail: '/images/collection/7.png'},
-                {src: '/images/collection/2.jpg', thumbnail: '/images/collection/8.png'},
-                {src: '/images/collection/3.png', thumbnail: '/images/collection/9.png'},
-                {src: '/images/collection/4.jpg', thumbnail: '/images/collection/10.png'},
-                {src: '/images/collection/5.png', thumbnail: '/images/collection/11.png'},
-                {src: '/images/collection/6.png', thumbnail: '/images/collection/12.png'},
+            imageGallery: [{
+                userId: 1,
+                list: [
+                    '/images/collection/1.jpg',
+                    '/images/collection/2.jpg',
+                    '/images/collection/3.png',
+                    '/images/collection/4.jpg',
+                    '/images/collection/5.png',
+                    '/images/collection/6.png',
+                    '/images/collection/7.png',
+                    '/images/collection/8.png',
+                    '/images/collection/9.png',
+                    '/images/collection/10.png',
+                    '/images/collection/11.png',
+                    '/images/collection/12.png'
+                ]
+            },
+            {
+                userId: 2,
+                list: [
+                    '/images/collection/2.jpg',
+                    '/images/collection/4.jpg',
+                    '/images/collection/3.png',
+                    '/images/collection/1.jpg',
+                    '/images/collection/5.png',
+                    '/images/collection/6.png',
+                    '/images/collection/7.png',
+                    '/images/collection/8.png',
+                    '/images/collection/9.png',
+                    '/images/collection/10.png',
+                    '/images/collection/11.png',
+                    '/images/collection/12.png'
+                ]
+            },
+            {
+                userId: 3,
+                list: [
+                    '/images/collection/4.jpg',
+                    '/images/collection/1.jpg',
+                    '/images/collection/3.png',
+                    '/images/collection/2.jpg',
+                    '/images/collection/5.png',
+                    '/images/collection/8.png',
+                    '/images/collection/6.png',
+                    '/images/collection/10.png',
+                    '/images/collection/7.png',
+                    '/images/collection/9.png',
+                    '/images/collection/12.png',
+                    '/images/collection/11.png'
+                ]
+            }
             ],
-            timer: null,
             currentIndex: 0
         };
     },
@@ -47,7 +89,7 @@ export default {
 
     computed: {
         currentImg: function() {
-            return this.images[Math.abs(this.currentIndex) % this.images.length];
+            return this.imageGallery[Math.abs(this.currentIndex) % this.imageGallery.length];
         }
     }
 };
@@ -68,10 +110,6 @@ export default {
     visibility: hidden;
     width: 100%;
     opacity: 0;
-}
-img {
-    height: 600px;
-    width: 100%;
 }
 .prev, .next {
     cursor: pointer;
@@ -110,6 +148,7 @@ img {
     height: 17px;
     display: flex;
     align-items: center;
+    z-index: 1;
 }
 .coll_path_text, .current {
     font-family: Montserrat;
@@ -131,8 +170,18 @@ img {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
+    max-height: 400px;
+    overflow: hidden;
 }
-.coll_slider_icon {
+.coll_slider_circle {
     height: 200px;
+    width: 355px;
+    flex: 1 1 280px;
+}
+.coll_slicer_curcle_image {
+    height: 100%; 
+    width: auto; 
+    max-width: 100%;
+    background-size: cover;
 }
 </style>

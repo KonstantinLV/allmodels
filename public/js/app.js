@@ -19362,26 +19362,16 @@ __webpack_require__.r(__webpack_exports__);
   name: 'slider-collection',
   data: function data() {
     return {
-      images: [{
-        src: '/images/collection/1.jpg',
-        thumbnail: '/images/collection/7.png'
+      imageGallery: [{
+        userId: 1,
+        list: ['/images/collection/1.jpg', '/images/collection/2.jpg', '/images/collection/3.png', '/images/collection/4.jpg', '/images/collection/5.png', '/images/collection/6.png', '/images/collection/7.png', '/images/collection/8.png', '/images/collection/9.png', '/images/collection/10.png', '/images/collection/11.png', '/images/collection/12.png']
       }, {
-        src: '/images/collection/2.jpg',
-        thumbnail: '/images/collection/8.png'
+        userId: 2,
+        list: ['/images/collection/2.jpg', '/images/collection/4.jpg', '/images/collection/3.png', '/images/collection/1.jpg', '/images/collection/5.png', '/images/collection/6.png', '/images/collection/7.png', '/images/collection/8.png', '/images/collection/9.png', '/images/collection/10.png', '/images/collection/11.png', '/images/collection/12.png']
       }, {
-        src: '/images/collection/3.png',
-        thumbnail: '/images/collection/9.png'
-      }, {
-        src: '/images/collection/4.jpg',
-        thumbnail: '/images/collection/10.png'
-      }, {
-        src: '/images/collection/5.png',
-        thumbnail: '/images/collection/11.png'
-      }, {
-        src: '/images/collection/6.png',
-        thumbnail: '/images/collection/12.png'
+        userId: 3,
+        list: ['/images/collection/4.jpg', '/images/collection/1.jpg', '/images/collection/3.png', '/images/collection/2.jpg', '/images/collection/5.png', '/images/collection/8.png', '/images/collection/6.png', '/images/collection/10.png', '/images/collection/7.png', '/images/collection/9.png', '/images/collection/12.png', '/images/collection/11.png']
       }],
-      timer: null,
       currentIndex: 0
     };
   },
@@ -19395,7 +19385,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   computed: {
     currentImg: function currentImg() {
-      return this.images[Math.abs(this.currentIndex) % this.images.length];
+      return this.imageGallery[Math.abs(this.currentIndex) % this.imageGallery.length];
     }
   }
 });
@@ -22395,42 +22385,33 @@ var _hoisted_2 = /*#__PURE__*/_withScopeId(function () {
 var _hoisted_3 = {
   "class": "coll_slider_group"
 };
-var _hoisted_4 = ["src"];
-var _hoisted_5 = ["src"];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [_hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(vue__WEBPACK_IMPORTED_MODULE_0__.TransitionGroup, {
     style: {
-      "display": "flex"
+      "display": "flex",
+      "transition": "all 0.9s ease"
     },
     name: "fade",
     tag: "div"
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.images, function (img) {
+      return [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)([$options.currentImg], function (img, index) {
         return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
           "class": "coll_slider_icons",
-          key: img
-        }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
-          "class": "",
-          style: {
-            "width": "355px",
-            "height": "200px"
-          },
-          src: img.src,
-          alt: "image"
-        }, null, 8
-        /* PROPS */
-        , _hoisted_4), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
-          "class": "",
-          style: {
-            "width": "355px",
-            "height": "200px"
-          },
-          src: img.thumbnail,
-          alt: "image"
-        }, null, 8
-        /* PROPS */
-        , _hoisted_5)])]);
+          key: index
+        }, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(img.list, function (item) {
+          return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
+            "class": "coll_slider_circle",
+            key: item
+          }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+            "class": "coll_slicer_curcle_image",
+            style: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeStyle)("background-image: url(" + item + ")")
+          }, null, 4
+          /* STYLE */
+          )]);
+        }), 128
+        /* KEYED_FRAGMENT */
+        ))]);
       }), 128
       /* KEYED_FRAGMENT */
       ))];
@@ -28952,7 +28933,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.fade-enter-active[data-v-4c7c2316],\r\n.fade-leave-active[data-v-4c7c2316] {\r\n    transition: all 0.9s ease;\r\n    overflow: hidden;\r\n    visibility: visible;\r\n    position: absolute;\r\n    width: 100%;\r\n    opacity: 1;\n}\n.fade-enter[data-v-4c7c2316],\r\n.fade-leave-to[data-v-4c7c2316] {\r\n    visibility: hidden;\r\n    width: 100%;\r\n    opacity: 0;\n}\nimg[data-v-4c7c2316] {\r\n    height: 600px;\r\n    width: 100%;\n}\n.prev[data-v-4c7c2316], .next[data-v-4c7c2316] {\r\n    cursor: pointer;\r\n    position: absolute;\r\n    top: 40%;\r\n    width: auto;\r\n    padding: 16px;\r\n    color: white;\r\n    font-weight: bold;\r\n    font-size: 18px;\r\n    transition: 0.7s ease;\r\n    border-radius: 0 4px 4px 0;\r\n    text-decoration: none;\r\n    -webkit-user-select: none;\r\n       -moz-user-select: none;\r\n        -ms-user-select: none;\r\n            user-select: none;\n}\n.next[data-v-4c7c2316] {\r\n    right: 0;\n}\n.prev[data-v-4c7c2316] {\r\n    left: 0;\n}\n.prev[data-v-4c7c2316]:hover, .next[data-v-4c7c2316]:hover {\r\n    background-color: rgba(0,0,0,0.9);\n}\n.coll_slider[data-v-4c7c2316] {\r\n    position: relative;\r\n    width: 100%;\r\n    max-height: 400px;\n}\n.coll_path[data-v-4c7c2316] {\r\n    position: absolute;\r\n    left: 13%;\r\n    top: 9%;\r\n    width: 690px;\r\n    height: 17px;\r\n    display: flex;\r\n    align-items: center;\n}\n.coll_path_text[data-v-4c7c2316], .current[data-v-4c7c2316] {\r\n    font-family: Montserrat;\r\n    font-style: normal;\r\n    font-weight: normal;\r\n    font-size: 14px;\r\n    line-height: 17px;\r\n    display: flex;\r\n    align-items: center;\r\n    color: #000000;\r\n    padding: 0 5px;\n}\n.coll_slider_group[data-v-4c7c2316] {\r\n    position: relative;\r\n    width: 100%;\r\n    max-height: 400px;\n}\n.coll_slider_icons[data-v-4c7c2316] {\r\n    display: flex;\r\n    flex-wrap: wrap;\r\n    align-items: center;\n}\n.coll_slider_icon[data-v-4c7c2316] {\r\n    height: 200px;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.fade-enter-active[data-v-4c7c2316],\r\n.fade-leave-active[data-v-4c7c2316] {\r\n    transition: all 0.9s ease;\r\n    overflow: hidden;\r\n    visibility: visible;\r\n    position: absolute;\r\n    width: 100%;\r\n    opacity: 1;\n}\n.fade-enter[data-v-4c7c2316],\r\n.fade-leave-to[data-v-4c7c2316] {\r\n    visibility: hidden;\r\n    width: 100%;\r\n    opacity: 0;\n}\n.prev[data-v-4c7c2316], .next[data-v-4c7c2316] {\r\n    cursor: pointer;\r\n    position: absolute;\r\n    top: 40%;\r\n    width: auto;\r\n    padding: 16px;\r\n    color: white;\r\n    font-weight: bold;\r\n    font-size: 18px;\r\n    transition: 0.7s ease;\r\n    border-radius: 0 4px 4px 0;\r\n    text-decoration: none;\r\n    -webkit-user-select: none;\r\n       -moz-user-select: none;\r\n        -ms-user-select: none;\r\n            user-select: none;\n}\n.next[data-v-4c7c2316] {\r\n    right: 0;\n}\n.prev[data-v-4c7c2316] {\r\n    left: 0;\n}\n.prev[data-v-4c7c2316]:hover, .next[data-v-4c7c2316]:hover {\r\n    background-color: rgba(0,0,0,0.9);\n}\n.coll_slider[data-v-4c7c2316] {\r\n    position: relative;\r\n    width: 100%;\r\n    max-height: 400px;\n}\n.coll_path[data-v-4c7c2316] {\r\n    position: absolute;\r\n    left: 13%;\r\n    top: 9%;\r\n    width: 690px;\r\n    height: 17px;\r\n    display: flex;\r\n    align-items: center;\r\n    z-index: 1;\n}\n.coll_path_text[data-v-4c7c2316], .current[data-v-4c7c2316] {\r\n    font-family: Montserrat;\r\n    font-style: normal;\r\n    font-weight: normal;\r\n    font-size: 14px;\r\n    line-height: 17px;\r\n    display: flex;\r\n    align-items: center;\r\n    color: #000000;\r\n    padding: 0 5px;\n}\n.coll_slider_group[data-v-4c7c2316] {\r\n    position: relative;\r\n    width: 100%;\r\n    max-height: 400px;\n}\n.coll_slider_icons[data-v-4c7c2316] {\r\n    display: flex;\r\n    flex-wrap: wrap;\r\n    align-items: center;\r\n    max-height: 400px;\r\n    overflow: hidden;\n}\n.coll_slider_circle[data-v-4c7c2316] {\r\n    height: 200px;\r\n    width: 355px;\r\n    flex: 1 1 280px;\n}\n.coll_slicer_curcle_image[data-v-4c7c2316] {\r\n    height: 100%; \r\n    width: auto; \r\n    max-width: 100%;\r\n    background-size: cover;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
