@@ -71,133 +71,7 @@
                         <i class="fa fa-angle-down" style="color: black; position: absolute; right: 10px; top: 4px;" aria-hidden="true"></i>
                     </div>
                 </div>
-                <div class="coll_sort_group_block">
-                    <div class="coll_sort_foto">
-                        <div class="coll_sort_group">
-                            <img :src="'/images/collection/2.jpg'" alt="croconut" class="coll_sort_images">
-                            <div class="coll_sort_name">
-                                <div class="coll_sort_name_title">
-                                    <h3 class="coll_sort_text">Croconut</h3>
-                                    <h4 class="coll_sort_username">by Username</h4>
-                                </div>
-                                <p class="coll_sort_name_price">$35</p>
-                            </div>    
-                        </div>
-                        <div class="coll_sort_group">
-                            <img :src="'/images/collection/1.jpg'" alt="croconut" class="coll_sort_images">
-                            <div class="coll_sort_name">
-                                <div class="coll_sort_name_title">
-                                    <h3 class="coll_sort_text">TreeDriver</h3>
-                                    <h4 class="coll_sort_username">by Username</h4>
-                                </div>
-                                <p class="coll_sort_name_price">$35</p>
-                            </div>    
-                        </div>
-                        <div class="coll_sort_group">
-                            <img :src="'/images/collection/3.png'" alt="croconut" class="coll_sort_images">
-                            <div class="coll_sort_name">
-                                <div class="coll_sort_name_title">
-                                    <h3 class="coll_sort_text">The Mouse adventurer</h3>
-                                    <h4 class="coll_sort_username">by Username</h4>
-                                </div>
-                                <p class="coll_sort_name_price">$35</p>
-                            </div>    
-                        </div>
-                        <div class="coll_sort_group">
-                            <img :src="'/images/collection/4.jpg'" alt="croconut" class="coll_sort_images">
-                            <div class="coll_sort_name">
-                                <div class="coll_sort_name_title">
-                                    <h3 class="coll_sort_text">Zlin city</h3>
-                                    <h4 class="coll_sort_username">by Username</h4>
-                                </div>
-                                <p class="coll_sort_name_price">$35</p>
-                            </div>    
-                        </div>
-                        <div class="coll_sort_group">
-                            <img :src="'/images/collection/5.png'" alt="croconut" class="coll_sort_images">
-                            <div class="coll_sort_name">
-                                <div class="coll_sort_name_title">
-                                    <h3 class="coll_sort_text">TreeDriver</h3>
-                                    <h4 class="coll_sort_username">by Username</h4>
-                                </div>
-                                <p class="coll_sort_name_price">$35</p>
-                            </div>    
-                        </div>
-                        <div class="coll_sort_group">
-                            <img :src="'/images/collection/6.png'" alt="croconut" class="coll_sort_images">
-                            <div class="coll_sort_name">
-                                <div class="coll_sort_name_title">
-                                    <h3 class="coll_sort_text">The Mouse adventurer</h3>
-                                    <h4 class="coll_sort_username">by Username</h4>
-                                </div>
-                                <p class="coll_sort_name_price">$35</p>
-                            </div>    
-                        </div>
-                        <div class="coll_sort_group">
-                            <img :src="'/images/collection/7.png'" alt="croconut" class="coll_sort_images">
-                            <div class="coll_sort_name">
-                                <div class="coll_sort_name_title">
-                                    <h3 class="coll_sort_text">Zlin city</h3>
-                                    <h4 class="coll_sort_username">by Username</h4>
-                                </div>
-                                <p class="coll_sort_name_price">$35</p>
-                            </div>    
-                        </div>
-                        <div class="coll_sort_group">
-                            <img :src="'/images/collection/8.png'" alt="croconut" class="coll_sort_images">
-                            <div class="coll_sort_name">
-                                <div class="coll_sort_name_title">
-                                    <h3 class="coll_sort_text">TreeDriver</h3>
-                                    <h4 class="coll_sort_username">by Username</h4>
-                                </div>
-                                <p class="coll_sort_name_price">$35</p>
-                            </div>    
-                        </div>
-                        <div class="coll_sort_group">
-                            <img :src="'/images/collection/9.png'" alt="croconut" class="coll_sort_images">
-                            <div class="coll_sort_name">
-                                <div class="coll_sort_name_title">
-                                    <h3 class="coll_sort_text">The Mouse adventurer</h3>
-                                    <h4 class="coll_sort_username">by Username</h4>
-                                </div>
-                                <p class="coll_sort_name_price">$35</p>
-                            </div>    
-                        </div>
-                        <div class="coll_sort_group">
-                            <img :src="'/images/collection/10.png'" alt="croconut" class="coll_sort_images">
-                            <div class="coll_sort_name">
-                                <div class="coll_sort_name_title">
-                                    <h3 class="coll_sort_text">Zlin city</h3>
-                                    <h4 class="coll_sort_username">by Username</h4>
-                                </div>
-                                <p class="coll_sort_name_price">$35</p>
-                            </div>    
-                        </div>
-                        <div class="coll_sort_group">
-                            <img :src="'/images/collection/11.png'" alt="croconut" class="coll_sort_images">
-                            <div class="coll_sort_name">
-                                <div class="coll_sort_name_title">
-                                    <h3 class="coll_sort_text">TreeDriver</h3>
-                                    <h4 class="coll_sort_username">by Username</h4>
-                                </div>
-                                <p class="coll_sort_name_price">$35</p>
-                            </div>    
-                        </div>
-                        <div class="coll_sort_group">
-                            <img :src="'/images/collection/12.png'" alt="croconut" class="coll_sort_images">
-                            <div class="coll_sort_name">
-                                <div class="coll_sort_name_title">
-                                    <h3 class="coll_sort_text">The Mouse adventurer</h3>
-                                    <h4 class="coll_sort_username">by Username</h4>
-                                </div>
-                                <p class="coll_sort_name_price">$35</p>
-                            </div>    
-                        </div>
-                    </div>
-                    <div class="coll_button_show">
-                        <button type="submit" class="coll_show_name">Show 9 more</button>
-                    </div>
-                </div>   
+                <item-collection></item-collection>  
             </div>
             <div class="coll_order">
                 <h3 class="coll_order_name">Order collections like this one</h3>
@@ -272,6 +146,7 @@
 <script>
 import HeaderCollection from '@/Common/HeaderCollection.vue'
 import SliderCollection from '@/Common/SliderCollection.vue'
+import ItemCollection from '@/Common/ItemCollection.vue'
 import MyFooter from '@/Common/Footer.vue'
 
 export default {
@@ -279,6 +154,7 @@ export default {
     components: {
         HeaderCollection,
         SliderCollection,
+        ItemCollection,
         MyFooter
     }
 }
@@ -491,76 +367,6 @@ export default {
     font-size: 14px;
     line-height: 17px;
     color: #000000;
-}
-.coll_sort_foto {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    width: 100%;
-    height: 100%;
-}
-.coll_sort_group {
-    width: 465px;
-    height: 315px;
-    margin-bottom: 75px;
-}
-.coll_sort_images {
-    width: 460px;
-    height: 260px;
-}
-.coll_sort_name {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-top: 15px;
-}
-.coll_sort_name {
-    position: relative;
-}
-h3.coll_sort_text {
-    font-family: Montserrat;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 18px;
-    line-height: 22px;
-    color: #000000;
-}
-h4.coll_username {
-    font-family: Montserrat;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 18px;
-    line-height: 22px;
-    color: #000000;
-}
-.coll_sort_name_price {
-    font-family: Montserrat;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 18px;
-    line-height: 22px;
-    color: #000000;
-}
-.coll_button_show {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.coll_show_name {
-    width: 180px;
-    height: 68px;
-    border: 2px solid #000;
-    border-radius: 10px;
-    font-family: Montserrat;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 18px;
-    line-height: 22px;
-    display: flex;
-    align-items: center;
-    color: #000000;
-    justify-content: center;
 }
 .coll_order {
     width: 100%;
