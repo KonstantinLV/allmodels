@@ -26,7 +26,7 @@
                 <div class="header_coll_cart">
                     <a href="/" class="header_cart_link">
                         <img class="header_cart_icon" style="width: 14px; height: 14px;" :src="'/images/cart.svg'" alt="cart" />
-                        <div class="header_cart_count">0</div>
+                        <p class="header_cart_count">0</p>
                     </a>            
                 </div>
                 <div class="upload">
@@ -39,7 +39,7 @@
                 <div class="info">
                     <a href="#" class="info_icons">
                         <img class="info_icon" style="width: 16px; height: 18px;" :src="'/images/collection/info.svg'" alt="info" />
-                        <div class="info_icon_count">0</div>
+                        <p class="info_icon_count">0</p>
                     </a>
                 </div>
                 <div class="login_avatar">
@@ -181,7 +181,7 @@ export default {
         justify-content: center;
         align-items: center;
         border-radius: 10px;
-        font-family: Montserrat;
+        font-family: Montserrat-SemiBold;
         font-style: normal;
         font-weight: 600;
         font-size: 9px;
@@ -213,9 +213,9 @@ export default {
         margin-right: 10px;
     }
     .upload_name {
-        font-family: Montserrat;
+        font-family: Montserrat-Bold;
         font-style: normal;
-        font-weight: bold;
+        font-weight: 700;
         font-size: 18px;
         line-height: 22px;
         display: flex;
@@ -248,7 +248,7 @@ export default {
         justify-content: center;
         align-items: center;
         border-radius: 10px;
-        font-family: Montserrat;
+        font-family: Montserrat-SemiBold;
         font-style: normal;
         font-weight: 600;
         font-size: 9px;

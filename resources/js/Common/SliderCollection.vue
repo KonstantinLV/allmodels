@@ -1,14 +1,18 @@
 <template>
     <div class="coll_slider">
-        <div class="coll_path">
-            <a href="#" class="coll_path_text">All 3D Models</a> / <a class="current">Collection: Awesome Crocodiles</a>
-        </div>
         <div class="coll_slider_group">
             <transition-group style="display: flex; transition: all 0.9s ease;" name="fade" tag="div">
                 <div class="coll_slider_icons" v-for="(img, index) in [currentImg]" :key="index">
-                    <div class="coll_slider_circle" v-for="item in img.list" :key="item">
-                        <div class="coll_slicer_curcle_image" v-bind:style='"background-image: url(" + item + ")"' ></div>
+                    <div class="coll_slider_two_block">
+                        <div class="coll_slider_circle" v-for="item in img.list" :key="item">
+                            <div class="coll_slicer_curcle_image" v-bind:style='"background-image: url(" + item + ")"' ></div>
+                        </div>
                     </div>
+                    <div class="coll_slider_two_block">
+                        <div class="coll_slider_circle" v-for="item in img.list.slice().reverse()" :key="item">
+                            <div class="coll_slicer_curcle_image" v-bind:style='"background-image: url(" + item + ")"' ></div>
+                        </div>
+                    </div>                    
                 </div>
             </transition-group>
             <a class="prev" @click="prev" href="#">&#10094;</a>
@@ -140,27 +144,6 @@ export default {
     width: 100%;
     max-height: 400px;
 }
-.coll_path {
-    position: absolute;
-    left: 13%;
-    top: 9%;
-    width: 690px;
-    height: 17px;
-    display: flex;
-    align-items: center;
-    z-index: 1;
-}
-.coll_path_text, .current {
-    font-family: Montserrat;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 14px;
-    line-height: 17px;
-    display: flex;
-    align-items: center;
-    color: #000000;
-    padding: 0 5px;
-}
 .coll_slider_group {
     position: relative;
     width: 100%;
@@ -168,15 +151,17 @@ export default {
 }
 .coll_slider_icons {
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
     align-items: center;
     max-height: 400px;
     overflow: hidden;
 }
+.coll_slider_two_block {
+    display: flex;
+}
 .coll_slider_circle {
     height: 200px;
     width: 355px;
-    flex: 1 1 280px;
 }
 .coll_slicer_curcle_image {
     height: 100%; 

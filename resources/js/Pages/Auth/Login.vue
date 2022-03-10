@@ -3,6 +3,9 @@
         <header-collection></header-collection>
         <slider-collection></slider-collection>
         <main class="coll_main">
+            <div class="coll_path">
+                <a href="#" class="coll_path_text">All 3D Models</a> / <a class="current">Collection: Awesome Crocodiles</a>
+            </div>
             <div class="main_info">
                 <div class="coll_desk">
                     <h2 class="coll_desk_title">Awesome Crocodiles</h2>
@@ -30,11 +33,11 @@
                         <div class="coll_like_group">
                             <div class="coll_like_block">
                                 <div class="coll_like">
-                                    <img :src="'/images/collection/like.png'" style="width: 17px; height: 15px; margin-right: 5px;" alt="like" class="coll_okko_icon">
+                                    <img :src="'/images/collection/like.svg'" style="width: 17px; height: 15px; margin-right: 5px;" alt="like" class="coll_okko_icon">
                                     <p class="coll_okko_text">1890</p>
                                 </div>
                                 <div class="coll_like" style="justify-content: flex-end;">
-                                    <img :src="'/images/collection/dislike.png'" style="width: 17px; height: 15px; margin-right: 5px;" alt="dislike" class="coll_okko_icon">
+                                    <img :src="'/images/collection/dislike.svg'" style="width: 17px; height: 15px; margin-right: 5px;" alt="dislike" class="coll_okko_icon">
                                     <p class="coll_okko_text">49</p>
                                 </div>
                             </div>
@@ -44,10 +47,10 @@
                             </div>
                         </div>
                         <div class="coll_mark_link">
-                            <img :src="'/images/collection/link.png'" style="width: 18px; height: 18px;" alt="link" class="coll_okko_icon">
+                            <img :src="'/images/collection/link.svg'" style="width: 18px; height: 18px;" alt="link" class="coll_okko_icon">
                         </div>
                         <div class="coll_mark_link">
-                            <img :src="'/images/collection/tools.png'" style="width: 2px; height: 16px; " alt="tools" class="coll_okko_icon">
+                            <img :src="'/images/collection/tools.svg'" style="width: 4px; height: 18px; " alt="tools" class="coll_okko_icon">
                         </div>
                     </div>
                     <div class="add_coll">
@@ -58,10 +61,10 @@
             <div class="coll_sort">
                 <div class="coll_sort_block">
                     <div class="coll_sort_search">
-                        <img class="coll_sort_logo_icon" style="width: 12px; height: 44px;" :src="'/images/collection/sk.png'" alt="sk" />
+                        <img class="coll_sort_logo_icon" style="width: 7px; height: 34px;" :src="'/images/collection/[.svg'" alt="sk" />
                         <input type="text" class="coll_sort_search_text" placeholder="Search within the collection"/>
-                        <img class="coll_sort_search_icon" style="width: 14px; height: 14px;" :src="'/images/collection/search.png'" alt="cart" />
-                        <img class="coll_sort_logo_icon" style="width: 12px; height: 44px;" :src="'/images/collection/ks.png'" alt="ks" />
+                        <img class="coll_sort_search_icon" style="width: 14px; height: 14px;" :src="'/images/collection/search.svg'" alt="cart" />
+                        <img class="coll_sort_logo_icon" style="width: 8px; height: 34px;" :src="'/images/collection/].svg'" alt="ks" />
                     </div>
                     <div class="coll_sort_date">
                         <select class="coll_box_select">
@@ -74,7 +77,7 @@
                 <item-collection></item-collection>  
             </div>
             <div class="coll_order">
-                <h3 class="coll_order_name">Order collections like this one</h3>
+                <h3 class="coll_order_name">Other collections like this one</h3>
                 <div class="coll_order_block">
                     <div class="coll_order_items">
                         <div class="call_order_image_group">
@@ -89,7 +92,7 @@
                                     <p class="coll_order_icon_name">items</p>
                                 </div>
                                 <div class="coll_order_like">
-                                    <img :src="'/images/collection/like.png'" alt="like" class="coll_order_like_icon">
+                                    <img :src="'/images/collection/like.svg'" alt="like" class="coll_order_like_icon">
                                     <p class="coll_order_like_count">1890</p>
                                 </div>
                             </div>
@@ -108,7 +111,7 @@
                                     <p class="coll_order_icon_name">items</p>
                                 </div>
                                 <div class="coll_order_like">
-                                    <img :src="'/images/collection/like.png'" alt="like" class="coll_order_like_icon">
+                                    <img :src="'/images/collection/like.svg'" alt="like" class="coll_order_like_icon">
                                     <p class="coll_order_like_count">2k</p>
                                 </div>
                             </div>
@@ -127,7 +130,7 @@
                                     <p class="coll_order_icon_name">items</p>
                                 </div>
                                 <div class="coll_order_like">
-                                    <img :src="'/images/collection/like.png'" alt="like" class="coll_order_like_icon">
+                                    <img :src="'/images/collection/like.svg'" alt="like" class="coll_order_like_icon">
                                     <p class="coll_order_like_count">2k</p>
                                 </div>
                             </div>
@@ -170,13 +173,31 @@ export default {
     position: relative;
     margin: 0 auto;
 }
+.coll_path {
+    margin-top: 19px;
+    width: 690px;
+    height: 17px;
+    display: flex;
+    align-items: center;
+}
+.coll_path_text, .current {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 17px;
+    display: flex;
+    align-items: center;
+    color: #000000;
+    padding: 0 5px;
+}
 .main_info {
     display: flex;
     align-items: flex-start;
     width: 100%;
 }
 .coll_desk_title {
-    font-family: Montserrat;
+    font-family: Montserrat-SemiBold;
     font-style: normal;
     font-weight: 600;
     font-size: 32px;
@@ -194,6 +215,16 @@ export default {
     line-height: 22px;
     color: #000000;
     margin-top: 5px;
+}
+.coll_desk_name b {
+    width: 220px;
+    height: 65px;
+    font-family: Montserrat-SemiBold;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 22px;
+    color: #000000;
 }
 .coll_desk_text {
     font-family: Montserrat;

@@ -1791,6 +1791,18 @@ select {
         url("/fonts/Montserrat/Montserrat-SemiBold.ttf") format("ttf"),
         url("/fonts/Montserrat/Montserrat-SemiBold.svg") format("svg");
   }
+@font-face {
+    font-family: "Montserrat-Bold";
+    font-weight: 700;
+    font-style: normal;
+    font-display: auto;
+    unicode-range: U+000-5FF;
+    src: local("Montserrat"), 
+        url("/fonts/Montserrat/Montserrat-Bold.woff") format("woff"), 
+        url("/fonts/Montserrat/Montserrat-Bold.otf") format("otf"),
+        url("/fonts/Montserrat/Montserrat-Bold.ttf") format("ttf"),
+        url("/fonts/Montserrat/Montserrat-Bold.svg") format("svg");
+  }
 .hover\:border-gray-300:hover {
   --tw-border-opacity: 1;
   border-color: rgb(209 213 219 / var(--tw-border-opacity));

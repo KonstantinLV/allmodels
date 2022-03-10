@@ -1,9 +1,9 @@
 <template>
     <footer class="footer_main">
         <div class="footer_logo">
-            <img class="footer_logo_item" style="width: 7px; height: 40px;" :src="'/images/collection/sk.png'" alt="sk" />
+            <img class="footer_logo_item" style="width: 8px; height: 34px;" :src="'/images/collection/[.svg'" alt="sk" />
             <img :src="'/images/collection/A.png'" class="footer_logo_icon" style="width: 28px; height: 29px;" alt="A" >
-            <img class="footer_logo_item" style="width: 7px; height: 40px;" :src="'/images/collection/ks.png'" alt="sk" />
+            <img class="footer_logo_item" style="width: 8px; height: 34px;" :src="'/images/collection/].svg'" alt="sk" />
         </div>
         <div class="footer_group">
             <div class="footer_about">
@@ -37,10 +37,10 @@
                 <a href="#" class="footer_about_text">Subscribe to our news</a>
                 <div class="footer_news_block">
                     <div class="footer_search">
-                        <img class="footer_search_logo_icon" style="width: 7px; height: 30px;" :src="'/images/collection/sk.png'" alt="[" />
+                        <img class="footer_search_logo_icon" style="width: 7px; height: 30px;" :src="'/images/collection/[.svg'" alt="[" />
                         <p>Enter your e-mail</p>
                         <input type="text" class="footer_search_input"/>
-                        <img class="footer_search_logo_icon" style="width: 7px; height: 30px;" :src="'/images/collection/ks.png'" alt="]" />
+                        <img class="footer_search_logo_icon" style="width: 7px; height: 30px;" :src="'/images/collection/].svg'" alt="]" />
                     </div>
                     <div class="footer_sub">
                         <button type="submit" class="footer_sub_text">Sub</button>
