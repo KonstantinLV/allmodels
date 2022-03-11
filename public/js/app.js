@@ -19519,7 +19519,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   viewMore: function viewMore() {
     this.collectionToShow += 9;
-    this.showMore = this.collectionToShow === this.users.length;
+    this.showMore = this.collectionToShow === this.IconCollection.length;
   }
 });
 
@@ -19542,13 +19542,13 @@ __webpack_require__.r(__webpack_exports__);
     return {
       imageGallery: [{
         userId: 1,
-        list: ['/images/collection/1.jpg', '/images/collection/2.jpg', '/images/collection/3.png', '/images/collection/4.jpg', '/images/collection/5.png', '/images/collection/6.png', '/images/collection/7.png', '/images/collection/8.png', '/images/collection/9.png', '/images/collection/10.png', '/images/collection/11.png', '/images/collection/12.png']
+        list: ['/images/collection/1.jpg', '/images/collection/2.jpg', '/images/collection/3.png', '/images/collection/4.jpg', '/images/collection/5.png', '/images/collection/6.png']
       }, {
         userId: 2,
-        list: ['/images/collection/2.jpg', '/images/collection/4.jpg', '/images/collection/3.png', '/images/collection/1.jpg', '/images/collection/5.png', '/images/collection/6.png', '/images/collection/7.png', '/images/collection/8.png', '/images/collection/9.png', '/images/collection/10.png', '/images/collection/11.png', '/images/collection/12.png']
+        list: ['/images/collection/7.png', '/images/collection/8.png', '/images/collection/9.png', '/images/collection/10.png', '/images/collection/11.png', '/images/collection/12.png']
       }, {
         userId: 3,
-        list: ['/images/collection/4.jpg', '/images/collection/1.jpg', '/images/collection/3.png', '/images/collection/2.jpg', '/images/collection/5.png', '/images/collection/8.png', '/images/collection/6.png', '/images/collection/10.png', '/images/collection/7.png', '/images/collection/9.png', '/images/collection/12.png', '/images/collection/11.png']
+        list: ['/images/collection/4.jpg', '/images/collection/1.jpg', '/images/collection/3.png', '/images/collection/2.jpg', '/images/collection/5.png', '/images/collection/8.png']
       }],
       currentIndex: 0
     };
@@ -22553,23 +22553,28 @@ var _hoisted_2 = ["v-if"];
 var _hoisted_3 = {
   "class": "coll_sort_group"
 };
-var _hoisted_4 = ["src"];
-var _hoisted_5 = {
+var _hoisted_4 = {
+  "class": "coll_sort_link_mygroup",
+  href: "#"
+};
+var _hoisted_5 = ["src"];
+var _hoisted_6 = {
   "class": "coll_sort_name"
 };
-var _hoisted_6 = {
+var _hoisted_7 = {
   "class": "coll_sort_name_title"
 };
-var _hoisted_7 = {
+var _hoisted_8 = {
   "class": "coll_sort_text"
 };
-var _hoisted_8 = {
+var _hoisted_9 = {
   "class": "coll_sort_username"
 };
-var _hoisted_9 = {
+var _hoisted_10 = {
   "class": "coll_sort_name_price"
 };
-var _hoisted_10 = {
+var _hoisted_11 = {
+  key: 0,
   "class": "coll_button_show"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
@@ -22578,31 +22583,30 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       "class": "coll_sort_foto",
       "v-if": collectionIndex <= $data.collectionToShow,
       key: collectionIndex
-    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
       src: $data.IconCollection[collectionIndex - 1].src,
       alt: "croconut",
       "class": "coll_sort_images"
     }, null, 8
     /* PROPS */
-    , _hoisted_4), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", _hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.IconCollection[collectionIndex - 1].name), 1
+    , _hoisted_5)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", _hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.IconCollection[collectionIndex - 1].name), 1
     /* TEXT */
-    ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h4", _hoisted_8, "by " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.IconCollection[collectionIndex - 1].userName), 1
+    ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h4", _hoisted_9, "by " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.IconCollection[collectionIndex - 1].userName), 1
     /* TEXT */
-    )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_9, "$" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.IconCollection[collectionIndex - 1].price), 1
+    )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_10, "$" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.IconCollection[collectionIndex - 1].price), 1
     /* TEXT */
     )])])], 8
     /* PROPS */
     , _hoisted_2);
   }), 128
   /* KEYED_FRAGMENT */
-  )), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [$data.showMore ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", {
-    key: 0,
+  )), $data.collectionToShow < $data.IconCollection.length || $data.IconCollection.length > $data.collectionToShow ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     type: "submit",
     onClick: _cache[0] || (_cache[0] = function ($event) {
       return $data.collectionToShow += 9;
     }),
     "class": "coll_show_name"
-  }, "Show 9 more")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]);
+  }, "Show 9 more")])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]);
 }
 
 /***/ }),
@@ -29064,7 +29068,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.fade-enter-active[data-v-4c7c2316],\r\n.fade-leave-active[data-v-4c7c2316] {\r\n    transition: all 0.9s ease;\r\n    overflow: hidden;\r\n    visibility: visible;\r\n    position: absolute;\r\n    width: 100%;\r\n    opacity: 1;\n}\n.fade-enter[data-v-4c7c2316],\r\n.fade-leave-to[data-v-4c7c2316] {\r\n    visibility: hidden;\r\n    width: 100%;\r\n    opacity: 0;\n}\n.prev[data-v-4c7c2316], .next[data-v-4c7c2316] {\r\n    cursor: pointer;\r\n    position: absolute;\r\n    top: 40%;\r\n    width: auto;\r\n    padding: 16px;\r\n    color: white;\r\n    font-weight: bold;\r\n    font-size: 18px;\r\n    transition: 0.7s ease;\r\n    border-radius: 0 4px 4px 0;\r\n    text-decoration: none;\r\n    -webkit-user-select: none;\r\n       -moz-user-select: none;\r\n        -ms-user-select: none;\r\n            user-select: none;\n}\n.next[data-v-4c7c2316] {\r\n    right: 0;\n}\n.prev[data-v-4c7c2316] {\r\n    left: 0;\n}\n.prev[data-v-4c7c2316]:hover, .next[data-v-4c7c2316]:hover {\r\n    background-color: rgba(0,0,0,0.9);\n}\n.coll_slider[data-v-4c7c2316] {\r\n    position: relative;\r\n    width: 100%;\r\n    max-height: 400px;\n}\n.coll_slider_group[data-v-4c7c2316] {\r\n    position: relative;\r\n    width: 100%;\r\n    max-height: 400px;\n}\n.coll_slider_icons[data-v-4c7c2316] {\r\n    display: flex;\r\n    flex-direction: column;\r\n    align-items: center;\r\n    max-height: 400px;\r\n    overflow: hidden;\n}\n.coll_slider_two_block[data-v-4c7c2316] {\r\n    display: flex;\n}\n.coll_slider_circle[data-v-4c7c2316] {\r\n    height: 200px;\r\n    width: 355px;\n}\n.coll_slicer_curcle_image[data-v-4c7c2316] {\r\n    height: 100%; \r\n    width: auto; \r\n    max-width: 100%;\r\n    background-size: cover;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.fade-enter-active[data-v-4c7c2316],\r\n.fade-leave-active[data-v-4c7c2316] {\r\n    transition: all 0.9s ease;\r\n    overflow: hidden;\r\n    visibility: visible;\r\n    position: absolute;\r\n    width: 100%;\r\n    opacity: 1;\n}\n.fade-enter[data-v-4c7c2316],\r\n.fade-leave-to[data-v-4c7c2316] {\r\n    visibility: hidden;\r\n    width: 100%;\r\n    opacity: 0;\n}\n.prev[data-v-4c7c2316], .next[data-v-4c7c2316] {\r\n    cursor: pointer;\r\n    position: absolute;\r\n    top: 40%;\r\n    width: auto;\r\n    padding: 16px;\r\n    color: white;\r\n    font-weight: bold;\r\n    font-size: 18px;\r\n    transition: 0.7s ease;\r\n    border-radius: 0 4px 4px 0;\r\n    text-decoration: none;\r\n    -webkit-user-select: none;\r\n       -moz-user-select: none;\r\n        -ms-user-select: none;\r\n            user-select: none;\n}\n.next[data-v-4c7c2316] {\r\n    right: 0;\n}\n.prev[data-v-4c7c2316] {\r\n    left: 0;\n}\n.prev[data-v-4c7c2316]:hover, .next[data-v-4c7c2316]:hover {\r\n    background-color: rgba(0,0,0,0.9);\n}\n.coll_slider[data-v-4c7c2316] {\r\n    position: relative;\r\n    width: 100%;\r\n    max-height: 400px;\n}\n.coll_slider_group[data-v-4c7c2316] {\r\n    position: relative;\r\n    width: 100%;\r\n    max-height: 400px;\n}\n.coll_slider_icons[data-v-4c7c2316] {\r\n    display: flex;\r\n    flex-direction: column;\r\n    align-items: center;\r\n    max-height: 400px;\r\n    overflow: hidden;\r\n    width: 100%;\n}\n.coll_slider_two_block[data-v-4c7c2316] {\r\n    display: flex;\n}\n.coll_slider_circle[data-v-4c7c2316] {\r\n    height: 200px;\r\n    width: 355px;\n}\n.coll_slicer_curcle_image[data-v-4c7c2316] {\r\n    height: 100%; \r\n    width: auto; \r\n    max-width: 100%;\r\n    background-size: cover;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

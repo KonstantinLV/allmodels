@@ -2,7 +2,9 @@
     <div class="coll_sort_group_block">
         <div class="coll_sort_foto" :v-if="collectionIndex <= collectionToShow" v-for="collectionIndex in collectionToShow" :key="collectionIndex">
             <div class="coll_sort_group">
-                <img :src="IconCollection[collectionIndex - 1].src" alt="croconut" class="coll_sort_images">
+                <a class="coll_sort_link_mygroup" href="#">
+                    <img :src="IconCollection[collectionIndex - 1].src" alt="croconut" class="coll_sort_images">
+                </a>                
                 <div class="coll_sort_name">
                     <div class="coll_sort_name_title">
                         <h3 class="coll_sort_text">{{IconCollection[collectionIndex - 1].name}}</h3>
@@ -12,8 +14,8 @@
                 </div>    
             </div>
         </div>
-        <div class="coll_button_show">
-            <button type="submit" v-if="showMore" @click="collectionToShow += 9" class="coll_show_name">Show 9 more</button>
+        <div class="coll_button_show" v-if="collectionToShow < IconCollection.length || IconCollection.length > collectionToShow">
+            <button type="submit" @click="collectionToShow += 9" class="coll_show_name">Show 9 more</button>
         </div>
     </div>
 </template>
@@ -64,7 +66,7 @@ export default {
     },
     viewMore() {
         this.collectionToShow += 9;
-        this.showMore = this.collectionToShow === this.users.length;
+        this.showMore = this.collectionToShow === this.IconCollection.length;
     }
 }
 </script>
