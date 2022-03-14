@@ -2,17 +2,17 @@
     <div class="coll_slider">
         <div class="coll_slider_group">
             <transition-group style="display: flex; transition: all 0.9s ease;" name="fade" tag="div">
-                <div class="coll_slider_icons" v-for="image in imageGallery" :key="image">
+                <div class="coll_slider_icons" v-for="(img, index) in [currentImg]" :key="index">
                     <div class="coll_slider_two_block">
-                        <div class="coll_slider_circle" v-for="item in image.list" :key="item">
+                        <div class="coll_slider_circle" v-for="item in img.list" :key="item">
                             <div class="coll_slicer_curcle_image" v-bind:style='"background-image: url(" + item + ")"' ></div>
                         </div>
                     </div>
                     <div class="coll_slider_two_block">
-                        <div class="coll_slider_circle" v-for="item in image.list.slice().reverse()" :key="item">
+                        <div class="coll_slider_circle" v-for="item in img.list.slice().reverse()" :key="item">
                             <div class="coll_slicer_curcle_image" v-bind:style='"background-image: url(" + item + ")"' ></div>
                         </div>
-                    </div>                    
+                    </div>            
                 </div>
             </transition-group>
             <a class="prev" @click="prev" href="#">&#10094;</a>
@@ -23,7 +23,7 @@
 
 <script>
 export default {
-    name: 'slider-collection',
+    name: 'edit-slider',
     data() {
         return {
             imageGallery: [{
@@ -61,9 +61,6 @@ export default {
             }
             ],
             currentIndex: 0,
-            ctlClass: {
-                'coll_slider_icons': true
-            }
         };
     },
 
@@ -73,6 +70,12 @@ export default {
         },
         prev: function() {
             this.currentIndex -= 1;
+        }
+    },
+
+    computed: {
+        currentImg: function() {
+            return this.imageGallery[Math.abs(this.currentIndex) % this.imageGallery.length];
         }
     }
 };
@@ -97,7 +100,7 @@ export default {
 .prev, .next {
     cursor: pointer;
     position: absolute;
-    top: 40%;
+    top: 25%;
     width: auto;
     padding: 16px;
     color: white;
@@ -121,18 +124,18 @@ export default {
 .coll_slider {
     position: relative;
     width: 100%;
-    max-height: 400px;
+    max-height: 120px;
 }
 .coll_slider_group {
     position: relative;
     width: 100%;
-    max-height: 400px;
+    max-height: 120px;
 }
 .coll_slider_icons {
     display: flex;
     flex-direction: column;
     align-items: center;
-    max-height: 400px;
+    max-height: 120px;
     overflow: hidden;
     width: 100%;
 }
@@ -140,7 +143,7 @@ export default {
     display: flex;
 }
 .coll_slider_circle {
-    height: 200px;
+    height: 60px;
     width: 355px;
 }
 .coll_slicer_curcle_image {

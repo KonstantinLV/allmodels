@@ -53,3 +53,16 @@
         url("/fonts/Montserrat/Montserrat-Bold.ttf") format("ttf"),
         url("/fonts/Montserrat/Montserrat-Bold.svg") format("svg");
   }
+
+  @font-face {
+    font-family: "Montserrat-Medium";
+    font-weight: 500;
+    font-style: normal;
+    font-display: auto;
+    unicode-range: U+000-5FF;
+    src: local("Montserrat"), 
+        url("/fonts/Montserrat/Montserrat-Medium.woff") format("woff"), 
+        url("/fonts/Montserrat/Montserrat-Medium.otf") format("otf"),
+        url("/fonts/Montserrat/Montserrat-Medium.ttf") format("ttf"),
+        url("/fonts/Montserrat/Montserrat-Medium.svg") format("svg");
+  }

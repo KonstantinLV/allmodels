@@ -12,7 +12,7 @@
                         <div class="coll_slider_circle" v-for="item in img.list.slice().reverse()" :key="item">
                             <div class="coll_slicer_curcle_image" v-bind:style='"background-image: url(" + item + ")"' ></div>
                         </div>
-                    </div>                    
+                    </div>            
                 </div>
             </transition-group>
             <a class="prev" @click="prev" href="#">&#10094;</a>

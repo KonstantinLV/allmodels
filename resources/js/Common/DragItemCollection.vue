@@ -1,9 +1,11 @@
 <template>
     <div class="coll_sort_group_block">
+        <h3 class="coll_drag_text">Drag items to put them in custom order</h3>
         <div class="coll_sort_foto" :v-if="collectionIndex <= collectionToShow" v-for="collectionIndex in collectionToShow" :key="collectionIndex">
             <div class="coll_sort_group">
                 <a class="coll_sort_link_mygroup" href="#">
                     <img :src="IconCollection[collectionIndex - 1].src" alt="croconut" class="coll_sort_images">
+                    <img :src="'/images/delete.svg'" alt="delete" class="coll_drag_icon_delete">
                 </a>                
                 <div class="coll_sort_name">
                     <div class="coll_sort_name_title">
@@ -14,8 +16,9 @@
                 </div>    
             </div>
         </div>
-        <div class="coll_button_show" v-if="collectionToShow < IconCollection.length || IconCollection.length > collectionToShow">
-            <button type="submit" @click="collectionToShow += 9" class="coll_show_name">Show 9 more</button>
+        <div class="coll_button_show">
+            <button type="submit" class="coll_show_name">Discard Changes</button>
+            <button type="submit" class="coll_show_name">Apply Changes</button>
         </div>
     </div>
 </template>
@@ -23,7 +26,7 @@
 <script>
 
 export default {
-    name: 'item-collection',
+    name: 'drag-item-collection',
     data() {
         return {
             IconCollection: [
@@ -37,9 +40,9 @@ export default {
                 { src: '/images/collection/8.png', name: 'TreeDriver', userName: 'Username', price: '35' },
                 { src: '/images/collection/9.png', name: 'The Mouse adventurer', userName: 'Username', price: '35' },
                 { src: '/images/collection/10.png', name: 'Zlin city', userName: 'Username', price: '35' },
+
                 { src: '/images/collection/11.png', name: 'TreeDriver', userName: 'Username', price: '35' },
                 { src: '/images/collection/12.png', name: 'The Mouse adventurer', userName: 'Username', price: '35' },
-
                 { src: '/images/collection/4.jpg', name: 'Zlin city', userName: 'Username', price: '35' },
                 { src: '/images/collection/5.png', name: 'TreeDriver', userName: 'Username', price: '35' },
                 { src: '/images/collection/6.png', name: 'The Mouse adventurer', userName: 'Username', price: '35' },
@@ -48,17 +51,11 @@ export default {
                 { src: '/images/collection/9.png', name: 'The Mouse adventurer', userName: 'Username', price: '35' },
                 { src: '/images/collection/10.png', name: 'Zlin city', userName: 'Username', price: '35' },
                 { src: '/images/collection/11.png', name: 'TreeDriver', userName: 'Username', price: '35' },
-                { src: '/images/collection/12.png', name: 'The Mouse adventurer', userName: 'Username', price: '35' },
 
+                { src: '/images/collection/12.png', name: 'The Mouse adventurer', userName: 'Username', price: '35' },
                 { src: '/images/collection/4.jpg', name: 'Zlin city', userName: 'Username', price: '35' },
                 { src: '/images/collection/5.png', name: 'TreeDriver', userName: 'Username', price: '35' },
                 { src: '/images/collection/6.png', name: 'The Mouse adventurer', userName: 'Username', price: '35' },
-                { src: '/images/collection/7.png', name: 'Zlin city', userName: 'Username', price: '35' },
-                { src: '/images/collection/8.png', name: 'TreeDriver', userName: 'Username', price: '35' },
-                { src: '/images/collection/9.png', name: 'The Mouse adventurer', userName: 'Username', price: '35' },
-                { src: '/images/collection/10.png', name: 'Zlin city', userName: 'Username', price: '35' },
-                { src: '/images/collection/11.png', name: 'TreeDriver', userName: 'Username', price: '35' },
-                { src: '/images/collection/12.png', name: 'The Mouse adventurer', userName: 'Username', price: '35' },
             ],
             collectionToShow: 12,
             showMore: true,
@@ -75,6 +72,14 @@ export default {
     width: 100%;
     height: 100%;
 }
+.coll_drag_text {
+    font-family: Montserrat-Italic;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    color: #000000;
+}
 .coll_sort_group {
     width: 465px;
     height: 315px;
@@ -83,6 +88,10 @@ export default {
 .coll_sort_images {
     width: 460px;
     height: 260px;
+}
+.coll_drag_icon_delete {
+    width: 16px;
+    height: 18px;
 }
 .coll_sort_name {
     display: flex;
