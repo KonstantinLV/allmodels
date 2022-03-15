@@ -16,7 +16,7 @@
             </div>
         </div>
         <div class="recommen_coll_button_show" v-if="copyCollectionToShow < IconCopyCollection.length || IconCopyCollection.length > copyCollectionToShow">
-            <button class="recommen_coll_show_name" type="submit" @click="copyCollectionToShow += 3" >Show</button>
+            <button class="recommen_coll_show_name" type="submit" @click="copyCollectionToShow += 3" >More</button>
         </div>                             
     </div>
 </template>

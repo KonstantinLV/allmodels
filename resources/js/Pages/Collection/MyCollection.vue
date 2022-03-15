@@ -103,7 +103,7 @@ import OtherCollection from '@/Common/OtherCollection.vue'
 import MyFooter from '@/Common/Footer.vue'
 
 export default {
-    name: 'all-collection',
+    name: 'MyCollection',
     components: {
         HeaderCollection,
         SliderCollection,

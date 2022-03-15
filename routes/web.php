@@ -29,7 +29,6 @@ Route::get('/', function () {
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->name('dashboard');
- 
 
 // Admin panel routes
 Route::middleware(['auth:sanctum'])->group(function () {

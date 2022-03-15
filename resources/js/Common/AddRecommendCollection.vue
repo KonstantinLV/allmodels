@@ -1,10 +1,12 @@
 <template>
     <div class="recommen_coll">
         <h3 class="recommen_coll_name">Recommendations</h3>
+        <p class="recommen_add_text">Drag or click '+' to add</p>
         <div class="recommen_coll_block" >
             <div class="recommen_coll_group" :v-if="collectionIndex <= recommendationToShow" v-for="collectionIndex in recommendationToShow" :key="collectionIndex">
                 <a class="recommen_coll_link_mygroup" href="#">
                     <img :src="IconRecommendation[collectionIndex - 1].src" alt="croconut" class="recommen_coll_images">
+                    <img :src="'/images/add.svg'" alt="add" class="add_recommend_icon">
                 </a>           
                 <div class="recommen_name_block">
                     <div class="recommen_coll_name_title">
@@ -23,29 +25,25 @@
 
 <script>
 export default {
-    name: 'recommendation-collection',
+    name: 'add-recommendation',
     data() {
         return {
             IconRecommendation: [
-                { src: '/images/recommendation/r-1.jpg', name: 'Zlin city', userName: 'Username', price: '35' },
-                { src: '/images/recommendation/r-2.jpg', name: 'TreeDriver', userName: 'Username', price: '35' },
-                { src: '/images/recommendation/r-3.jpg', name: 'The Mouse adventurer', userName: 'Username', price: '35' },
-
-                { src: '/images/recommendation/r-1.jpg', name: 'Zlin city', userName: 'Username', price: '35' },
-                { src: '/images/recommendation/r-2.jpg', name: 'TreeDriver', userName: 'Username', price: '35' },
-                { src: '/images/recommendation/r-3.jpg', name: 'The Mouse adventurer', userName: 'Username', price: '35' },
-                
-                { src: '/images/recommendation/r-1.jpg', name: 'Zlin city', userName: 'Username', price: '35' },
-                { src: '/images/recommendation/r-2.jpg', name: 'TreeDriver', userName: 'Username', price: '35' },
-                { src: '/images/recommendation/r-3.jpg', name: 'The Mouse adventurer', userName: 'Username', price: '35' },
+                { src: '/images/collection/2.jpg', name: 'Croconut', userName: 'Username', price: '35' },
+                { src: '/images/collection/4.jpg', name: 'Zlin city', userName: 'Username', price: '35' },
+                { src: '/images/collection/7.png', name: 'Zlin city', userName: 'Username', price: '35' },
+                { src: '/images/collection/10.png', name: 'Zlin city', userName: 'Username', price: '35' },
+                { src: '/images/collection/2.jpg', name: 'Croconut', userName: 'Username', price: '35' },
+                { src: '/images/collection/4.jpg', name: 'Zlin city', userName: 'Username', price: '35' },
+                { src: '/images/collection/7.png', name: 'Zlin city', userName: 'Username', price: '35' },
+                { src: '/images/collection/2.jpg', name: 'Croconut', userName: 'Username', price: '35' },
+                { src: '/images/collection/4.jpg', name: 'Zlin city', userName: 'Username', price: '35' },
+                { src: '/images/collection/7.png', name: 'Zlin city', userName: 'Username', price: '35' },
+                { src: '/images/collection/2.jpg', name: 'Croconut', userName: 'Username', price: '35' },
             ],
-            recommendationToShow: 3,
+            recommendationToShow: 7,
             showMore: true,
         };
-    },
-    viewMore() {
-        this.recommendationToShow += 3;
-        this.showMore = this.recommendationToShow === this.IconRecommendation.length;
     }
 }
 </script>
@@ -54,8 +52,8 @@ export default {
 .recommen_coll {
     display: flex;
     flex-direction: column;
-    margin-top: 100px;
-    align-items: center;
+    margin-top: -65px;
+    align-items: flex-start;
     justify-content: center;
 }
 .recommen_coll_name {
@@ -67,21 +65,40 @@ export default {
     color: #000000;
     padding-bottom: 50px;
 }
+.recommen_add_text {
+    font-family: Montserrat-Italic;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    color: #000000;
+    margin-bottom: 33px;
+}
 .recommen_coll_block {
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
     justify-content: space-between;
     width: 100%;
-    height: 100%;
 }
 .recommen_coll_group {
-    width: 465px;
-    height: 315px;
-    margin-bottom: 75px;
+    width: 300px;
+    height: 210px;
+    margin-bottom: 50px;
+}
+.recommen_coll_link_mygroup {
+    position: relative;
+    display: flex;
 }
 .recommen_coll_images {
-    width: 460px;
-    height: 260px;
+    width: 300px;
+    height: 170px;
+}
+.add_recommend_icon {
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    top: 14px;
+    right: 14px;
 }
 .recommen_name_block {
     display: flex;
@@ -120,7 +137,7 @@ export default {
     align-items: center;
 }
 .recommen_coll_show_name {
-    width: 100px;
+    width: 120px;
     height: 68px;
     border: 2px solid #000;
     border-radius: 10px;

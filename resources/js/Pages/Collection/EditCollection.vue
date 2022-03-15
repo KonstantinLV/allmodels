@@ -48,7 +48,7 @@ import DragItemCollection from '@/Common/DragItemCollection.vue'
 import MyFooter from '@/Common/Footer.vue'
 
 export default {
-    name: 'edit-collection',
+    name: 'EditCollection',
     components: {
         HeaderCollection,
         EditSlider,
