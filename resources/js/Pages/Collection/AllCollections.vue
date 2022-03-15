@@ -76,71 +76,7 @@
                 </div>
                 <item-collection></item-collection>  
             </div>
-            <div class="coll_order">
-                <h3 class="coll_order_name">Other collections like this one</h3>
-                <div class="coll_order_block">
-                    <div class="coll_order_items">
-                        <div class="call_order_image_group">
-                            <img :src="'/images/collection/22.png'" alt="" class="coll_order_foto" />
-                            <div class="coll_order_image_border"></div>
-                        </div>                        
-                        <div class="coll_order_items_text">
-                            <p class="coll_order_item_text">From artists</p>
-                            <div class="coll_order_icon">
-                                <div class="coll_order_icon_block">
-                                    <p class="coll_order_icon_count">100</p>
-                                    <p class="coll_order_icon_name">items</p>
-                                </div>
-                                <div class="coll_order_like">
-                                    <img :src="'/images/collection/like.svg'" alt="like" class="coll_order_like_icon">
-                                    <p class="coll_order_like_count">1890</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="coll_order_items">
-                        <div class="call_order_image_group">
-                            <img :src="'/images/collection/21.png'" alt="" class="coll_order_foto">
-                            <div class="coll_order_image_border"></div>
-                        </div>
-                        <div class="coll_order_items_text">
-                            <p class="coll_order_item_text">3D Portraits</p>
-                            <div class="coll_order_icon">
-                                <div class="coll_order_icon_block">
-                                    <p class="coll_order_icon_count">78</p>
-                                    <p class="coll_order_icon_name">items</p>
-                                </div>
-                                <div class="coll_order_like">
-                                    <img :src="'/images/collection/like.svg'" alt="like" class="coll_order_like_icon">
-                                    <p class="coll_order_like_count">2k</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="coll_order_items">
-                        <div class="call_order_image_group">
-                            <img :src="'/images/collection/23.png'" alt="" class="coll_order_foto">
-                            <div class="coll_order_image_border"></div>
-                        </div>
-                        <div class="coll_order_items_text">
-                            <p class="coll_order_item_text">Environment</p>
-                            <div class="coll_order_icon">
-                                <div class="coll_order_icon_block">
-                                    <p class="coll_order_icon_count">347</p>
-                                    <p class="coll_order_icon_name">items</p>
-                                </div>
-                                <div class="coll_order_like">
-                                    <img :src="'/images/collection/like.svg'" alt="like" class="coll_order_like_icon">
-                                    <p class="coll_order_like_count">2k</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="coll_order_show">
-                    <button class="coll_order_button">Show all 10</button>    
-                </div>                              
-            </div>
+            <other-collection></other-collection>
         </main>
         <my-footer></my-footer>
     </section>
@@ -150,6 +86,7 @@
 import HeaderCollection from '@/Common/HeaderCollection.vue'
 import SliderCollection from '@/Common/SliderCollection.vue'
 import ItemCollection from '@/Common/ItemCollection.vue'
+import OtherCollection from '@/Common/OtherCollection.vue'
 import MyFooter from '@/Common/Footer.vue'
 
 export default {
@@ -158,6 +95,7 @@ export default {
         HeaderCollection,
         SliderCollection,
         ItemCollection,
+        OtherCollection,
         MyFooter
     }
 }

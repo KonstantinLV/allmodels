@@ -4,7 +4,7 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\ModelController;
-use App\Http\Controllers\CollectionController;
+use App\Http\Controllers\IndexController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,3 +37,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('/add-model', [ModelController::class,'addModel']);
 });
 
+Route::get('/all-collections',[IndexController::class, 'allCollections'])->name('allcollections');
+Route::get('/my-collection',[IndexController::class, 'myCollection'])->name('mycollection');
+Route::get('/edit-collection',[IndexController::class, 'editCollection'])->name('editcollection');

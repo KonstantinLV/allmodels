@@ -26,7 +26,7 @@ class ModelController extends Controller
 
     public function addModel(AddModelRequest $request)
     {
-         $requestData =$request->all();
+        $requestData =$request->all();
         $authId =Auth::id();
         $newModelData = [
             'name'=>$requestData['name'],
