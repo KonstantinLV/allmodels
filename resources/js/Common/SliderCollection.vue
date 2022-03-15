@@ -1,8 +1,8 @@
 <template>
     <div class="coll_slider">
         <div class="coll_slider_group">
-            <transition-group style="display: flex; transition: all 0.9s ease;" name="fade" tag="div">
-                <div class="coll_slider_icons" v-for="(img, index) in [currentImg]" :key="index">
+            <transition-group :style="{ 'margin-left': '-' + (100 * currentIndex) + '%'}" class="coll_slider_margin" name="fade" tag="div">
+                <div class="coll_slider_icons" v-for="(img, index) in imageGallery" :key="index">
                     <div class="coll_slider_two_block">
                         <div class="coll_slider_circle" v-for="item in img.list" :key="item">
                             <div class="coll_slicer_curcle_image" v-bind:style='"background-image: url(" + item + ")"' ></div>
@@ -60,43 +60,38 @@ export default {
                 ]
             }
             ],
+            timer: null,
             currentIndex: 0,
         };
     },
 
-    methods: {
-        next: function() {
-            this.currentIndex += 1;
-        },
-        prev: function() {
-            this.currentIndex -= 1;
-        }
+    mounted: function() {
+        this.startSlide();
     },
 
-    computed: {
-        currentImg: function() {
-            return this.imageGallery[Math.abs(this.currentIndex) % this.imageGallery.length];
+    methods: {
+        startSlide: function() {
+            this.timer = setInterval(this.next, 6000);
+        },
+
+        next: function() {
+            if (this.currentIndex >= this.imageGallery.length -1) {
+                this.currentIndex = 0;
+            } else {
+                this.currentIndex += 1;
+            }
+        },
+        prev: function() {
+            if (this.currentIndex > 0) {
+                this.currentIndex -=1;
+            }
         }
-    }
+    }    
 };
 </script>
 
 <style scoped>
-.fade-enter-active,
-.fade-leave-active {
-    transition: all 0.9s ease;
-    overflow: hidden;
-    visibility: visible;
-    position: absolute;
-    width: 100%;
-    opacity: 1;
-}
-.fade-enter,
-.fade-leave-to {
-    visibility: hidden;
-    width: 100%;
-    opacity: 0;
-}
+
 .prev, .next {
     cursor: pointer;
     position: absolute;
@@ -131,13 +126,16 @@ export default {
     width: 100%;
     max-height: 400px;
 }
+.coll_slider_margin {
+    display: flex;
+    overflow: hidden;
+    transform: all 0.9s ease;
+}
 .coll_slider_icons {
     display: flex;
     flex-direction: column;
     align-items: center;
     max-height: 400px;
-    overflow: hidden;
-    width: 100%;
 }
 .coll_slider_two_block {
     display: flex;

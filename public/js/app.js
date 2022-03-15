@@ -20134,20 +20134,28 @@ __webpack_require__.r(__webpack_exports__);
         userId: 3,
         list: ['/images/collection/4.jpg', '/images/collection/1.jpg', '/images/collection/3.png', '/images/collection/2.jpg', '/images/collection/5.png', '/images/collection/8.png']
       }],
+      timer: null,
       currentIndex: 0
     };
   },
+  mounted: function mounted() {
+    this.startSlide();
+  },
   methods: {
+    startSlide: function startSlide() {
+      this.timer = setInterval(this.next, 6000);
+    },
     next: function next() {
-      this.currentIndex += 1;
+      if (this.currentIndex >= this.imageGallery.length - 1) {
+        this.currentIndex = 0;
+      } else {
+        this.currentIndex += 1;
+      }
     },
     prev: function prev() {
-      this.currentIndex -= 1;
-    }
-  },
-  computed: {
-    currentImg: function currentImg() {
-      return this.imageGallery[Math.abs(this.currentIndex) % this.imageGallery.length];
+      if (this.currentIndex > 0) {
+        this.currentIndex -= 1;
+      }
     }
   }
 });
@@ -24002,15 +24010,15 @@ var _hoisted_4 = {
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(vue__WEBPACK_IMPORTED_MODULE_0__.TransitionGroup, {
-    style: {
-      "display": "flex",
-      "transition": "all 0.9s ease"
-    },
+    style: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeStyle)({
+      'margin-left': '-' + 100 * $data.currentIndex + '%'
+    }),
+    "class": "coll_slider_margin",
     name: "fade",
     tag: "div"
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)([$options.currentImg], function (img, index) {
+      return [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.imageGallery, function (img, index) {
         return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
           "class": "coll_slider_icons",
           key: index
@@ -24046,7 +24054,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     _: 1
     /* STABLE */
 
-  }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+  }, 8
+  /* PROPS */
+  , ["style"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
     "class": "prev",
     onClick: _cache[0] || (_cache[0] = function () {
       return $options.prev && $options.prev.apply($options, arguments);
@@ -30994,7 +31004,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.fade-enter-active[data-v-4c7c2316],\r\n.fade-leave-active[data-v-4c7c2316] {\r\n    transition: all 0.9s ease;\r\n    overflow: hidden;\r\n    visibility: visible;\r\n    position: absolute;\r\n    width: 100%;\r\n    opacity: 1;\n}\n.fade-enter[data-v-4c7c2316],\r\n.fade-leave-to[data-v-4c7c2316] {\r\n    visibility: hidden;\r\n    width: 100%;\r\n    opacity: 0;\n}\n.prev[data-v-4c7c2316], .next[data-v-4c7c2316] {\r\n    cursor: pointer;\r\n    position: absolute;\r\n    top: 40%;\r\n    width: auto;\r\n    padding: 16px;\r\n    color: white;\r\n    font-weight: bold;\r\n    font-size: 18px;\r\n    transition: 0.7s ease;\r\n    border-radius: 0 4px 4px 0;\r\n    text-decoration: none;\r\n    -webkit-user-select: none;\r\n       -moz-user-select: none;\r\n        -ms-user-select: none;\r\n            user-select: none;\n}\n.next[data-v-4c7c2316] {\r\n    right: 0;\n}\n.prev[data-v-4c7c2316] {\r\n    left: 0;\n}\n.prev[data-v-4c7c2316]:hover, .next[data-v-4c7c2316]:hover {\r\n    background-color: rgba(0,0,0,0.9);\n}\n.coll_slider[data-v-4c7c2316] {\r\n    position: relative;\r\n    width: 100%;\r\n    max-height: 400px;\n}\n.coll_slider_group[data-v-4c7c2316] {\r\n    position: relative;\r\n    width: 100%;\r\n    max-height: 400px;\n}\n.coll_slider_icons[data-v-4c7c2316] {\r\n    display: flex;\r\n    flex-direction: column;\r\n    align-items: center;\r\n    max-height: 400px;\r\n    overflow: hidden;\r\n    width: 100%;\n}\n.coll_slider_two_block[data-v-4c7c2316] {\r\n    display: flex;\n}\n.coll_slider_circle[data-v-4c7c2316] {\r\n    height: 200px;\r\n    width: 355px;\n}\n.coll_slicer_curcle_image[data-v-4c7c2316] {\r\n    height: 100%; \r\n    width: auto; \r\n    max-width: 100%;\r\n    background-size: cover;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.prev[data-v-4c7c2316], .next[data-v-4c7c2316] {\r\n    cursor: pointer;\r\n    position: absolute;\r\n    top: 40%;\r\n    width: auto;\r\n    padding: 16px;\r\n    color: white;\r\n    font-weight: bold;\r\n    font-size: 18px;\r\n    transition: 0.7s ease;\r\n    border-radius: 0 4px 4px 0;\r\n    text-decoration: none;\r\n    -webkit-user-select: none;\r\n       -moz-user-select: none;\r\n        -ms-user-select: none;\r\n            user-select: none;\n}\n.next[data-v-4c7c2316] {\r\n    right: 0;\n}\n.prev[data-v-4c7c2316] {\r\n    left: 0;\n}\n.prev[data-v-4c7c2316]:hover, .next[data-v-4c7c2316]:hover {\r\n    background-color: rgba(0,0,0,0.9);\n}\n.coll_slider[data-v-4c7c2316] {\r\n    position: relative;\r\n    width: 100%;\r\n    max-height: 400px;\n}\n.coll_slider_group[data-v-4c7c2316] {\r\n    position: relative;\r\n    width: 100%;\r\n    max-height: 400px;\n}\n.coll_slider_margin[data-v-4c7c2316] {\r\n    display: flex;\r\n    overflow: hidden;\r\n    transform: all 0.9s ease;\n}\n.coll_slider_icons[data-v-4c7c2316] {\r\n    display: flex;\r\n    flex-direction: column;\r\n    align-items: center;\r\n    max-height: 400px;\n}\n.coll_slider_two_block[data-v-4c7c2316] {\r\n    display: flex;\n}\n.coll_slider_circle[data-v-4c7c2316] {\r\n    height: 200px;\r\n    width: 355px;\n}\n.coll_slicer_curcle_image[data-v-4c7c2316] {\r\n    height: 100%; \r\n    width: auto; \r\n    max-width: 100%;\r\n    background-size: cover;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
