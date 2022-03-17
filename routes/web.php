@@ -37,6 +37,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('/add-model', [ModelController::class,'addModel']);
 });
 
-Route::get('/all-collections',[IndexController::class, 'allCollections'])->name('allcollections');
-Route::get('/my-collection',[IndexController::class, 'myCollection'])->name('mycollection');
-Route::get('/edit-collection',[IndexController::class, 'editCollection'])->name('editcollection');
+Route::get('/all-collections',[IndexController::class, 'allCollections']);
+Route::get('/my-collection',[IndexController::class, 'myCollection']);
+Route::get('/edit-collection',[IndexController::class, 'editCollection']);
+Route::get('/tabs-comment',[IndexController::class, 'tabsComment']);

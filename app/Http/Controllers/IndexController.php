@@ -27,4 +27,11 @@ class IndexController extends Controller
             'title' => 'Edit Collection'
         ]);
     }
+
+    public function tabsComment()
+    {
+        return Inertia::render('Tabs/TabPage', [
+            'title' => 'Tabs'
+        ]);
+    }
 }

@@ -30,6 +30,9 @@
                     <li>
                         <Link href="/edit-collection">Edit Collections</Link>
                     </li>
+                    <li>
+                        <Link href="/tabs-comment">Tabs comment</Link>
+                    </li>
                 </ul>
             </div>
         </div>

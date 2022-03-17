@@ -27,38 +27,38 @@ export default {
     data() {
         return {
             imageGallery: [{
-                userId: 1,
-                list: [
-                    '/images/collection/1.jpg',
-                    '/images/collection/2.jpg',
-                    '/images/collection/3.png',
-                    '/images/collection/4.jpg',
-                    '/images/collection/5.png',
-                    '/images/collection/6.png',
-                ]
-            },
-            {
-                userId: 2,
-                list: [
-                    '/images/collection/7.png',
-                    '/images/collection/8.png',
-                    '/images/collection/9.png',
-                    '/images/collection/10.png',
-                    '/images/collection/11.png',
-                    '/images/collection/12.png'
-                ]
-            },
-            {
-                userId: 3,
-                list: [
-                    '/images/collection/4.jpg',
-                    '/images/collection/1.jpg',
-                    '/images/collection/3.png',
-                    '/images/collection/2.jpg',
-                    '/images/collection/5.png',
-                    '/images/collection/8.png',
-                ]
-            }
+                    userId: 1,
+                    list: [
+                        '/images/collection/1.jpg',
+                        '/images/collection/2.jpg',
+                        '/images/collection/3.png',
+                        '/images/collection/4.jpg',
+                        '/images/collection/5.png',
+                        '/images/collection/6.png',
+                    ]
+                },
+                {
+                    userId: 2,
+                    list: [
+                        '/images/collection/7.png',
+                        '/images/collection/8.png',
+                        '/images/collection/9.png',
+                        '/images/collection/10.png',
+                        '/images/collection/11.png',
+                        '/images/collection/12.png'
+                    ]
+                },
+                {
+                    userId: 3,
+                    list: [
+                        '/images/collection/4.jpg',
+                        '/images/collection/1.jpg',
+                        '/images/collection/3.png',
+                        '/images/collection/2.jpg',
+                        '/images/collection/5.png',
+                        '/images/collection/8.png',
+                    ]
+                }
             ],
             timer: null,
             currentIndex: 0,
@@ -86,12 +86,11 @@ export default {
                 this.currentIndex -=1;
             }
         }
-    }    
+    }
 };
 </script>
 
 <style scoped>
-
 .prev, .next {
     cursor: pointer;
     position: absolute;
