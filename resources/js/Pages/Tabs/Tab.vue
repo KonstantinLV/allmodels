@@ -1,5 +1,5 @@
 <template>
-    <div v-if="isSelected">
+    <div class="active_tabs_block" v-show="isActive" v-if="isSelected">
         <slot></slot>
     </div>
 </template>
@@ -11,6 +11,15 @@ export default {
         isSelected: {
             type: Boolean,
         }
+    },
+    data () {
+        return {
+            isActive: true
+        }
     }
 };
 </script>
+
+<style scoped>
+
+</style>

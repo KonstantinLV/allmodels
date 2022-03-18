@@ -43,12 +43,12 @@
                                     <div class="tabs_buyer_reply_block">
                                         <div class="tabs_buyer_reply">
                                             <a href="#" class="tabs_buyer_reply_link">Reply</a>
-                                            <a href="#" class="tabs_buyer_reply_link">Hide 1 reply
-                                                <img :src="'/images/tools-mini.svg'" alt="dlike" class="tabs_data_icon">
+                                            <a href="#" class="tabs_buyer_reply_link" style="display: flex; width: 110px; justify-content: space-between; align-items: center;">Hide 1 reply
+                                                <img :src="'/images/down.svg'" alt="down" class="tabs_data_icon">
                                             </a>
                                         </div>
-                                        <div class="tabs_buyer">
-                                            <div class="tabs_buyer_avatar">
+                                        <div class="tabs_buyer" style="margin-top: 40px; margin-bottom: 0;">
+                                            <div class="tabs_buyer_avatar" style="width: 135px;">
                                                 <img :src="'/images/avatar-devin.png'" alt="avatar" class="tabs_buyer_avatar_icon">
                                                 <div class="tabs_buyer_like">
                                                     <img :src="'/images/collection/like.svg'" alt="like" class="tabs_buyer_like_icon">
@@ -58,13 +58,16 @@
                                             </div>
                                             <div class="tabs_buyer_block">
                                                 <div class="tabs_buyer_name">
-                                                    <div class="tabs_firstname_block">
-                                                        <h3 class="tabs_buyer_firstname">Devin Townsend</h3>
-                                                        <img :src="'/images/a-ok.svg'" alt="a-ok" class="tabs_firstname_icon">
-                                                        <img :src="'/images/zvezda.svg'" alt="zvezda" class="tabs_firstname_icon">
-                                                        <img :src="'/images/link-name.svg'" alt="link-name" class="tabs_firstname_icon">
-                                                        <h4 class="tabs_buyer_firstname_link">Layne Staley</h4>
-                                                    </div>
+                                                    <div class="tabs_buyer_seller" style="display: flex; flex-direction: column;">
+                                                        <div class="tabs_firstname_block">
+                                                            <h3 class="tabs_buyer_firstname">Devin Townsend</h3>
+                                                            <img :src="'/images/a-ok.svg'" alt="a-ok" class="tabs_firstname_icon">
+                                                            <img :src="'/images/zvezda.svg'" alt="zvezda" class="tabs_firstname_icon">
+                                                            <img :src="'/images/link-name.svg'" alt="link-name" class="tabs_firstname_icon">
+                                                            <h4 class="tabs_buyer_firstname_link">Layne Staley</h4>
+                                                        </div>
+                                                        <p class="tabs_buyer_seller_text">Seller</p>
+                                                    </div>                                                    
                                                     <div class="tabs_data_block">
                                                         <p class="tabs_buyer_data">08.09.21</p>
                                                         <img :src="'/images/tools-mini.svg'" alt="dlike" class="tabs_data_icon">
@@ -98,7 +101,6 @@
                                     <div class="tabs_buyer_name">
                                         <div class="tabs_firstname_block">
                                             <h3 class="tabs_buyer_firstname">Mikael Akerfeldt</h3>
-                                            <img :src="'/images/a-ok.svg'" alt="a-ok" class="tabs_firstname_icon">
                                         </div>
                                         <div class="tabs_data_block">
                                             <p class="tabs_buyer_data">08.09.21</p>
@@ -131,7 +133,6 @@
                                     <div class="tabs_buyer_name">
                                         <div class="tabs_firstname_block">
                                             <h3 class="tabs_buyer_firstname">Kristoffer Rygg</h3>
-                                            <img :src="'/images/a-ok.svg'" alt="a-ok" class="tabs_firstname_icon">
                                         </div>
                                         <div class="tabs_data_block">
                                             <p class="tabs_buyer_data">08.09.21</p>
@@ -182,7 +183,7 @@ export default {
     },
     data() {
         return {
-            selected: 'Home'
+            selected: 'Comments'
         }
     },
     methods: {
@@ -238,6 +239,7 @@ export default {
 .tabs_buyer {
     display: flex;
     margin-bottom: 60px;
+    justify-content: space-between;
 }
 .tabs_buyer_avatar {
     display: flex;
@@ -275,13 +277,13 @@ export default {
     flex-direction: column;
     align-items: flex-start;
     margin-left: 19px;
-    max-width: 830px;
+    max-width: 940px;
 }
 .tabs_buyer_name {
     width: 100%;
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
     margin-bottom: 23px;
 }
 .tabs_firstname_block {
@@ -305,6 +307,19 @@ export default {
     font-size: 14px;
     line-height: 17px;
     color: #000000;
+}
+.tabs_buyer_seller_text {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 22px;
+    color: #000000;
+    width: 65px;
+    height: 22px;
+    background: #f6f5f1;
+    border-radius: 11px;
+    padding-left: 5px;
 }
 .tabs_firstname_icon {
     width: 18px;
