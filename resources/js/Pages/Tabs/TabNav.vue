@@ -24,11 +24,6 @@ export default {
             required: true,
         }
     },
-    data() {
-        return {
-            image: {backgroundImage: "url(./images/active-tab.svg)"}
-        };
-    },
     methods: {
         setTab(tab) {
             this.$emit('selected', tab);
@@ -69,10 +64,49 @@ export default {
     justify-content: space-around;
     align-items: center;
 }
-.tab_active {
+li.tabs_nav_item:first-child > .tab_active {
     background: url("/images/active-tab.svg") no-repeat center center;
     width: 100%;
     height: 100%;
+    font-family: Montserrat;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 22px;
+    color: #000;
+}
+li.tabs_nav_item:nth-child(2) > .tab_active {
+    background: url("/images/bf-svg.svg") no-repeat center center;
+    width: 100%;
+    height: 100%;
+    font-family: Montserrat;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 22px;
+    color: #000;
+}
+li.tabs_nav_item:nth-child(3) > .tab_active {
+    background: url("/images/reviews.svg") no-repeat center center;
+    width: 100%;
+    height: 100%;
+    font-family: Montserrat;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 22px;
+    color: #000;
+}
+li.tabs_nav_item:nth-child(4) > .tab_active {
+    background: url("/images/q-a.svg") no-repeat center center;
+    width: 100%;
+    height: 100%;
+    font-family: Montserrat;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 22px;
+    color: #000;
 }
 .tab_active:before {
     content: "";
