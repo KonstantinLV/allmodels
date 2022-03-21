@@ -21,5 +21,7 @@ export default {
 </script>
 
 <style scoped>
-
+.active_tabs_block {
+    margin: 0 auto;
+}
 </style>

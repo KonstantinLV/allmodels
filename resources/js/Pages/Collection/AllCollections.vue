@@ -195,9 +195,6 @@ export default {
     align-items: center;
     margin: 40px 0 60px 0;
 }
-.coll_mark {
-    display: flex;
-}
 .coll_okko {
     display: flex;
     width: 78px;
