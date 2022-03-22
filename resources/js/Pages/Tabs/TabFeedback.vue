@@ -9,7 +9,7 @@
             <p class="buyers_really_text">It will really help!</p>
             <img :src="'/images/feedback-pink.svg'" alt="feedback" class="buyers_leave_fon_image">
         </div>
-        <div class="tabs_buyer">
+        <div class="tabs_buyer_border">
             <div class="tabs_buyer_avatar">
                 <img :src="'/images/ask-foto.jpg'" alt="avatar" class="tabs_buyer_avatar_icon">
                 <div class="tabs_buyer_like">
@@ -42,25 +42,29 @@
                     <img :src="'/images/zvezda-active.svg'" style="width: 19px; height: 18px;" alt="zvezda" class="tabs_buyer_icons_item">
                     <img :src="'/images/zvezda-n.svg'" style="width: 19px; height: 18px;" alt="zvezda" class="tabs_buyer_icons_item">
                 </div>
-                <div class="add_feed">
-                    <img :src="'/images/add-feedback-pink.svg'" alt="add" class="add_feedback_image">
-                    <div class="add_feed_group">
-                        <button class="add_feedback_file" type="file">
-                            <img :src="'/images/add-feedback.svg'" alt="file" class="add_feedback_file_image">
-                        </button>
-                        <p class="add_feedback_text">Add images to your feedback</p>
-                        <p class="add_feedback_title_text">It can be photos of printed object or screenshots of your project involving
-                            this item. Anything to showcase the use of it!
-                        </p>
-                    </div>                    
-                </div>
+                <div class="add_feed_group_items">
+                    <div class="add_feed">
+                        <img :src="'/images/add-feedback-pink.svg'" alt="add" class="add_feedback_image">
+                        <div class="add_feed_group">
+                            <button class="add_feedback_file" type="file">
+                                <img :src="'/images/add-feedback.svg'" alt="file" class="add_feedback_file_image">
+                            </button>
+                            <p class="add_feedback_text">Add images to your feedback</p>
+                            <p class="add_feedback_title_text">It can be photos of printed object or screenshots of your project involving
+                                this item. Anything to showcase the use of it!
+                            </p>
+                        </div>                    
+                    </div>
+                </div>                
                 <div class="tabs_buyer_reply_block">
                     <div class="tabs_buyer_reply">                        
                         <button v-on:click="show = !show" type="submit" class="tabs_reply_button_show">
                             {{ show ? 'Hide' : 'Show'}} 1 reply
                             <img :src="'/images/down.svg'" alt="updown" class="tabs_data_icon">
                         </button>
-                        <a href="#" class="tabs_buyer_reply_link">Reply</a>
+                        <a href="#" class="tabs_buyer_reply_link">
+                            <img :src="'/images/edit-feedback.svg'" alt="edit" class="tabs_buyer_edit_image">
+                        </a>
                     </div>
                 </div>                                    
             </div>
@@ -103,7 +107,7 @@
                             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel et ipsum esse 
                             officiis eaque numquam minus. Ut impedit illo, veniam voluptates praesentium 
                             autem deserunt, nisi officia quisquam incidunt saepe! Libero?
-                        </p>                                        
+                        </p>                                     
                     </div>
                     <div class="tabs_buyer_icons_block">
                         <img :src="'/images/zvezda-active.svg'" style="width: 19px; height: 18px;" alt="zvezda" class="tabs_buyer_icons_item">
@@ -199,12 +203,12 @@
                         </p>
                     </div>
                     <div class="tabs_buyer_icons_block">
-                            <img :src="'/images/zvezda-active.svg'" style="width: 19px; height: 18px;" alt="zvezda" class="tabs_buyer_icons_item">
-                            <img :src="'/images/zvezda-active.svg'" style="width: 19px; height: 18px;" alt="zvezda" class="tabs_buyer_icons_item">
-                            <img :src="'/images/zvezda-active.svg'" style="width: 19px; height: 18px;" alt="zvezda" class="tabs_buyer_icons_item">
-                            <img :src="'/images/zvezda-active.svg'" style="width: 19px; height: 18px;" alt="zvezda" class="tabs_buyer_icons_item">
-                            <img :src="'/images/zvezda-n.svg'" style="width: 19px; height: 18px;" alt="zvezda" class="tabs_buyer_icons_item">
-                        </div>
+                        <img :src="'/images/zvezda-active.svg'" style="width: 19px; height: 18px;" alt="zvezda" class="tabs_buyer_icons_item">
+                        <img :src="'/images/zvezda-active.svg'" style="width: 19px; height: 18px;" alt="zvezda" class="tabs_buyer_icons_item">
+                        <img :src="'/images/zvezda-active.svg'" style="width: 19px; height: 18px;" alt="zvezda" class="tabs_buyer_icons_item">
+                        <img :src="'/images/zvezda-active.svg'" style="width: 19px; height: 18px;" alt="zvezda" class="tabs_buyer_icons_item">
+                        <img :src="'/images/zvezda-n.svg'" style="width: 19px; height: 18px;" alt="zvezda" class="tabs_buyer_icons_item">
+                    </div>
                     <div class="tabs_buyer_reply">
                         <a href="#" class="tabs_buyer_reply_link">Reply</a>
                     </div>
@@ -297,16 +301,20 @@ export default {
     position: absolute;
     z-index: 0;
 }
-.add_feed {
+.add_feed_group_items {
     position: relative;
     width: 524px;
     height: 200px;
-    border: 1px dashed #000;
-    box-sizing: border-box;
+    margin: 35px auto;
+}
+.add_feed {
+    position: absolute;
+    width: 524px;
+    height: 200px;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 35px auto;
+    z-index: 1;
 }
 .add_feedback_image {
     position: absolute;
@@ -315,14 +323,25 @@ export default {
     z-index: 0;
 }
 .add_feed_group {
-    width: 80px;
-    height: 68px;
+    width: 100%;
+    height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
+    position: absolute;
+    border: 1px dashed #000;
+    box-sizing: border-box;
+}
+.add_feedback_file {
+    width: 80px;
+    height: 68px;
     border: 2px solid #000;
     box-sizing: border-box;
     border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .add_feedback_text {
     font-family: Montserrat;
@@ -331,14 +350,17 @@ export default {
     font-size: 14px;
     line-height: 17px;
     color: #000000;
+    margin: 18px 0;
 }
-.add_feedback_title_block {
+.add_feedback_title_text {
     font-family: Montserrat;
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
     line-height: 17px;
     color: #000000;
+    width: 85%;
+    text-align: center;
 }
 .buyers_feedback_block {
     width: 100%;
@@ -407,6 +429,12 @@ export default {
     display: flex;
     margin-bottom: 20px;
     justify-content: space-between;
+}
+.tabs_buyer_border {
+    display: flex;
+    margin-bottom: 20px;
+    justify-content: space-between;
+    border-bottom: 1px solid #000;
 }
 .tabs_buyer_avatar {
     display: flex;
@@ -556,13 +584,16 @@ export default {
 .fade-enter, .fade-leave-to {
     opacity: 0;
 }
+.tabs_buyer_reply_block {
+    width: 100%;
+}
 .tabs_buyer_reply {
-    width: 200px;
+    width: 100%;
     display: flex;
     height: 20px;
     justify-content: space-between;
     align-items: center;
-    margin-top: 20px;
+    margin: 20px 0;
 }
 .tabs_buyer_text_title {
     font-family: Montserrat;
@@ -579,6 +610,10 @@ export default {
     font-size: 14px;
     line-height: 17px;
     color: #000000;
+}
+.tabs_buyer_edit_image {
+    width: 52px;
+    height: 34px;
 }
 .tabs_reply_button_show {
     display: flex; 
