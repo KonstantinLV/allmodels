@@ -23,7 +23,7 @@
 
 <script>
 export default {
-    name: 'slider-collection',
+    name: 'slider-banner',
     data() {
         return {
             imageGallery: [{

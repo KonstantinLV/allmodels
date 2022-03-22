@@ -68,18 +68,22 @@
                         ullamcorper.
                     </p>
                 </div>
+                
                 <div class="review_gallery">
                     <p class="review_gallery_image">Image gallery</p>
-                    <div class="tabs_foto_slide">
-                        <div class="tabs_foto_slide_items">
-                            <img :src="'/images/bf-1.jpg'" alt="foto" class="tabs_foto_slide_item">
-                            <img :src="'/images/bf-2.jpg'" alt="foto" class="tabs_foto_slide_item">
-                            <img :src="'/images/bf-3.jpg'" alt="foto" class="tabs_foto_slide_item">
+                    <transition-group :style="{ 'margin-left': '-' + (100 * currentImage) + '%'}" class="" name="fade" tag="div">
+                        <div class="tabs_foto_slide" v-for="(img, index) in images" :key="index">
+                            <div class="tabs_slider_group">
+                                <div class="tabs_foto_slide_items" v-for="item in img.list" :key="item">
+                                    <img :src="item" alt="foto" class="tabs_foto_slide_item">
+                                </div>
+                            </div>                            
                         </div>
-                        <a href="" class="tabs_slide_left"></a>
-                        <a href="" class="tabs_slide_right"></a>
-                    </div>
+                    </transition-group>
+                    <a @click="prev" class="prev tabs_slide_left"></a>
+                    <a @click="next" class="next tabs_slide_right"></a>
                 </div>
+                
                 <div class="review_description_info">
                     <p class="review_description_info_text">
                         Ante metus dictum at tempor commodo ullamcorper a. Ac turpis egestas sed tempus. Semper eget duis at tellus. 
@@ -175,8 +179,38 @@ export default {
     data() {
         return {
             show: false,
+            images: [{ 
+                id: 1,
+                list: [
+                    '/images/bf-1.jpg',
+                    '/images/bf-2.jpg',
+                    '/images/bf-3.jpg'
+                ]},
+                { 
+                id: 2,
+                list: [
+                    '/images/bf-1.jpg',
+                    '/images/bf-2.jpg',
+                    '/images/bf-3.jpg'
+                ]},
+            ],
+            currentImage: 0
         }
     },
+    methods: {
+        next: function() {
+            if (this.currentImage >= this.images.length -1) {
+                this.currentImage = 0;
+            } else {
+                this.currentImage += 1;
+            }
+        },
+        prev: function() {
+            if (this.currentImage > 0) {
+                this.currentImage -=1;
+            }
+        }
+    }
 };
 </script>
 

@@ -10,145 +10,80 @@
         </div>
         <div class="tabs_group">
             <div class="tabs_comments">
-                <div class="tabs_buyer">
+                <div class="tabs_buyer" v-for="(item, index) in commentList" :key="index">
                     <div class="tabs_buyer_avatar">
-                        <img :src="'/images/avatar-layne.png'" alt="avatar" class="tabs_buyer_avatar_icon">
+                        <img :src="item.img" alt="avatar" class="tabs_buyer_avatar_icon">
                         <div class="tabs_buyer_like">
-                            <img :src="'/images/collection/like.svg'" alt="like" class="tabs_buyer_like_icon">
-                            <p class="tabs_buyer_number">0</p>
-                            <img :src="'/images/collection/dislike.svg'" alt="dlike" class="tabs_buyer_like_icon">
+                            <img :src="'/images/collection/like.svg'" v-on:click="item.like++" alt="like" class="tabs_buyer_like_icon">
+                            <p class="tabs_buyer_number">{{ item.like }}</p>
+                            <img :src="'/images/collection/dislike.svg'" v-on:click="item.like--" alt="dlike" class="tabs_buyer_like_icon">
                         </div>
                     </div>
                     <div class="tabs_buyer_block">
                         <div class="tabs_buyer_name">
                             <div class="tabs_firstname_block">
-                                <h3 class="tabs_buyer_firstname">Layne Staley</h3>
+                                <h3 class="tabs_buyer_firstname">{{ item.name }}</h3>
                                 <img :src="'/images/a-ok.svg'" alt="a-ok" class="tabs_firstname_icon">
                             </div>
                             <div class="tabs_data_block">
-                                <p class="tabs_buyer_data">08.09.21</p>
-                                <img :src="'/images/tools-mini.svg'" alt="dlike" class="tabs_data_icon">
+                                <p class="tabs_buyer_data">{{ item.date }}</p>
+                                <img :src="'/images/tools-mini.svg'" alt="dlike" :class="{fab: item.star}">
                             </div>
                         </div>
                         <div class="tabs_buyer_text">
                             <p class="tabs_buyer_text_title">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel et ipsum esse 
-                                officiis eaque numquam minus. Ut impedit illo, veniam voluptates praesentium 
-                                autem deserunt, nisi officia quisquam incidunt saepe! Libero?
+                                {{ item.description }}
                             </p>
                         </div>
-                        <div class="tabs_buyer_reply_block">
+                        <div class="tabs_buyer_reply_block" >
                             <div class="tabs_buyer_reply">
                                 <a href="#" class="tabs_buyer_reply_link">Reply</a>
-                                <button v-on:click="show = !show" type="submit" class="tabs_reply_button_show">
+                                <button v-on:click="show = !show" v-if="!!item.list" type="submit" class="tabs_reply_button_show">
                                     {{ show ? 'Hide' : 'Show'}} 1 reply
                                     <img :src="'/images/down.svg'" alt="updown" class="tabs_data_icon">
                                 </button>
                             </div>
-                            <transition name="fade">
-                                <div v-if="show" class="tabs_buyer" style="margin-top: 40px; margin-bottom: 0;">
-                                    <div class="tabs_buyer_avatar" style="width: 135px;">
-                                        <img :src="'/images/avatar-devin.png'" alt="avatar" class="tabs_buyer_avatar_icon">
-                                        <div class="tabs_buyer_like">
-                                            <img :src="'/images/collection/like.svg'" alt="like" class="tabs_buyer_like_icon">
-                                            <p class="tabs_buyer_number">0</p>
-                                            <img :src="'/images/collection/dislike.svg'" alt="dlike" class="tabs_buyer_like_icon">
-                                        </div>
-                                    </div>
-                                    <div class="tabs_buyer_block">
-                                        <div class="tabs_buyer_name">
-                                            <div class="tabs_buyer_seller" style="display: flex; flex-direction: column;">
-                                                <div class="tabs_firstname_block">
-                                                    <h3 class="tabs_buyer_firstname">Devin Townsend</h3>
-                                                    <img :src="'/images/a-ok.svg'" alt="a-ok" class="tabs_firstname_icon">
-                                                    <img :src="'/images/zvezda.svg'" alt="zvezda" class="tabs_firstname_icon">
-                                                    <img :src="'/images/link-name.svg'" alt="link-name" class="tabs_firstname_icon">
-                                                    <h4 class="tabs_buyer_firstname_link">Layne Staley</h4>
-                                                </div>
-                                                <p class="tabs_buyer_seller_text">Seller</p>
-                                            </div>                                                    
-                                            <div class="tabs_data_block">
-                                                <p class="tabs_buyer_data">08.09.21</p>
-                                                <img :src="'/images/tools-mini.svg'" alt="dlike" class="tabs_data_icon">
+                            <div v-for="(reply, index) in item.list" :key="index">
+                                <transition name="fade" >
+                                    <div v-if="show" class="tabs_buyer" style="margin-top: 40px; margin-bottom: 0;">
+                                        <div class="tabs_buyer_avatar" style="width: 135px;">
+                                            <img :src="reply.image" alt="avatar" class="tabs_buyer_avatar_icon">
+                                            <div class="tabs_buyer_like">
+                                                <img :src="'/images/collection/like.svg'" alt="like" class="tabs_buyer_like_icon">
+                                                <p class="tabs_buyer_number">{{reply.likeReply}}</p>
+                                                <img :src="'/images/collection/dislike.svg'" alt="dlike" class="tabs_buyer_like_icon">
                                             </div>
                                         </div>
-                                        <div class="tabs_buyer_text">
-                                            <p class="tabs_buyer_text_title">
-                                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel et ipsum esse 
-                                                officiis eaque numquam minus. Ut impedit illo, veniam voluptates praesentium 
-                                                autem deserunt, nisi officia quisquam incidunt saepe! Libero?
-                                            </p>
-                                        </div>
-                                        <div class="tabs_buyer_reply">
-                                            <a href="#" class="tabs_buyer_reply_link">Reply</a>
+                                        <div class="tabs_buyer_block">
+                                            <div class="tabs_buyer_name">
+                                                <div class="tabs_buyer_seller" style="display: flex; flex-direction: column;">
+                                                    <div class="tabs_firstname_block">
+                                                        <h3 class="tabs_buyer_firstname">{{reply.nameSeller}}</h3>
+                                                        <img :src="'/images/a-ok.svg'" alt="a-ok" class="tabs_firstname_icon">
+                                                        <img :src="'/images/zvezda.svg'" alt="zvezda" class="tabs_firstname_icon">
+                                                        <img :src="'/images/link-name.svg'" alt="link-name" class="tabs_firstname_icon">
+                                                        <h4 class="tabs_buyer_firstname_link">Layne Staley</h4>
+                                                    </div>
+                                                    <p class="tabs_buyer_seller_text">{{reply.profiSeller}}</p>
+                                                </div>                                                    
+                                                <div class="tabs_data_block">
+                                                    <p class="tabs_buyer_data">{{reply.dateSeller}}</p>
+                                                    <img :src="'/images/tools-mini.svg'" alt="dlike" class="tabs_data_icon">
+                                                </div>
+                                            </div>
+                                            <div class="tabs_buyer_text">
+                                                <p class="tabs_buyer_text_title">
+                                                    {{reply.descriptionSeller}}
+                                                </p>
+                                            </div>
+                                            <div class="tabs_buyer_reply">
+                                                <a href="#" class="tabs_buyer_reply_link">Reply</a>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </transition>
+                                </transition>
+                            </div>
                         </div>                                    
-                    </div>
-                </div>
-                <div class="tabs_buyer">
-                    <div class="tabs_buyer_avatar">
-                        <img :src="'/images/avatar-mikael.png'" alt="avatar" class="tabs_buyer_avatar_icon">
-                        <div class="tabs_buyer_like">
-                            <img :src="'/images/collection/like.svg'" alt="like" class="tabs_buyer_like_icon">
-                            <p class="tabs_buyer_number">0</p>
-                            <img :src="'/images/collection/dislike.svg'" alt="dlike" class="tabs_buyer_like_icon">
-                        </div>
-                    </div>
-                    <div class="tabs_buyer_block">
-                        <div class="tabs_buyer_name">
-                            <div class="tabs_firstname_block">
-                                <h3 class="tabs_buyer_firstname">Mikael Akerfeldt</h3>
-                            </div>
-                            <div class="tabs_data_block">
-                                <p class="tabs_buyer_data">08.09.21</p>
-                                <img :src="'/images/tools-mini.svg'" alt="dlike" class="tabs_data_icon">
-                            </div>
-                        </div>
-                        <div class="tabs_buyer_text">
-                            <p class="tabs_buyer_text_title">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel et ipsum esse 
-                                officiis eaque numquam minus. Ut impedit illo, veniam voluptates praesentium 
-                                autem deserunt, nisi officia quisquam incidunt saepe! Libero?
-                            </p>
-                        </div>
-                        <div class="tabs_buyer_reply">
-                            <a href="#" class="tabs_buyer_reply_link">Reply</a>
-                            <a href="#" class="tabs_buyer_reply_link">Show 5 replies</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="tabs_buyer">
-                    <div class="tabs_buyer_avatar">
-                        <img :src="'/images/avatar-kristoffer.png'" alt="avatar" class="tabs_buyer_avatar_icon">
-                        <div class="tabs_buyer_like">
-                            <img :src="'/images/collection/like.svg'" alt="like" class="tabs_buyer_like_icon">
-                            <p class="tabs_buyer_number">0</p>
-                            <img :src="'/images/collection/dislike.svg'" alt="dlike" class="tabs_buyer_like_icon">
-                        </div>
-                    </div>
-                    <div class="tabs_buyer_block">
-                        <div class="tabs_buyer_name">
-                            <div class="tabs_firstname_block">
-                                <h3 class="tabs_buyer_firstname">Kristoffer Rygg</h3>
-                            </div>
-                            <div class="tabs_data_block">
-                                <p class="tabs_buyer_data">08.09.21</p>
-                                <img :src="'/images/tools-mini.svg'" alt="dlike" class="tabs_data_icon">
-                            </div>
-                        </div>
-                        <div class="tabs_buyer_text">
-                            <p class="tabs_buyer_text_title">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel et ipsum esse 
-                                officiis eaque numquam minus. Ut impedit illo, veniam voluptates praesentium 
-                                autem deserunt, nisi officia quisquam incidunt saepe! Libero?
-                            </p>
-                        </div>
-                        <div class="tabs_buyer_reply">
-                            <a href="#" class="tabs_buyer_reply_link">Reply</a>
-                        </div>
                     </div>
                 </div>
                 <div class="tabs_button">
@@ -162,6 +97,68 @@
 <script>
 export default {
     name: 'tab-comments',
+    data() {
+        return {
+            show: false,
+            commentList: [
+                { 
+                    img: '/images/avatar-layne.png', 
+                    like: 1, 
+                    name: 'Layne Staley',
+                    star: true,
+                    date: '08.09.21',
+                    description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel et ipsum esse officiis eaque numquam minus. Ut impedit illo, veniam voluptates praesentium autem deserunt, nisi officia quisquam incidunt saepe!',
+                    list: [
+                        {
+                            image: '/images/avatar-devin.png',
+                            likeReply: 2,
+                            nameSeller: 'Devin Townsend',
+                            starSeller: true,
+                            dateSeller: '08.09.21',
+                            profiSeller: 'Seller',
+                            descriptionSeller: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel et ipsum esse officiis eaque numquam minus. Ut impedit illo, veniam voluptates praesentium autem deserunt, nisi officia quisquam incidunt saepe!',
+                        }
+                    ]
+                },
+                { 
+                    img: '/images/avatar-mikael.png', 
+                    like: 0, 
+                    name: 'Devin Townsend',
+                    star: false,
+                    date: '08.09.21',
+                    description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel et ipsum esse officiis eaque numquam minus. Ut impedit illo, veniam voluptates praesentium autem deserunt, nisi officia quisquam incidunt saepe!',
+                    list: [
+                        {
+                            image: '/images/avatar-devin.png',
+                            likeReply: 2,
+                            nameSeller: 'Devin Townsend',
+                            starSeller: true,
+                            dateSeller: '08.09.21',
+                            profiSeller: 'Seller',
+                            descriptionSeller: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel et ipsum esse officiis eaque numquam minus. Ut impedit illo, veniam voluptates praesentium autem deserunt, nisi officia quisquam incidunt saepe!',
+                        },
+                        {
+                            image: '/images/avatar-devin.png',
+                            likeReply: 1,
+                            nameSeller: 'Devin Townsend',
+                            starSeller: true,
+                            dateSeller: '08.09.21',
+                            profiSeller: 'Seller',
+                            descriptionSeller: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel et ipsum esse officiis eaque numquam minus. Ut impedit illo, veniam voluptates praesentium autem deserunt, nisi officia quisquam incidunt saepe!',
+                        },
+                    ]
+                },
+                { 
+                    img: '/images/avatar-kristoffer.png', 
+                    like: 0, 
+                    name: 'Kristoffer Rygg',
+                    star: false,
+                    date: '08.09.21',
+                    description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel et ipsum esse officiis eaque numquam minus. Ut impedit illo, veniam voluptates praesentium autem deserunt, nisi officia quisquam incidunt saepe!',
+                },
+            ]
+        }
+    },
 };
 </script>
 

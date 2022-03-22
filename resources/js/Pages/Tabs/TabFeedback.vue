@@ -635,6 +635,7 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-bottom: 30px;
 }
 .tabs_button_show {
     width: 178px;

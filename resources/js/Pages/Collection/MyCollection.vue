@@ -1,7 +1,7 @@
 <template>
     <section class="all_collection">
         <header-collection></header-collection>
-        <slider-collection></slider-collection>
+        <SliderBanner></SliderBanner>
         <main class="coll_main">
             <div class="coll_path">
                 <a href="#" class="coll_path_text">All 3D Models</a> / <a class="current">Collection: Awesome Crocodiles</a>
@@ -95,7 +95,7 @@
 
 <script>
 import HeaderCollection from '@/Common/HeaderCollection.vue'
-import SliderCollection from '@/Common/SliderCollection.vue'
+import SliderBanner from '../Sliders/SliderBanner.vue'
 import ItemCollection from '@/Common/ItemCollection.vue'
 import RecommendationCollection from '@/Common/RecommendationCollection.vue'
 import CopyCollection from '@/Common/CopyCollection.vue'
@@ -106,7 +106,7 @@ export default {
     name: 'MyCollection',
     components: {
         HeaderCollection,
-        SliderCollection,
+        SliderBanner,
         ItemCollection,
         RecommendationCollection,
         CopyCollection,
