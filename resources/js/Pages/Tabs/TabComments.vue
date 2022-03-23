@@ -10,7 +10,7 @@
         </div>
         <div class="tabs_group">
             <div class="tabs_comments">
-                <div class="tabs_buyer" v-for="(item, index) in commentList" :key="index">
+                <div class="tabs_buyer" v-for="(item, index) in commentList" :key="index.id">
                     <div class="tabs_buyer_avatar">
                         <img :src="item.img" alt="avatar" class="tabs_buyer_avatar_icon">
                         <div class="tabs_buyer_like">
@@ -23,7 +23,7 @@
                         <div class="tabs_buyer_name">
                             <div class="tabs_firstname_block">
                                 <h3 class="tabs_buyer_firstname">{{ item.name }}</h3>
-                                <img :src="'/images/a-ok.svg'" alt="a-ok" class="tabs_firstname_icon">
+                                <div :class="{tabs_firstname_icon: item.star}"></div>
                             </div>
                             <div class="tabs_data_block">
                                 <p class="tabs_buyer_data">{{ item.date }}</p>
@@ -38,50 +38,52 @@
                         <div class="tabs_buyer_reply_block" >
                             <div class="tabs_buyer_reply">
                                 <a href="#" class="tabs_buyer_reply_link">Reply</a>
-                                <button v-on:click="show = !show" v-if="!!item.list" type="submit" class="tabs_reply_button_show">
-                                    {{ show ? 'Hide' : 'Show'}} 1 reply
+                                <button v-on:click="imageUserId = item.id; isShow = !isShow" v-if="!!item.list" type="submit" class="tabs_reply_button_show">
+                                    {{ isShow && imageUserId == item.id ? 'Hide' : 'Show'}} {{item.list.length}} reply
                                     <img :src="'/images/down.svg'" alt="updown" class="tabs_data_icon">
                                 </button>
                             </div>
-                            <div v-for="(reply, index) in item.list" :key="index">
-                                <transition name="fade" >
-                                    <div v-if="show" class="tabs_buyer" style="margin-top: 40px; margin-bottom: 0;">
-                                        <div class="tabs_buyer_avatar" style="width: 135px;">
-                                            <img :src="reply.image" alt="avatar" class="tabs_buyer_avatar_icon">
-                                            <div class="tabs_buyer_like">
-                                                <img :src="'/images/collection/like.svg'" alt="like" class="tabs_buyer_like_icon">
-                                                <p class="tabs_buyer_number">{{reply.likeReply}}</p>
-                                                <img :src="'/images/collection/dislike.svg'" alt="dlike" class="tabs_buyer_like_icon">
-                                            </div>
-                                        </div>
-                                        <div class="tabs_buyer_block">
-                                            <div class="tabs_buyer_name">
-                                                <div class="tabs_buyer_seller" style="display: flex; flex-direction: column;">
-                                                    <div class="tabs_firstname_block">
-                                                        <h3 class="tabs_buyer_firstname">{{reply.nameSeller}}</h3>
-                                                        <img :src="'/images/a-ok.svg'" alt="a-ok" class="tabs_firstname_icon">
-                                                        <img :src="'/images/zvezda.svg'" alt="zvezda" class="tabs_firstname_icon">
-                                                        <img :src="'/images/link-name.svg'" alt="link-name" class="tabs_firstname_icon">
-                                                        <h4 class="tabs_buyer_firstname_link">Layne Staley</h4>
-                                                    </div>
-                                                    <p class="tabs_buyer_seller_text">{{reply.profiSeller}}</p>
-                                                </div>                                                    
-                                                <div class="tabs_data_block">
-                                                    <p class="tabs_buyer_data">{{reply.dateSeller}}</p>
-                                                    <img :src="'/images/tools-mini.svg'" alt="dlike" class="tabs_data_icon">
+                            <div v-show="isShow && imageUserId == item.id">
+                                <div v-for="(reply, index) in item.list" :key="index.id">
+                                    <transition name="fade" >
+                                        <div class="tabs_buyer" style="margin-top: 40px; margin-bottom: 0;">
+                                            <div class="tabs_buyer_avatar" style="width: 135px;">
+                                                <img :src="reply.image" alt="avatar" class="tabs_buyer_avatar_icon">
+                                                <div class="tabs_buyer_like">
+                                                    <img :src="'/images/collection/like.svg'" alt="like" class="tabs_buyer_like_icon">
+                                                    <p class="tabs_buyer_number">{{reply.likeReply}}</p>
+                                                    <img :src="'/images/collection/dislike.svg'" alt="dlike" class="tabs_buyer_like_icon">
                                                 </div>
                                             </div>
-                                            <div class="tabs_buyer_text">
-                                                <p class="tabs_buyer_text_title">
-                                                    {{reply.descriptionSeller}}
-                                                </p>
-                                            </div>
-                                            <div class="tabs_buyer_reply">
-                                                <a href="#" class="tabs_buyer_reply_link">Reply</a>
+                                            <div class="tabs_buyer_block">
+                                                <div class="tabs_buyer_name">
+                                                    <div class="tabs_buyer_seller" style="display: flex; flex-direction: column;">
+                                                        <div class="tabs_firstname_block">
+                                                            <h3 class="tabs_buyer_firstname">{{reply.nameSeller}}</h3>
+                                                            <div :class="{tabs_firstname_icon: reply.starOk}"></div>
+                                                            <div :class="{tabs_firstname_icon_zvezda: reply.starSeller }"></div>
+                                                            <img :src="'/images/link-name.svg'" alt="link-name" class="tabs_firstname_icon_name">
+                                                            <h4 class="tabs_buyer_firstname_link">Layne Staley</h4>
+                                                        </div>
+                                                        <p class="tabs_buyer_seller_text">{{reply.profiSeller}}</p>
+                                                    </div>                                                    
+                                                    <div class="tabs_data_block">
+                                                        <p class="tabs_buyer_data">{{reply.dateSeller}}</p>
+                                                        <img :src="'/images/tools-mini.svg'" alt="dlike" class="tabs_data_icon">
+                                                    </div>
+                                                </div>
+                                                <div class="tabs_buyer_text">
+                                                    <p class="tabs_buyer_text_title">
+                                                        {{reply.descriptionSeller}}
+                                                    </p>
+                                                </div>
+                                                <div class="tabs_buyer_reply">
+                                                    <a href="#" class="tabs_buyer_reply_link">Reply</a>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </transition>
+                                    </transition>
+                                </div>
                             </div>
                         </div>                                    
                     </div>
@@ -99,9 +101,11 @@ export default {
     name: 'tab-comments',
     data() {
         return {
-            show: false,
+            isShow: false,
+            imageUserId: null,
             commentList: [
-                { 
+                {
+                    id: 1,
                     img: '/images/avatar-layne.png', 
                     like: 1, 
                     name: 'Layne Staley',
@@ -110,9 +114,11 @@ export default {
                     description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel et ipsum esse officiis eaque numquam minus. Ut impedit illo, veniam voluptates praesentium autem deserunt, nisi officia quisquam incidunt saepe!',
                     list: [
                         {
+                            idSeller: 1,
                             image: '/images/avatar-devin.png',
                             likeReply: 2,
                             nameSeller: 'Devin Townsend',
+                            starOk: true,
                             starSeller: true,
                             dateSeller: '08.09.21',
                             profiSeller: 'Seller',
@@ -120,7 +126,8 @@ export default {
                         }
                     ]
                 },
-                { 
+                {
+                    id: 2,
                     img: '/images/avatar-mikael.png', 
                     like: 0, 
                     name: 'Devin Townsend',
@@ -132,6 +139,7 @@ export default {
                             image: '/images/avatar-devin.png',
                             likeReply: 2,
                             nameSeller: 'Devin Townsend',
+                            starOk: false,
                             starSeller: true,
                             dateSeller: '08.09.21',
                             profiSeller: 'Seller',
@@ -141,14 +149,16 @@ export default {
                             image: '/images/avatar-devin.png',
                             likeReply: 1,
                             nameSeller: 'Devin Townsend',
-                            starSeller: true,
+                            starOk: true,
+                            starSeller: false,
                             dateSeller: '08.09.21',
                             profiSeller: 'Seller',
                             descriptionSeller: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel et ipsum esse officiis eaque numquam minus. Ut impedit illo, veniam voluptates praesentium autem deserunt, nisi officia quisquam incidunt saepe!',
                         },
                     ]
                 },
-                { 
+                {
+                    id: 3,
                     img: '/images/avatar-kristoffer.png', 
                     like: 0, 
                     name: 'Kristoffer Rygg',
@@ -322,9 +332,21 @@ export default {
     padding-left: 5px;
 }
 .tabs_firstname_icon {
+    background: url("/images/a-ok.svg") no-repeat center center;
+    width: 20px;
+    height: 20px;
+    margin-left: 13px;
+}
+.tabs_firstname_icon_zvezda {
+    background: url("/images/zvezda.svg") no-repeat center center;
+    width: 20px;
+    height: 20px;
+    margin-left: 13px;
+}
+.tabs_firstname_icon_name {
     width: 18px;
     height: 18px;
-    margin-left: 13px;
+    margin: 0 13px;
 }
 .tabs_data_block {
     min-width: 70px;
