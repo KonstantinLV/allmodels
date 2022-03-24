@@ -1,214 +1,215 @@
 <template>
     <div class="review_group">
-        <div class="review_block">
+        <div class="review_block" v-for="(doc, index) in reviewDescription" :key="index.userId">
             <div class="review_info">
                 <div class="review_info_avatar">
-                    <img :src="'/images/avatar-josh.jpg'" alt="josh" class="review_info_avatar_foto">
+                    <img :src="doc.imageUser" alt="josh" class="review_info_avatar_foto">
                     <div class="review_info_name">
-                        <h3 class="review_info_name_title">Josh Homme</h3>
-                        <h4 class="review_info_profi">Professional Maker</h4>
+                        <h3 class="review_info_name_title">{{doc.nameUser}}</h3>
+                        <h4 class="review_info_profi">{{doc.profiUser}}</h4>
                     </div>
                 </div>
-                <p class="review_info_data">08.09.21</p>
+                <p class="review_info_data">{{doc.date}}</p>
             </div>
             <div class="review_title">
-                <h2 class="review_title_name">Article Header</h2>
-                <p class="review_title_text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus delectus quasi 
-                    eaque! Doloribus fugit quod beatae, commodi minima quia enim nisi voluptate odit mollitia voluptatibus assumenda 
-                    saepe atque, laboriosam ut.
-                </p>
+                <h2 class="review_title_name">{{doc.nameArticle}}</h2>
+                <p class="review_title_text">{{doc.disctiptionProduct}}</p>
             </div>
             <div class="review_product">
                 <p class="review_product_single">Single Image</p>
-                <img :src="'/images/article-header.jpg'" alt="image" class="review_product_foto">
-                <a href="" class="review_product_read">Read this review...</a>
+                <img :src="doc.fotoProduct" alt="image" class="review_product_foto">
+                <button v-on:click="productUserId = doc.userId; isShow = !isShow" class="review_product_read">Read this review...</button>
             </div>
-        </div>
-        <div class="review_block">
-            <div class="review_info">
-                <div class="review_info_avatar">
-                    <img :src="'/images/avatar-mark.jpg'" alt="mark" class="review_info_avatar_foto">
-                    <div class="review_info_name">
-                        <h3 class="review_info_name_title">Mark Sandman</h3>
-                        <h4 class="review_info_profi">Murder for the Money</h4>
+            <div class="review_description_block" v-show="isShow && productUserId == doc.userId">
+                <div v-for="(item, index) in doc.listDescription" :key="index.id">
+                    <div class="review_description" >
+                        <p class="review_description_text">{{item.titleText}}</p>
+                        <p class="review_description_text_title">{{item.titleItalic}}</p>
+                        <p class="review_description_text_items">{{item.titleText2}}</p>
                     </div>
-                </div>
-                <p class="review_info_data">08.09.21</p>
-            </div>
-            <div class="review_title">
-                <h2 class="review_title_name">Review Name - Article Header</h2>
-                <p class="review_title_text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus delectus quasi 
-                    eaque! Doloribus fugit quod beatae, commodi minima quia enim nisi voluptate odit mollitia voluptatibus assumenda 
-                    saepe atque, laboriosam ut.
-                </p>
-            </div>
-            <div class="review_product">
-                <p class="review_product_single">Single Image</p>
-                <img :src="'/images/review-name.jpg'" alt="image" class="review_product_foto">
-                <button v-on:click="show = !show" href="" class="review_product_read">Read this review...</button>
-            </div>
-            <div class="review_description_block" v-if="show">
-                <div class="review_description">
-                    <p class="review_description_text">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore 
-                        magna aliqua. In pellentesque massa placerat duis ultricies lacus sed turpis tincidunt. Eu feugiat pretium nibh
-                        ipsum. Sed tempus urna et pharetra. Felis eget velit aliquet sagittis id consectetur purus. Auctor elit sed 
-                        vulputate mi sit amet mauris commodo quis. Vulputate odio ut enim blandit volutpat maecenas volutpat blandit 
-                        aliquam.
-                    </p>
-                    <p class="review_description_text_title">
-                        Dui nunc mattis enim ut tellus. Nisl vel pretium lectus quam. In fermentum posuere urna nec tincidunt praesent 
-                        semper feugiat. Tincidunt lobortis feugiat vivamus at augue. Nullam vehicula ipsum a arcu cursus vitae congue 
-                        mauris rhoncus.
-                    </p>
-                    <p class="review_description_text_items">
-                        Ornare arcu odio ut sem nulla pharetra. Magna fringilla urna porttitor rhoncus dolor purus. Non sodales neque 
-                        sodales ut etiam sit. Condimentum id venenatis a condimentum vitae. Facilisi nullam vehicula ipsum a arcu cursus 
-                        vitae congue mauris. Gravida in fermentum et sollicitudin ac orci phasellus egestas. Sed lectus vestibulum mattis
-                        ullamcorper.
-                    </p>
-                </div>
-                
-                <div class="review_gallery">
-                    <p class="review_gallery_image">Image gallery</p>
-                    <transition-group :style="{ 'margin-left': '-' + (100 * currentImage) + '%'}" class="" name="fade" tag="div">
-                        <div class="tabs_foto_slide" v-for="(img, index) in images" :key="index">
-                            <div class="tabs_slider_group">
-                                <div class="tabs_foto_slide_items" v-for="item in img.list" :key="item">
-                                    <img :src="item" alt="foto" class="tabs_foto_slide_item">
-                                </div>
-                            </div>                            
-                        </div>
-                    </transition-group>
-                    <a @click="prev" class="prev tabs_slide_left"></a>
-                    <a @click="next" class="next tabs_slide_right"></a>
-                </div>
-                
-                <div class="review_description_info">
-                    <p class="review_description_info_text">
-                        Ante metus dictum at tempor commodo ullamcorper a. Ac turpis egestas sed tempus. Semper eget duis at tellus. 
-                        Nunc sed blandit libero volutpat sed. Interdum varius sit amet mattis vulputate. Amet consectetur adipiscing 
-                        elit ut aliquam purus sit amet luctus. Neque viverra justo nec ultrices. Faucibus pulvinar elementum integer 
-                        enim neque volutpat ac tincidunt. Ac felis donec et odio pellentesque. Phasellus vestibulum lorem sed risus. 
-                        Condimentum lacinia quis vel eros.  Volutpat lacus laoreet non curabitur gravida arcu ac tortor dignissim. 
-                        Nec nam aliquam sem et. Libero enim sed faucibus turpis. Sed lectus vestibulum mattis ullamcorper velit. 
-                        Consectetur libero id faucibus nisl tincidunt eget nullam non. Molestie nunc non blandit massa enim. Mi 
-                        tempus imperdiet nulla malesuada pellentesque. Feugiat sed lectus vestibulum mattis ullamcorper. Eleifend 
-                        mi in nulla posuere sollicitudin aliquam.
-                    </p>
-                    <p class="review_description_info_quisque">
-                        >> Quisque id diam vel quam elementum pulvinar etiam.
-                    </p>
-                    <p class="review_description_info_text">
-                        Ut pharetra sit amet aliquam id diam maecenas ultricies mi. Integer feugiat scelerisque varius morbi enim 
-                        nunc faucibus a. Eu scelerisque felis imperdiet proin fermentum leo vel orci porta. Et sollicitudin ac orci 
-                        phasellus. Tincidunt ornare massa eget egestas purus. Viverra tellus in hac habitasse platea. Nunc eget lorem 
-                        dolor sed viverra ipsum nunc aliquet. Mauris nunc congue nisi vitae suscipit tellus mauris. Pellentesque sit 
-                        amet porttitor eget dolor morbi non arcu. Ipsum consequat nisl vel pretium lectus quam. Quis risus sed 
-                        vulputate odio ut. Lacus sed turpis tincidunt id aliquet.
-                    </p>
-                </div>
-                <div class="review_public">
-                    <div class="coll_okko">
-                        <div class="coll_okko_block">
-                            <img :src="'/images/okko.svg'" style="width: 19px; height: 14px;" alt="okko" class="coll_okko_icon" />
-                            <img :src="'/images/okko-min.svg'" style="width: 6px; height: 6px; position: absolute;" alt="okko" class="coll_okko_icon" />
-                        </div>
-                        <p class="coll_okko_text">10k.</p>
+                    <slide-review></slide-review>
+                    <div class="review_description_info">
+                        <p class="review_description_info_text">{{item.titleText3}}</p>
+                        <p class="review_description_info_quisque">{{item.titleItalic2}}</p>
+                        <p class="review_description_info_text">{{item.titleText4}}</p>
                     </div>
-                    <div class="review_like_group">
-                        <div class="coll_like_group">
-                            <div class="coll_like_block">
-                                <div class="coll_like">
-                                    <img :src="'/images/collection/like.svg'" style="width: 17px; height: 15px; margin-right: 5px;" alt="like" class="coll_okko_icon">
-                                    <p class="coll_okko_text">1890</p>
+                    <div class="review_public">
+                        <div class="coll_okko">
+                            <div class="coll_okko_block">
+                                <img :src="'/images/okko.svg'" style="width: 19px; height: 14px;" alt="okko" class="coll_okko_icon" />
+                                <img :src="'/images/okko-min.svg'" style="width: 6px; height: 6px; position: absolute;" alt="okko" class="coll_okko_icon" />
+                            </div>
+                            <p class="coll_okko_text">10k.</p>
+                        </div>
+                        <div class="review_like_group">
+                            <div class="coll_like_group">
+                                <div class="coll_like_block">
+                                    <div class="coll_like">
+                                        <img :src="'/images/collection/like.svg'" style="width: 17px; height: 15px; margin-right: 5px;" alt="like" class="coll_okko_icon">
+                                        <p class="coll_okko_text">1890</p>
+                                    </div>
+                                    <div class="coll_like" style="justify-content: flex-end;">
+                                        <img :src="'/images/collection/dislike.svg'" style="width: 17px; height: 15px; margin-right: 5px;" alt="dislike" class="coll_okko_icon">
+                                        <p class="coll_okko_text">49</p>
+                                    </div>
                                 </div>
-                                <div class="coll_like" style="justify-content: flex-end;">
-                                    <img :src="'/images/collection/dislike.svg'" style="width: 17px; height: 15px; margin-right: 5px;" alt="dislike" class="coll_okko_icon">
-                                    <p class="coll_okko_text">49</p>
+                                <div class="coll_like_meter">
+                                    <span class="coll_like_meter_plus"></span>
+                                    <span class="coll_like_meter_minus"></span>
                                 </div>
                             </div>
-                            <div class="coll_like_meter">
-                                <span class="coll_like_meter_plus"></span>
-                                <span class="coll_like_meter_minus"></span>
+                            <div class="coll_mark_link">
+                                <img :src="'/images/collection/link.svg'" style="width: 18px; height: 18px;" alt="link" class="coll_okko_icon">
                             </div>
-                        </div>
-                        <div class="coll_mark_link">
-                            <img :src="'/images/collection/link.svg'" style="width: 18px; height: 18px;" alt="link" class="coll_okko_icon">
-                        </div>
-                        <div class="coll_mark_link">
-                            <img :src="'/images/collection/tools.svg'" style="width: 4px; height: 18px; " alt="tools" class="coll_okko_icon">
-                        </div>
-                    </div>                    
-                </div>
-            </div>
-        </div>
-        <div class="review_block">
-            <div class="review_info">
-                <div class="review_info_avatar">
-                    <img :src="'/images/avatar-daniel.jpg'" alt="daniel" class="review_info_avatar_foto">
-                    <div class="review_info_name">
-                        <h3 class="review_info_name_title">Daniel Gildenlow</h3>
-                        <h4 class="review_info_profi">Industry Insider</h4>
+                            <div class="coll_mark_link">
+                                <img :src="'/images/collection/tools.svg'" style="width: 4px; height: 18px; " alt="tools" class="coll_okko_icon">
+                            </div>
+                        </div>                    
                     </div>
                 </div>
-                <p class="review_info_data">08.09.21</p>
-            </div>
-            <div class="review_title">
-                <h2 class="review_title_name">Review Name - Article Header</h2>
-                <p class="review_title_text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus delectus quasi 
-                    eaque! Doloribus fugit quod beatae, commodi minima quia enim nisi voluptate odit mollitia voluptatibus assumenda 
-                    saepe atque, laboriosam ut.
-                </p>
-            </div>
-            <div class="review_product">
-                <p class="review_product_single">Single Image</p>
-                <img :src="'/images/daniel-article.jpg'" alt="image" class="review_product_foto">
-                <a href="" class="review_product_read">Read this review...</a>
             </div>
         </div>
         <div class="review_show">
-            <button type="submit" class="review_show_button">Show 3 more</button>
+            <button type="submit" @click="reviewsShow =+ 3;" class="review_show_button">Show 3 more</button>
         </div>
     </div>    
 </template>
 
 <script>
+import SlideReview from '../Sliders/SlideReview.vue'
+
 export default {
     name: 'tab-reviews',
+    components: {
+        SlideReview
+    },
     data() {
         return {
-            show: false,
-            images: [{ 
-                id: 1,
-                list: [
-                    '/images/bf-1.jpg',
-                    '/images/bf-2.jpg',
-                    '/images/bf-3.jpg'
-                ]},
-                { 
-                id: 2,
-                list: [
-                    '/images/bf-1.jpg',
-                    '/images/bf-2.jpg',
-                    '/images/bf-3.jpg'
-                ]},
+            isShow: false,
+            productUserId: null,
+            reviewDescription: [
+                {
+                    userId: 1,
+                    imageUser: '/images/avatar-josh.jpg',
+                    nameUser: 'Daniel Gildenlow',
+                    profiUser: 'Professional Maker',
+                    date: '08.09.21',
+                    nameArticle: 'Article Header',
+                    disctiptionProduct: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus delectus quasi eaque! Doloribus fugit quod beatae, commodi minima quia enim nisi voluptate odit mollitia voluptatibus assumenda saepe atque, laboriosam ut.',
+                    fotoProduct: '/images/article-header.jpg',
+                    listDescription: [
+                        {
+                            titleText: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. In pellentesque massa placerat duis ultricies lacus sed turpis tincidunt. Eu feugiat pretium nibh ipsum. Sed tempus urna et pharetra. Felis eget velit aliquet sagittis id consectetur purus. Auctor elit sed vulputate mi sit amet mauris commodo quis. Vulputate odio ut enim blandit volutpat maecenas volutpat blandit aliquam.',
+                            titleItalic: 'Dui nunc mattis enim ut tellus. Nisl vel pretium lectus quam. In fermentum posuere urna nec tincidunt praesent semper feugiat. Tincidunt lobortis feugiat vivamus at augue. Nullam vehicula ipsum a arcu cursus vitae congue mauris rhoncus.',
+                            titleText2: 'Ornare arcu odio ut sem nulla pharetra. Magna fringilla urna porttitor rhoncus dolor purus. Non sodales neque sodales ut etiam sit. Condimentum id venenatis a condimentum vitae. Facilisi nullam vehicula ipsum a arcu cursus vitae congue mauris. Gravida in fermentum et sollicitudin ac orci phasellus egestas. Sed lectus vestibulum mattis ullamcorper.',
+                            titleText3: 'Ante metus dictum at tempor commodo ullamcorper a. Ac turpis egestas sed tempus. Semper eget duis at tellus. Nunc sed blandit libero volutpat sed. Interdum varius sit amet mattis vulputate. Amet consectetur adipiscing elit ut aliquam purus sit amet luctus. Neque viverra justo nec ultrices. Faucibus pulvinar elementum integer enim neque volutpat ac tincidunt. Ac felis donec et odio pellentesque. Phasellus vestibulum lorem sed risus. Condimentum lacinia quis vel eros. Volutpat lacus laoreet non curabitur gravida arcu ac tortor dignissim. Nec nam aliquam sem et. Libero enim sed faucibus turpis. Sed lectus vestibulum mattis ullamcorper velit. Consectetur libero id faucibus nisl tincidunt eget nullam non. Molestie nunc non blandit massa enim. Mi tempus imperdiet nulla malesuada pellentesque. Feugiat sed lectus vestibulum mattis ullamcorper. Eleifend mi in nulla posuere sollicitudin aliquam.',
+                            titleItalic2: '>> Quisque id diam vel quam elementum pulvinar etiam.',
+                            titleText4: 'Ut pharetra sit amet aliquam id diam maecenas ultricies mi. Integer feugiat scelerisque varius morbi enim nunc faucibus a. Eu scelerisque felis imperdiet proin fermentum leo vel orci porta. Et sollicitudin ac orci phasellus. Tincidunt ornare massa eget egestas purus. Viverra tellus in hac habitasse platea. Nunc eget lorem dolor sed viverra ipsum nunc aliquet. Mauris nunc congue nisi vitae suscipit tellus mauris. Pellentesque sit amet porttitor eget dolor morbi non arcu. Ipsum consequat nisl vel pretium lectus quam. Quis risus sed vulputate odio ut. Lacus sed turpis tincidunt id aliquet. ',
+                        },
+                    ]
+                },
+                {
+                    userId: 2,
+                    imageUser: '/images/avatar-mark.jpg',
+                    nameUser: 'Mark Sandman',
+                    profiUser: 'Murder for the Money',
+                    date: '08.09.21',
+                    nameArticle: 'Review Name - Article Header',
+                    disctiptionProduct: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus delectus quasi eaque! Doloribus fugit quod beatae, commodi minima quia enim nisi voluptate odit mollitia voluptatibus assumenda saepe atque, laboriosam ut.',
+                    fotoProduct: '/images/review-name.jpg',
+                    listDescription: [
+                        {
+                            titleText: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. In pellentesque massa placerat duis ultricies lacus sed turpis tincidunt. Eu feugiat pretium nibh ipsum. Sed tempus urna et pharetra. Felis eget velit aliquet sagittis id consectetur purus. Auctor elit sed vulputate mi sit amet mauris commodo quis. Vulputate odio ut enim blandit volutpat maecenas volutpat blandit aliquam.',
+                            titleItalic: 'Dui nunc mattis enim ut tellus. Nisl vel pretium lectus quam. In fermentum posuere urna nec tincidunt praesent semper feugiat. Tincidunt lobortis feugiat vivamus at augue. Nullam vehicula ipsum a arcu cursus vitae congue mauris rhoncus.',
+                            titleText2: 'Ornare arcu odio ut sem nulla pharetra. Magna fringilla urna porttitor rhoncus dolor purus. Non sodales neque sodales ut etiam sit. Condimentum id venenatis a condimentum vitae. Facilisi nullam vehicula ipsum a arcu cursus vitae congue mauris. Gravida in fermentum et sollicitudin ac orci phasellus egestas. Sed lectus vestibulum mattis ullamcorper.',
+                            titleText3: 'Ante metus dictum at tempor commodo ullamcorper a. Ac turpis egestas sed tempus. Semper eget duis at tellus. Nunc sed blandit libero volutpat sed. Interdum varius sit amet mattis vulputate. Amet consectetur adipiscing elit ut aliquam purus sit amet luctus. Neque viverra justo nec ultrices. Faucibus pulvinar elementum integer enim neque volutpat ac tincidunt. Ac felis donec et odio pellentesque. Phasellus vestibulum lorem sed risus. Condimentum lacinia quis vel eros. Volutpat lacus laoreet non curabitur gravida arcu ac tortor dignissim. Nec nam aliquam sem et. Libero enim sed faucibus turpis. Sed lectus vestibulum mattis ullamcorper velit. Consectetur libero id faucibus nisl tincidunt eget nullam non. Molestie nunc non blandit massa enim. Mi tempus imperdiet nulla malesuada pellentesque. Feugiat sed lectus vestibulum mattis ullamcorper. Eleifend mi in nulla posuere sollicitudin aliquam.',
+                            titleItalic2: '>> Quisque id diam vel quam elementum pulvinar etiam.',
+                            titleText4: 'Ut pharetra sit amet aliquam id diam maecenas ultricies mi. Integer feugiat scelerisque varius morbi enim nunc faucibus a. Eu scelerisque felis imperdiet proin fermentum leo vel orci porta. Et sollicitudin ac orci phasellus. Tincidunt ornare massa eget egestas purus. Viverra tellus in hac habitasse platea. Nunc eget lorem dolor sed viverra ipsum nunc aliquet. Mauris nunc congue nisi vitae suscipit tellus mauris. Pellentesque sit amet porttitor eget dolor morbi non arcu. Ipsum consequat nisl vel pretium lectus quam. Quis risus sed vulputate odio ut. Lacus sed turpis tincidunt id aliquet. ',
+                        },
+                    ]
+                },
+                {
+                    userId: 3,
+                    imageUser: '/images/avatar-daniel.jpg',
+                    nameUser: 'Josh Homme',
+                    profiUser: 'Industry Insider',
+                    date: '08.09.21',
+                    nameArticle: 'Review Name - Article Header',
+                    disctiptionProduct: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus delectus quasi eaque! Doloribus fugit quod beatae, commodi minima quia enim nisi voluptate odit mollitia voluptatibus assumenda saepe atque, laboriosam ut.',
+                    fotoProduct: '/images/daniel-article.jpg',
+                    listDescription: [
+                        {
+                            titleText: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. In pellentesque massa placerat duis ultricies lacus sed turpis tincidunt. Eu feugiat pretium nibh ipsum. Sed tempus urna et pharetra. Felis eget velit aliquet sagittis id consectetur purus. Auctor elit sed vulputate mi sit amet mauris commodo quis. Vulputate odio ut enim blandit volutpat maecenas volutpat blandit aliquam.',
+                            titleItalic: 'Dui nunc mattis enim ut tellus. Nisl vel pretium lectus quam. In fermentum posuere urna nec tincidunt praesent semper feugiat. Tincidunt lobortis feugiat vivamus at augue. Nullam vehicula ipsum a arcu cursus vitae congue mauris rhoncus.',
+                            titleText2: 'Ornare arcu odio ut sem nulla pharetra. Magna fringilla urna porttitor rhoncus dolor purus. Non sodales neque sodales ut etiam sit. Condimentum id venenatis a condimentum vitae. Facilisi nullam vehicula ipsum a arcu cursus vitae congue mauris. Gravida in fermentum et sollicitudin ac orci phasellus egestas. Sed lectus vestibulum mattis ullamcorper.',
+                            titleText3: 'Ante metus dictum at tempor commodo ullamcorper a. Ac turpis egestas sed tempus. Semper eget duis at tellus. Nunc sed blandit libero volutpat sed. Interdum varius sit amet mattis vulputate. Amet consectetur adipiscing elit ut aliquam purus sit amet luctus. Neque viverra justo nec ultrices. Faucibus pulvinar elementum integer enim neque volutpat ac tincidunt. Ac felis donec et odio pellentesque. Phasellus vestibulum lorem sed risus. Condimentum lacinia quis vel eros. Volutpat lacus laoreet non curabitur gravida arcu ac tortor dignissim. Nec nam aliquam sem et. Libero enim sed faucibus turpis. Sed lectus vestibulum mattis ullamcorper velit. Consectetur libero id faucibus nisl tincidunt eget nullam non. Molestie nunc non blandit massa enim. Mi tempus imperdiet nulla malesuada pellentesque. Feugiat sed lectus vestibulum mattis ullamcorper. Eleifend mi in nulla posuere sollicitudin aliquam.',
+                            titleItalic2: '>> Quisque id diam vel quam elementum pulvinar etiam.',
+                            titleText4: 'Ut pharetra sit amet aliquam id diam maecenas ultricies mi. Integer feugiat scelerisque varius morbi enim nunc faucibus a. Eu scelerisque felis imperdiet proin fermentum leo vel orci porta. Et sollicitudin ac orci phasellus. Tincidunt ornare massa eget egestas purus. Viverra tellus in hac habitasse platea. Nunc eget lorem dolor sed viverra ipsum nunc aliquet. Mauris nunc congue nisi vitae suscipit tellus mauris. Pellentesque sit amet porttitor eget dolor morbi non arcu. Ipsum consequat nisl vel pretium lectus quam. Quis risus sed vulputate odio ut. Lacus sed turpis tincidunt id aliquet. ',
+                        },
+                    ]
+                },
+                {
+                    userId: 4,
+                    imageUser: '/images/avatar-josh.jpg',
+                    nameUser: 'Daniel Gildenlow',
+                    profiUser: 'Professional Maker',
+                    date: '08.09.21',
+                    nameArticle: 'Article Header',
+                    disctiptionProduct: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus delectus quasi eaque! Doloribus fugit quod beatae, commodi minima quia enim nisi voluptate odit mollitia voluptatibus assumenda saepe atque, laboriosam ut.',
+                    fotoProduct: '/images/article-header.jpg',
+                    listDescription: [
+                        {
+                            titleText: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. In pellentesque massa placerat duis ultricies lacus sed turpis tincidunt. Eu feugiat pretium nibh ipsum. Sed tempus urna et pharetra. Felis eget velit aliquet sagittis id consectetur purus. Auctor elit sed vulputate mi sit amet mauris commodo quis. Vulputate odio ut enim blandit volutpat maecenas volutpat blandit aliquam.',
+                            titleItalic: 'Dui nunc mattis enim ut tellus. Nisl vel pretium lectus quam. In fermentum posuere urna nec tincidunt praesent semper feugiat. Tincidunt lobortis feugiat vivamus at augue. Nullam vehicula ipsum a arcu cursus vitae congue mauris rhoncus.',
+                            titleText2: 'Ornare arcu odio ut sem nulla pharetra. Magna fringilla urna porttitor rhoncus dolor purus. Non sodales neque sodales ut etiam sit. Condimentum id venenatis a condimentum vitae. Facilisi nullam vehicula ipsum a arcu cursus vitae congue mauris. Gravida in fermentum et sollicitudin ac orci phasellus egestas. Sed lectus vestibulum mattis ullamcorper.',
+                            titleText3: 'Ante metus dictum at tempor commodo ullamcorper a. Ac turpis egestas sed tempus. Semper eget duis at tellus. Nunc sed blandit libero volutpat sed. Interdum varius sit amet mattis vulputate. Amet consectetur adipiscing elit ut aliquam purus sit amet luctus. Neque viverra justo nec ultrices. Faucibus pulvinar elementum integer enim neque volutpat ac tincidunt. Ac felis donec et odio pellentesque. Phasellus vestibulum lorem sed risus. Condimentum lacinia quis vel eros. Volutpat lacus laoreet non curabitur gravida arcu ac tortor dignissim. Nec nam aliquam sem et. Libero enim sed faucibus turpis. Sed lectus vestibulum mattis ullamcorper velit. Consectetur libero id faucibus nisl tincidunt eget nullam non. Molestie nunc non blandit massa enim. Mi tempus imperdiet nulla malesuada pellentesque. Feugiat sed lectus vestibulum mattis ullamcorper. Eleifend mi in nulla posuere sollicitudin aliquam.',
+                            titleItalic2: '>> Quisque id diam vel quam elementum pulvinar etiam.',
+                            titleText4: 'Ut pharetra sit amet aliquam id diam maecenas ultricies mi. Integer feugiat scelerisque varius morbi enim nunc faucibus a. Eu scelerisque felis imperdiet proin fermentum leo vel orci porta. Et sollicitudin ac orci phasellus. Tincidunt ornare massa eget egestas purus. Viverra tellus in hac habitasse platea. Nunc eget lorem dolor sed viverra ipsum nunc aliquet. Mauris nunc congue nisi vitae suscipit tellus mauris. Pellentesque sit amet porttitor eget dolor morbi non arcu. Ipsum consequat nisl vel pretium lectus quam. Quis risus sed vulputate odio ut. Lacus sed turpis tincidunt id aliquet. ',
+                        },
+                    ]
+                },
+                {
+                    userId: 5,
+                    imageUser: '/images/avatar-mark.jpg',
+                    nameUser: 'Mark Sandman',
+                    profiUser: 'Murder for the Money',
+                    date: '08.09.21',
+                    nameArticle: 'Review Name - Article Header',
+                    disctiptionProduct: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus delectus quasi eaque! Doloribus fugit quod beatae, commodi minima quia enim nisi voluptate odit mollitia voluptatibus assumenda saepe atque, laboriosam ut.',
+                    fotoProduct: '/images/review-name.jpg',
+                    listDescription: [
+                        {
+                            titleText: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. In pellentesque massa placerat duis ultricies lacus sed turpis tincidunt. Eu feugiat pretium nibh ipsum. Sed tempus urna et pharetra. Felis eget velit aliquet sagittis id consectetur purus. Auctor elit sed vulputate mi sit amet mauris commodo quis. Vulputate odio ut enim blandit volutpat maecenas volutpat blandit aliquam.',
+                            titleItalic: 'Dui nunc mattis enim ut tellus. Nisl vel pretium lectus quam. In fermentum posuere urna nec tincidunt praesent semper feugiat. Tincidunt lobortis feugiat vivamus at augue. Nullam vehicula ipsum a arcu cursus vitae congue mauris rhoncus.',
+                            titleText2: 'Ornare arcu odio ut sem nulla pharetra. Magna fringilla urna porttitor rhoncus dolor purus. Non sodales neque sodales ut etiam sit. Condimentum id venenatis a condimentum vitae. Facilisi nullam vehicula ipsum a arcu cursus vitae congue mauris. Gravida in fermentum et sollicitudin ac orci phasellus egestas. Sed lectus vestibulum mattis ullamcorper.',
+                            titleText3: 'Ante metus dictum at tempor commodo ullamcorper a. Ac turpis egestas sed tempus. Semper eget duis at tellus. Nunc sed blandit libero volutpat sed. Interdum varius sit amet mattis vulputate. Amet consectetur adipiscing elit ut aliquam purus sit amet luctus. Neque viverra justo nec ultrices. Faucibus pulvinar elementum integer enim neque volutpat ac tincidunt. Ac felis donec et odio pellentesque. Phasellus vestibulum lorem sed risus. Condimentum lacinia quis vel eros. Volutpat lacus laoreet non curabitur gravida arcu ac tortor dignissim. Nec nam aliquam sem et. Libero enim sed faucibus turpis. Sed lectus vestibulum mattis ullamcorper velit. Consectetur libero id faucibus nisl tincidunt eget nullam non. Molestie nunc non blandit massa enim. Mi tempus imperdiet nulla malesuada pellentesque. Feugiat sed lectus vestibulum mattis ullamcorper. Eleifend mi in nulla posuere sollicitudin aliquam.',
+                            titleItalic2: '>> Quisque id diam vel quam elementum pulvinar etiam.',
+                            titleText4: 'Ut pharetra sit amet aliquam id diam maecenas ultricies mi. Integer feugiat scelerisque varius morbi enim nunc faucibus a. Eu scelerisque felis imperdiet proin fermentum leo vel orci porta. Et sollicitudin ac orci phasellus. Tincidunt ornare massa eget egestas purus. Viverra tellus in hac habitasse platea. Nunc eget lorem dolor sed viverra ipsum nunc aliquet. Mauris nunc congue nisi vitae suscipit tellus mauris. Pellentesque sit amet porttitor eget dolor morbi non arcu. Ipsum consequat nisl vel pretium lectus quam. Quis risus sed vulputate odio ut. Lacus sed turpis tincidunt id aliquet. ',
+                        },
+                    ]
+                },
+                {
+                    userId: 6,
+                    imageUser: '/images/avatar-daniel.jpg',
+                    nameUser: 'Josh Homme',
+                    profiUser: 'Industry Insider',
+                    date: '08.09.21',
+                    nameArticle: 'Review Name - Article Header',
+                    disctiptionProduct: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus delectus quasi eaque! Doloribus fugit quod beatae, commodi minima quia enim nisi voluptate odit mollitia voluptatibus assumenda saepe atque, laboriosam ut.',
+                    fotoProduct: '/images/daniel-article.jpg',
+                    listDescription: [
+                        {
+                            titleText: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. In pellentesque massa placerat duis ultricies lacus sed turpis tincidunt. Eu feugiat pretium nibh ipsum. Sed tempus urna et pharetra. Felis eget velit aliquet sagittis id consectetur purus. Auctor elit sed vulputate mi sit amet mauris commodo quis. Vulputate odio ut enim blandit volutpat maecenas volutpat blandit aliquam.',
+                            titleItalic: 'Dui nunc mattis enim ut tellus. Nisl vel pretium lectus quam. In fermentum posuere urna nec tincidunt praesent semper feugiat. Tincidunt lobortis feugiat vivamus at augue. Nullam vehicula ipsum a arcu cursus vitae congue mauris rhoncus.',
+                            titleText2: 'Ornare arcu odio ut sem nulla pharetra. Magna fringilla urna porttitor rhoncus dolor purus. Non sodales neque sodales ut etiam sit. Condimentum id venenatis a condimentum vitae. Facilisi nullam vehicula ipsum a arcu cursus vitae congue mauris. Gravida in fermentum et sollicitudin ac orci phasellus egestas. Sed lectus vestibulum mattis ullamcorper.',
+                            titleText3: 'Ante metus dictum at tempor commodo ullamcorper a. Ac turpis egestas sed tempus. Semper eget duis at tellus. Nunc sed blandit libero volutpat sed. Interdum varius sit amet mattis vulputate. Amet consectetur adipiscing elit ut aliquam purus sit amet luctus. Neque viverra justo nec ultrices. Faucibus pulvinar elementum integer enim neque volutpat ac tincidunt. Ac felis donec et odio pellentesque. Phasellus vestibulum lorem sed risus. Condimentum lacinia quis vel eros. Volutpat lacus laoreet non curabitur gravida arcu ac tortor dignissim. Nec nam aliquam sem et. Libero enim sed faucibus turpis. Sed lectus vestibulum mattis ullamcorper velit. Consectetur libero id faucibus nisl tincidunt eget nullam non. Molestie nunc non blandit massa enim. Mi tempus imperdiet nulla malesuada pellentesque. Feugiat sed lectus vestibulum mattis ullamcorper. Eleifend mi in nulla posuere sollicitudin aliquam.',
+                            titleItalic2: '>> Quisque id diam vel quam elementum pulvinar etiam.',
+                            titleText4: 'Ut pharetra sit amet aliquam id diam maecenas ultricies mi. Integer feugiat scelerisque varius morbi enim nunc faucibus a. Eu scelerisque felis imperdiet proin fermentum leo vel orci porta. Et sollicitudin ac orci phasellus. Tincidunt ornare massa eget egestas purus. Viverra tellus in hac habitasse platea. Nunc eget lorem dolor sed viverra ipsum nunc aliquet. Mauris nunc congue nisi vitae suscipit tellus mauris. Pellentesque sit amet porttitor eget dolor morbi non arcu. Ipsum consequat nisl vel pretium lectus quam. Quis risus sed vulputate odio ut. Lacus sed turpis tincidunt id aliquet. ',
+                        },
+                    ]
+                },
             ],
-            currentImage: 0
-        }
-    },
-    methods: {
-        next: function() {
-            if (this.currentImage >= this.images.length -1) {
-                this.currentImage = 0;
-            } else {
-                this.currentImage += 1;
-            }
-        },
-        prev: function() {
-            if (this.currentImage > 0) {
-                this.currentImage -=1;
-            }
+            reviewsShow: 3,
         }
     }
 };
@@ -347,42 +348,6 @@ export default {
     line-height: 20px;
     color: #000;
     margin-bottom: 20px;
-}
-.review_gallery_image {
-    font-family: Montserrat;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 17px;
-    color: #000;
-}
-.tabs_foto_slide {
-    display: flex;
-    width: 100%;
-    margin: 15px 0;
-    position: relative;
-}
-.tabs_foto_slide_items {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    width: 100%;
-}
-.tabs_slide_left {
-    background: url("/images/left.svg") no-repeat center center;
-    width: 13px;
-    height: 18px;
-    position: absolute;
-    top: 50%;
-    left: 0;
-}
-.tabs_slide_right {
-    background: url("/images/right.svg") no-repeat center center;
-    width: 13px;
-    height: 18px;
-    position: absolute;
-    top: 50%;
-    right: 0;
 }
 .review_description_info {
     display: flex;
