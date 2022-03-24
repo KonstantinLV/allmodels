@@ -57,7 +57,7 @@
                     </div>
                 </div>                
                 <div class="tabs_buyer_reply_block">
-                    <div class="tabs_buyer_reply">                        
+                    <div class="tabs_buyer_reply_edit">                        
                         <button v-on:click="show = !show" type="submit" class="tabs_reply_button_show">
                             {{ show ? 'Hide' : 'Show'}} 1 reply
                             <img :src="'/images/down.svg'" alt="updown" class="tabs_data_icon">
@@ -126,7 +126,7 @@
                         <a href="" class="tabs_slide_right"></a>
                     </div>
                     <div class="tabs_buyer_reply_block">
-                        <div class="tabs_buyer_reply">
+                        <div class="tabs_buyer_reply_feedback">
                             <a href="#" class="tabs_buyer_reply_link">Reply</a>
                             <button v-on:click="show = !show" type="submit" class="tabs_reply_button_show">
                                 {{ show ? 'Hide' : 'Show'}} 1 reply
@@ -587,6 +587,22 @@ export default {
 .tabs_buyer_reply_block {
     width: 100%;
 }
+.tabs_buyer_reply_edit {
+    width: 100%;
+    display: flex;
+    height: 20px;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px 0;
+}
+.tabs_buyer_reply_feedback {
+    width: 100%;
+    display: flex;
+    height: 20px;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 20px 0;
+}
 .tabs_buyer_reply {
     width: 100%;
     display: flex;
@@ -626,6 +642,7 @@ export default {
     font-size: 14px;
     line-height: 17px;
     color: #000000;
+    margin-left: 20px;
 }
 .tabs_group {
     margin: 30px 0;

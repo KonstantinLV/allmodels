@@ -14,26 +14,28 @@
             <i class="fa fa-angle-down" style="color: black;" aria-hidden="true"></i>
         </div>                        
         <div class="tabs_comments">
-            <div class="tabs_buyer">
+            <div class="tabs_buyer" v-for="comment in commentQA" :key="comment">
                 <div class="q_a_name">
                     <p class="q_a_name_text">Q:</p>
                 </div>
                 <div class="q_tabs_a_block">
                     <div class="q_a_block_comment">
                         <div class="q_a_text">
-                            <p class="tabs_buyer_text_title">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel et ipsum esse 
-                                officiis eaque numquam minus. Ut impedit illo, veniam voluptates.
+                            <p class="tabs_buyer_text_title">{{ comment.titleComment }}
                             </p>
                             <img :src="'/images/tools-mini.svg'" style="width: 4px; height: 16px;" alt="tools" class="q_avatar_icon">
                         </div>
-                        <div class="q_a_like">
-                            <img :src="'/images/collection/like.svg'" alt="like" class="tabs_buyer_like_icon">
-                            <p class="tabs_buyer_number">0</p>
-                            <img :src="'/images/collection/dislike.svg'" alt="dlike" class="tabs_buyer_like_icon">
+                        <div class="q_active_block">
+                            <div class="q_a_like">
+                                <img :src="'/images/collection/like.svg'" alt="like" class="tabs_buyer_like_icon">
+                                <p class="tabs_buyer_number">{{ comment.like }}</p>
+                                <img :src="'/images/collection/dislike.svg'" alt="dlike" class="tabs_buyer_like_icon">
+                            </div>
+                            <div :class="{q_noactive_info_image: comment.alert}"></div>
+                            <div :class="{q_active_info_image: comment.alertActive}"></div>
                         </div>
                     </div>
-                    <div class="tabs_comments">
+                    <div class="tabs_comments" v-for="(title, index) in comment.listComment" :key="index">
                         <div class="tabs_buyer">
                             <div class="q_a_name">
                                 <p class="q_a_name_text">A:</p>
@@ -41,141 +43,18 @@
                             <div class="tabs_buyer_block">
                                 <div class="q_a_block_comment">
                                     <div class="q_a_text">
-                                        <p class="a_q_text_title">
-                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel et ipsum esse 
-                                            officiis eaque numquam minus. Ut impedit illo, veniam voluptates.
+                                        <p class="a_q_text_title">{{ title.listTitle }}
                                         </p>
                                         <img :src="'/images/tools-mini.svg'" style="width: 4px; height: 16px;" alt="tools" class="q_avatar_icon">
                                     </div>
                                     <div class="q_a_like">
                                         <img :src="'/images/collection/like.svg'" alt="like" class="tabs_buyer_like_icon">
-                                        <p class="tabs_buyer_number">0</p>
+                                        <p class="tabs_buyer_number">{{ title.listLike }}</p>
                                         <img :src="'/images/collection/dislike.svg'" alt="dlike" class="tabs_buyer_like_icon">
                                     </div>
                                 </div>
                             </div>                                
                         </div>
-                    </div>
-                </div>                                
-            </div>
-            <div class="tabs_buyer">
-                <div class="q_a_name">
-                    <p class="q_a_name_text">Q:</p>
-                </div>
-                <div class="q_tabs_a_block">
-                    <div class="q_a_block_comment">
-                        <div class="q_a_text">
-                            <p class="tabs_buyer_text_title">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel et ipsum esse 
-                                officiis eaque numquam minus. Ut impedit illo, veniam voluptates.
-                            </p>
-                            <img :src="'/images/tools-mini.svg'" style="width: 4px; height: 16px;" alt="tools" class="q_avatar_icon">
-                        </div>
-                        <div class="q_a_like">
-                            <img :src="'/images/collection/like.svg'" alt="like" class="tabs_buyer_like_icon">
-                            <p class="tabs_buyer_number">0</p>
-                            <img :src="'/images/collection/dislike.svg'" alt="dlike" class="tabs_buyer_like_icon">
-                        </div>
-                    </div>
-                    <div class="tabs_comments">
-                        <div class="tabs_buyer">
-                            <div class="q_a_name">
-                                <p class="q_a_name_text">A:</p>
-                            </div>
-                            <div class="tabs_buyer_block">
-                                <div class="q_a_block_comment">
-                                    <div class="q_a_text">
-                                        <p class="a_q_text_title">
-                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel et ipsum esse 
-                                            officiis eaque numquam minus. Ut impedit illo, veniam voluptates.
-                                        </p>
-                                        <img :src="'/images/tools-mini.svg'" style="width: 4px; height: 16px;" alt="tools" class="q_avatar_icon">
-                                    </div>
-                                    <div class="q_a_like">
-                                        <img :src="'/images/collection/like.svg'" alt="like" class="tabs_buyer_like_icon">
-                                        <p class="tabs_buyer_number">0</p>
-                                        <img :src="'/images/collection/dislike.svg'" alt="dlike" class="tabs_buyer_like_icon">
-                                    </div>
-                                </div>
-                            </div>                                
-                        </div>
-                    </div>
-                </div>                                
-            </div>
-            <div class="q_tabs_block">
-                <div class="q_a_name">
-                    <p class="q_a_name_text">Q:</p>
-                </div>
-                <div class="q_tabs_a_block">
-                    <div class="q_a_block_comment">
-                        <div class="q_a_text">
-                            <p class="tabs_buyer_text_title">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel et ipsum esse 
-                                officiis eaque numquam minus. Ut impedit illo, veniam voluptates.
-                            </p>
-                            <img :src="'/images/tools-mini.svg'" style="width: 4px; height: 16px;" alt="tools" class="q_avatar_icon">
-                        </div>
-                        <div class="q_active_block">
-                            <div class="q_a_like">
-                                <img :src="'/images/collection/like.svg'" alt="like" class="tabs_buyer_like_icon">
-                                <p class="tabs_buyer_number">0</p>
-                                <img :src="'/images/collection/dislike.svg'" alt="dlike" class="tabs_buyer_like_icon">
-                            </div>
-                            <div class="q_active_info">
-                                <img :src="'/images/active-info.svg'" alt="active-info" class="q_active_info_image">
-                            </div>
-                        </div>                                        
-                    </div>
-                </div>                                
-            </div>
-            <div class="q_tabs_block">
-                <div class="q_a_name">
-                    <p class="q_a_name_text">Q:</p>
-                </div>
-                <div class="q_tabs_a_block">
-                    <div class="q_a_block_comment">
-                        <div class="q_a_text">
-                            <p class="tabs_buyer_text_title">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit?
-                            </p>
-                            <img :src="'/images/tools-mini.svg'" style="width: 4px; height: 16px;" alt="tools" class="q_avatar_icon">
-                        </div>
-                        <div class="q_active_block">
-                            <div class="q_a_like">
-                                <img :src="'/images/collection/like.svg'" alt="like" class="tabs_buyer_like_icon">
-                                <p class="tabs_buyer_number">0</p>
-                                <img :src="'/images/collection/dislike.svg'" alt="dlike" class="tabs_buyer_like_icon">
-                            </div>
-                            <div class="q_active_info">
-                                <img :src="'/images/info-active.svg'" alt="info-active" class="q_active_info_image">
-                            </div>
-                        </div>                                        
-                    </div>
-                </div>                                
-            </div>
-            <div class="q_tabs_block">
-                <div class="q_a_name">
-                    <p class="q_a_name_text">Q:</p>
-                </div>
-                <div class="q_tabs_a_block">
-                    <div class="q_a_block_comment">
-                        <div class="q_a_text">
-                            <p class="tabs_buyer_text_title">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel et ipsum esse 
-                                officiis eaque numquam minus. Ut impedit illo, veniam voluptates.
-                            </p>
-                            <img :src="'/images/tools-mini.svg'" style="width: 4px; height: 16px;" alt="tools" class="q_avatar_icon">
-                        </div>
-                        <div class="q_active_block">
-                            <div class="q_a_like">
-                                <img :src="'/images/collection/like.svg'" alt="like" class="tabs_buyer_like_icon">
-                                <p class="tabs_buyer_number">0</p>
-                                <img :src="'/images/collection/dislike.svg'" alt="dlike" class="tabs_buyer_like_icon">
-                            </div>
-                            <div class="q_active_info">
-                                <img :src="'/images/active-info.svg'" alt="active-info" class="q_active_info_image">
-                            </div>
-                        </div>                                        
                     </div>
                 </div>                                
             </div>
@@ -189,6 +68,62 @@
 <script>
 export default {
     name: 'tab-qa',
+    data() {
+        return {
+            commentQA: [
+                { 
+                    id: 1, 
+                    titleComment: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel et ipsum esse officiis eaque numquam minus. Ut impedit illo, veniam voluptates.',
+                    like: 0,
+                    alert: false,
+                    alertActive: false,
+                    listComment: [
+                        {
+                            listTitle: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel et ipsum esse officiis eaque numquam minus. Ut impedit illo, veniam voluptates.',
+                            listLike: 0
+                        }
+                    ]
+                },
+                { 
+                    id: 2, 
+                    titleComment: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel et ipsum esse officiis eaque numquam minus. Ut impedit illo, veniam voluptates.',
+                    like: 0,
+                    alert: false,
+                    alertActive: false,
+                    listComment: [
+                        {
+                            listTitle: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel et ipsum esse officiis eaque numquam minus. Ut impedit illo, veniam voluptates.',
+                            listLike: 0
+                        }
+                    ]
+                },
+                { 
+                    id: 3, 
+                    titleComment: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel et ipsum esse officiis eaque numquam minus. Ut impedit illo, veniam voluptates.',
+                    like: 0,
+                    alert: true,
+                    alertActive: false,
+                    listComment: []
+                },
+                { 
+                    id: 4, 
+                    titleComment: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit? ',
+                    like: 0,
+                    alert: false,
+                    alertActive: true,
+                    listComment: []
+                },
+                { 
+                    id: 5, 
+                    titleComment: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel et ipsum esse officiis eaque numquam minus. Ut impedit illo, veniam voluptates.',
+                    like: 0,
+                    alert: true,
+                    alertActive: false,
+                    listComment: []
+                },
+            ]
+        }
+    }
 };
 </script>
 
@@ -532,13 +467,19 @@ export default {
     line-height: 22px;
     color: #000000;
 }
-.q_active_info {
+.q_noactive_info_image {
+    background: url("/images/active-info.svg") no-repeat center center;
+    width: 18px;
+    height: 20px;
     margin-top: 12px;
     margin-left: 35px;
 }
 .q_active_info_image {
-    width: 16px;
-    height: 18px;
+    background: url("/images/info-active.svg") no-repeat center center;
+    width: 18px;
+    height: 20px;
+    margin-top: 12px;
+    margin-left: 35px;
 }
 .q_tabs_block {
     display: flex;
