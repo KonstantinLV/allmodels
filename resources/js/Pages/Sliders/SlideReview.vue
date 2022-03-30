@@ -2,48 +2,38 @@
     <div class="review_gallery">
         <p class="review_gallery_image">Image gallery</p>
         <div class="review_group_slider">
-            <transition-group :style="{ 'margin-left': '-' + (100 * currentImage) + '%'}" class="review_slider_margin" name="fade" tag="div">
-                <div class="tabs_foto_slide" v-for="(img, index) in images" :key="index">                    
-                    <div class="tabs_foto_slide_items" v-for="item in img.list" :key="item">
-                        <div class="tabs_foto_slide_item" v-bind:style='"background-image: url(" + item + ")"'></div>
+            <Carousel v-slot="{ currentSlide }">
+                <Slide v-for="(slide, index) in carouselSlides" :key="index">
+                    <div class="slide_info" v-show="currentSlide === index + 1">
+                        <div class="tabs_foto_slide_items" v-for="item in slide.list" :key="item">
+                            <img class="tabs_foto_slide_item" :src="item" alt="img">
+                        </div>
                     </div>
-                </div>
-            </transition-group>
-            <a @click="prev" href="#" class="prev tabs_slide_left"></a>
-            <a @click="next" href="#" class="next tabs_slide_right"></a>
+                </Slide>
+            </Carousel>
         </div>        
     </div>
 </template>
 
 <script>
+import Carousel from './SliderComment/Carousel.vue'
+import Slide from './SliderComment/Slide.vue'
+
 export default {
     name: 'slide-reviews',
-    data() {
-        return {
-            show: false,
-            images: [
-                { id: 1, list: [ '/images/bf-1.jpg', '/images/bf-2.jpg', '/images/bf-3.jpg' ]},
-                { id: 2, list: [ '/images/bf-1.jpg', '/images/bf-2.jpg', '/images/bf-3.jpg' ]},
-                { id: 3, list: [ '/images/bf-1.jpg', '/images/bf-2.jpg', '/images/bf-3.jpg' ]},
-                { id: 4, list: [ '/images/bf-1.jpg', '/images/bf-2.jpg', '/images/bf-3.jpg' ]},
-                { id: 5, list: [ '/images/bf-1.jpg', '/images/bf-2.jpg', '/images/bf-3.jpg' ]},
-            ],
-            currentImage: 0
-        }
+    components: {
+        Carousel,
+        Slide
     },
-    methods: {
-        next: function() {
-            if (this.currentImage >= this.images.length -1) {
-                this.currentImage = 0;
-            } else {
-                this.currentImage += 1;
-            }
-        },
-        prev: function() {
-            if (this.currentImage > 0) {
-                this.currentImage -=1;
-            }
-        }
+    setup() {
+        const carouselSlides = [ 
+            { id: 1, list: [ '/images/bf-1.jpg', '/images/bf-2.jpg', '/images/bf-3.jpg' ]},
+            { id: 2, list: [ '/images/bf-1.jpg', '/images/bf-2.jpg', '/images/bf-3.jpg' ]},
+            { id: 3, list: [ '/images/bf-1.jpg', '/images/bf-2.jpg', '/images/bf-3.jpg' ]},
+            { id: 4, list: [ '/images/bf-1.jpg', '/images/bf-2.jpg', '/images/bf-3.jpg' ]},
+            { id: 5, list: [ '/images/bf-1.jpg', '/images/bf-2.jpg', '/images/bf-3.jpg' ]},
+        ];
+        return { carouselSlides };
     }
 }
 </script>
@@ -52,6 +42,7 @@ export default {
 .review_gallery {
     position: relative;
     width: 100%;
+    overflow: hidden;
 }
 .review_gallery_image {
     font-family: Montserrat;
@@ -64,23 +55,12 @@ export default {
 .review_group_slider {
     position: relative;
     width: 100%;
+    margin: 20px 0;
 }
-.review_slider_margin {
+.slide_info {
     display: flex;
-    overflow: hidden;
-    transform: all 0.9s ease;
-}
-.tabs_foto_slide {
-    width: 100%;
-    margin: 15px 0;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-}
-.tabs_slider_group {
-    display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
 }
 .tabs_foto_slide_items {
     width: 265px;
@@ -91,28 +71,30 @@ export default {
     height: 100%; 
     width: auto; 
     max-width: 100%;
-    background-size: cover;
+    object-fit: cover;
 }
 .tabs_slide_left {
     background: url("/images/left.svg") no-repeat center center;
     width: 13px;
     height: 18px;
     position: absolute;
-    top: 55%;
+    top: 50%;
     left: 0;
-    transition: 0.7s ease;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
     text-decoration: none;
     user-select: none;
+    cursor: pointer;
 }
 .tabs_slide_right {
     background: url("/images/right.svg") no-repeat center center;
     width: 13px;
     height: 18px;
     position: absolute;
-    top: 55%;
+    top: 50%;
     right: 0;
-    transition: 0.7s ease;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
     text-decoration: none;
     user-select: none;
+    cursor: pointer;
 }
 </style>

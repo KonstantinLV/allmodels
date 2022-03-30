@@ -9,66 +9,6 @@
             <p class="buyers_really_text">It will really help!</p>
             <img :src="'/images/feedback-pink.svg'" alt="feedback" class="buyers_leave_fon_image">
         </div>
-        <div class="tabs_buyer_border">
-            <div class="tabs_buyer_avatar">
-                <img :src="'/images/ask-foto.jpg'" alt="avatar" class="tabs_buyer_avatar_icon">
-                <div class="tabs_buyer_like">
-                    <img :src="'/images/collection/like.svg'" alt="like" class="tabs_buyer_like_icon">
-                    <p class="tabs_buyer_number">0</p>
-                    <img :src="'/images/collection/dislike.svg'" alt="dlike" class="tabs_buyer_like_icon">
-                </div>
-            </div>
-            <div class="tabs_buyer_block">
-                <div class="tabs_buyer_name">
-                    <div class="tabs_firstname_block">
-                        <h3 class="tabs_buyer_firstname">Peter Hayes (you)</h3>
-                    </div>
-                    <div class="tabs_data_block">
-                        <p class="tabs_buyer_data">08.09.21</p>
-                        <img :src="'/images/tools-mini.svg'" alt="dlike" class="tabs_data_icon">
-                    </div>
-                </div>
-                <div class="tabs_buyer_text">
-                    <p class="tabs_buyer_text_title">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel et ipsum esse 
-                        officiis eaque numquam minus. Ut impedit illo, veniam voluptates praesentium 
-                        autem deserunt, nisi officia quisquam incidunt saepe!
-                    </p>                                        
-                </div>
-                <div class="tabs_buyer_icons_block">
-                    <img :src="'/images/zvezda-active.svg'" style="width: 19px; height: 18px;" alt="zvezda" class="tabs_buyer_icons_item">
-                    <img :src="'/images/zvezda-active.svg'" style="width: 19px; height: 18px;" alt="zvezda" class="tabs_buyer_icons_item">
-                    <img :src="'/images/zvezda-active.svg'" style="width: 19px; height: 18px;" alt="zvezda" class="tabs_buyer_icons_item">
-                    <img :src="'/images/zvezda-active.svg'" style="width: 19px; height: 18px;" alt="zvezda" class="tabs_buyer_icons_item">
-                    <img :src="'/images/zvezda-n.svg'" style="width: 19px; height: 18px;" alt="zvezda" class="tabs_buyer_icons_item">
-                </div>
-                <div class="add_feed_group_items">
-                    <div class="add_feed">
-                        <img :src="'/images/add-feedback-pink.svg'" alt="add" class="add_feedback_image">
-                        <div class="add_feed_group">
-                            <button class="add_feedback_file" type="file">
-                                <img :src="'/images/add-feedback.svg'" alt="file" class="add_feedback_file_image">
-                            </button>
-                            <p class="add_feedback_text">Add images to your feedback</p>
-                            <p class="add_feedback_title_text">It can be photos of printed object or screenshots of your project involving
-                                this item. Anything to showcase the use of it!
-                            </p>
-                        </div>                    
-                    </div>
-                </div>                
-                <div class="tabs_buyer_reply_block">
-                    <div class="tabs_buyer_reply_edit">                        
-                        <button v-on:click="show = !show" type="submit" class="tabs_reply_button_show">
-                            {{ show ? 'Hide' : 'Show'}} 1 reply
-                            <img :src="'/images/down.svg'" alt="updown" class="tabs_data_icon">
-                        </button>
-                        <a href="#" class="tabs_buyer_reply_link">
-                            <img :src="'/images/edit-feedback.svg'" alt="edit" class="tabs_buyer_edit_image">
-                        </a>
-                    </div>
-                </div>                                    
-            </div>
-        </div>
         <div class="buyers_feedback_block">
             <div class="feedback_checkbox">
                 <input class="feedback_checkbox_input" type="checkbox" name="onlyimages" value="Only with images" />
@@ -83,31 +23,27 @@
             </div>
         </div>                        
         <div class="tabs_comments">
-            <div class="tabs_buyer">
+            <div class="tabs_buyer" v-for="(feed, index) in toBeShown" :key="index.id">
                 <div class="tabs_buyer_avatar">
-                    <img :src="'/images/avatar-josh.jpg'" alt="avatar" class="tabs_buyer_avatar_icon">
+                    <img :src="feed.iconFeedback" alt="avatar" class="tabs_buyer_avatar_icon">
                     <div class="tabs_buyer_like">
                         <img :src="'/images/collection/like.svg'" alt="like" class="tabs_buyer_like_icon">
-                        <p class="tabs_buyer_number">0</p>
+                        <p class="tabs_buyer_number">{{ feed.likeAvatar }}</p>
                         <img :src="'/images/collection/dislike.svg'" alt="dlike" class="tabs_buyer_like_icon">
                     </div>
                 </div>
                 <div class="tabs_buyer_block">
                     <div class="tabs_buyer_name">
                         <div class="tabs_firstname_block">
-                            <h3 class="tabs_buyer_firstname">Josh Homme</h3>
+                            <h3 class="tabs_buyer_firstname">{{ feed.nameFeedback }}</h3>
                         </div>
                         <div class="tabs_data_block">
-                            <p class="tabs_buyer_data">08.09.21</p>
+                            <p class="tabs_buyer_data">{{ feed.feedbackDate }}</p>
                             <img :src="'/images/tools-mini.svg'" alt="dlike" class="tabs_data_icon">
                         </div>
                     </div>
                     <div class="tabs_buyer_text">
-                        <p class="tabs_buyer_text_title">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel et ipsum esse 
-                            officiis eaque numquam minus. Ut impedit illo, veniam voluptates praesentium 
-                            autem deserunt, nisi officia quisquam incidunt saepe! Libero?
-                        </p>                                     
+                        <p class="tabs_buyer_text_title">{{ feed.descriptionFeedback }}</p>                                     
                     </div>
                     <div class="tabs_buyer_icons_block">
                         <img :src="'/images/zvezda-active.svg'" style="width: 19px; height: 18px;" alt="zvezda" class="tabs_buyer_icons_item">
@@ -116,119 +52,481 @@
                         <img :src="'/images/zvezda-active.svg'" style="width: 19px; height: 18px;" alt="zvezda" class="tabs_buyer_icons_item">
                         <img :src="'/images/zvezda-n.svg'" style="width: 19px; height: 18px;" alt="zvezda" class="tabs_buyer_icons_item">
                     </div>
-                    <div class="tabs_foto_slide">
-                        <div class="tabs_foto_slide_items">
-                            <img :src="'/images/bf-1.jpg'" alt="foto" class="tabs_foto_slide_item">
-                            <img :src="'/images/bf-2.jpg'" alt="foto" class="tabs_foto_slide_item">
-                            <img :src="'/images/bf-3.jpg'" alt="foto" class="tabs_foto_slide_item">
+                    <slide-review v-if="feed.imageFeedback != 0"></slide-review>
+                    <div class="add_feed_group_items" v-else>
+                        <div class="add_feed">
+                            <img :src="'/images/add-feedback-pink.svg'" alt="add" class="add_feedback_image">
+                            <div class="add_feed_group">
+                                <button class="add_feedback_file" type="file">
+                                    <img :src="'/images/add-feedback.svg'" alt="file" class="add_feedback_file_image">
+                                </button>
+                                <p class="add_feedback_text">Add images to your feedback</p>
+                                <p class="add_feedback_title_text">It can be photos of printed object or screenshots of your project involving
+                                    this item. Anything to showcase the use of it!
+                                </p>
+                            </div>
                         </div>
-                        <a href="" class="tabs_slide_left"></a>
-                        <a href="" class="tabs_slide_right"></a>
                     </div>
                     <div class="tabs_buyer_reply_block">
                         <div class="tabs_buyer_reply_feedback">
                             <a href="#" class="tabs_buyer_reply_link">Reply</a>
-                            <button v-on:click="show = !show" type="submit" class="tabs_reply_button_show">
-                                {{ show ? 'Hide' : 'Show'}} 1 reply
+                            <button v-on:click="feedbackId = feed.id; showFeedback = !showFeedback" v-if="feed.listFeedback != 0" type="submit" class="tabs_reply_button_show">
+                                {{ showFeedback && feedbackId == feed.id ? 'Hide' : 'Show'}} {{feed.listFeedback.length}} reply
                                 <img :src="'/images/down.svg'" alt="updown" class="tabs_data_icon">
                             </button>
+                            <a href="#" class="tabs_buyer_edit_link" v-if="feed.imageFeedback == 0">
+                                <img :src="'/images/edit-feedback.svg'" alt="edit" class="tabs_buyer_edit_image">
+                            </a>
                         </div>
-                        <transition name="fade">
-                            <div v-if="show" class="tabs_buyer" style="margin-top: 40px; margin-bottom: 0;">
-                                <div class="tabs_buyer_avatar" style="width: 135px;">
-                                    <img :src="'/images/avatar-devin.png'" alt="avatar" class="tabs_buyer_avatar_icon">
-                                    <div class="tabs_buyer_like">
-                                        <img :src="'/images/collection/like.svg'" alt="like" class="tabs_buyer_like_icon">
-                                        <p class="tabs_buyer_number">0</p>
-                                        <img :src="'/images/collection/dislike.svg'" alt="dlike" class="tabs_buyer_like_icon">
-                                    </div>
-                                </div>
-                                <div class="tabs_buyer_block">
-                                    <div class="tabs_buyer_name">
-                                        <div class="tabs_buyer_seller" style="display: flex; flex-direction: column;">
-                                            <div class="tabs_firstname_block">
-                                                <h3 class="tabs_buyer_firstname">Devin Townsend</h3>
-                                                <img :src="'/images/a-ok.svg'" alt="a-ok" class="tabs_firstname_icon">
-                                                <img :src="'/images/zvezda.svg'" alt="zvezda" class="tabs_firstname_icon">
-                                                <img :src="'/images/link-name.svg'" alt="link-name" class="tabs_firstname_icon">
-                                                <h4 class="tabs_buyer_firstname_link">Josh Homme</h4>
+                        <div v-show="showFeedback && feedbackId == feed.id">
+                            <div v-for="(reply, index) in feed.listFeedback" :key="index.id">
+                                <transition name="fade">                            
+                                    <div class="tabs_buyer" style="margin-top: 40px; margin-bottom: 0;">
+                                        <div class="tabs_buyer_avatar" style="width: 135px;">
+                                            <img :src="reply.image" alt="avatar" class="tabs_buyer_avatar_icon">
+                                            <div class="tabs_buyer_like">
+                                                <img :src="'/images/collection/like.svg'" alt="like" class="tabs_buyer_like_icon">
+                                                <p class="tabs_buyer_number">{{reply.likeReply}}</p>
+                                                <img :src="'/images/collection/dislike.svg'" alt="dlike" class="tabs_buyer_like_icon">
                                             </div>
-                                            <p class="tabs_buyer_seller_text">Seller</p>
-                                        </div>                                                    
-                                        <div class="tabs_data_block">
-                                            <p class="tabs_buyer_data">08.09.21</p>
-                                            <img :src="'/images/tools-mini.svg'" alt="dlike" class="tabs_data_icon">
                                         </div>
-                                    </div>
-                                    <div class="tabs_buyer_text">
-                                        <p class="tabs_buyer_text_title">
-                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel et ipsum esse 
-                                            officiis eaque numquam minus. Ut impedit illo, veniam voluptates praesentium 
-                                            autem deserunt, nisi officia quisquam incidunt saepe! Libero?
-                                        </p>
-                                    </div>
-                                    <div class="tabs_buyer_reply">
-                                        <a href="#" class="tabs_buyer_reply_link">Reply</a>
-                                    </div>
-                                </div>
+                                        <div class="tabs_buyer_block">
+                                            <div class="tabs_buyer_name">
+                                                <div class="tabs_buyer_seller" style="display: flex; flex-direction: column;">
+                                                    <div class="tabs_firstname_block">
+                                                        <h3 class="tabs_buyer_firstname">{{ reply.nameSeller }}</h3>
+                                                        <img :src="'/images/a-ok.svg'" alt="a-ok" class="tabs_firstname_icon">
+                                                        <img :src="'/images/zvezda.svg'" alt="zvezda" class="tabs_firstname_icon">
+                                                        <img :src="'/images/link-name.svg'" alt="link-name" class="tabs_firstname_icon">
+                                                        <h4 class="tabs_buyer_firstname_link">Josh Homme</h4>
+                                                    </div>
+                                                    <p class="tabs_buyer_seller_text">{{ reply.profiSeller }}</p>
+                                                </div>                                                    
+                                                <div class="tabs_data_block">
+                                                    <p class="tabs_buyer_data">{{ reply.dateSeller }}</p>
+                                                    <img :src="'/images/tools-mini.svg'" alt="dlike" class="tabs_data_icon">
+                                                </div>
+                                            </div>
+                                            <div class="tabs_buyer_text">
+                                                <p class="tabs_buyer_text_title">{{ reply.descriptionSeller }}
+                                                </p>
+                                            </div>
+                                            <div class="tabs_buyer_reply">
+                                                <a href="#" class="tabs_buyer_reply_link">Reply</a>
+                                            </div>
+                                        </div>
+                                    </div>                            
+                                </transition>
                             </div>
-                        </transition>
+                        </div>
                     </div>                                    
                 </div>
             </div>
-            <div class="tabs_buyer">
-                <div class="tabs_buyer_avatar">
-                    <img :src="'/images/avatar-kristoffer.png'" alt="avatar" class="tabs_buyer_avatar_icon">
-                    <div class="tabs_buyer_like">
-                        <img :src="'/images/collection/like.svg'" alt="like" class="tabs_buyer_like_icon">
-                        <p class="tabs_buyer_number">0</p>
-                        <img :src="'/images/collection/dislike.svg'" alt="dlike" class="tabs_buyer_like_icon">
-                    </div>
-                </div>
-                <div class="tabs_buyer_block">
-                    <div class="tabs_buyer_name">
-                        <div class="tabs_firstname_block">
-                            <h3 class="tabs_buyer_firstname">Kristoffer Rygg</h3>
-                        </div>
-                        <div class="tabs_data_block">
-                            <p class="tabs_buyer_data">08.09.21</p>
-                            <img :src="'/images/tools-mini.svg'" alt="dlike" class="tabs_data_icon">
-                        </div>
-                    </div>
-                    <div class="tabs_buyer_text">
-                        <p class="tabs_buyer_text_title">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel et ipsum esse 
-                            officiis eaque numquam minus. Ut impedit illo, veniam voluptates praesentium 
-                            autem deserunt, nisi officia quisquam incidunt saepe! Libero?
-                        </p>
-                    </div>
-                    <div class="tabs_buyer_icons_block">
-                        <img :src="'/images/zvezda-active.svg'" style="width: 19px; height: 18px;" alt="zvezda" class="tabs_buyer_icons_item">
-                        <img :src="'/images/zvezda-active.svg'" style="width: 19px; height: 18px;" alt="zvezda" class="tabs_buyer_icons_item">
-                        <img :src="'/images/zvezda-active.svg'" style="width: 19px; height: 18px;" alt="zvezda" class="tabs_buyer_icons_item">
-                        <img :src="'/images/zvezda-active.svg'" style="width: 19px; height: 18px;" alt="zvezda" class="tabs_buyer_icons_item">
-                        <img :src="'/images/zvezda-n.svg'" style="width: 19px; height: 18px;" alt="zvezda" class="tabs_buyer_icons_item">
-                    </div>
-                    <div class="tabs_buyer_reply">
-                        <a href="#" class="tabs_buyer_reply_link">Reply</a>
-                    </div>
-                </div>
-            </div>
             <div class="tabs_button">
-                <button type="submit" class="tabs_button_show">Show 10 more</button>
+                <button type="submit" @click="nextPage" v-if="currentPage != totalPages" class="tabs_button_show">Show 10 more</button>
+                <button type="submit" @click="prevPage" v-else-if="currentPage != 1" class="tabs_button_show">Show 10 less</button>
+                <p v-else></p>
             </div>
         </div>
     </div>
 </template>
 
 <script>
+import SlideReview from '../Sliders/SlideReview.vue'
+
 export default {
     name: 'tab-feedback',
+    components: { SlideReview },
     data() {
         return {
-            show: false,
+            showFeedback: false,
+            feedbackId: null,
+            feedbackList: [
+                {
+                    id: 1,
+                    iconFeedback: '/images/ask-foto.jpg',
+                    likeAvatar: 0,
+                    nameFeedback: 'Peter Hayes (you)',
+                    feedbackDate: '08.09.21',
+                    descriptionFeedback: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel et ipsum esse officiis eaque numquam minus. Ut impedit illo, veniam voluptates praesentium autem deserunt, nisi officia quisquam incidunt saepe! Libero?',
+                    starFeedback: true,
+                    imageFeedback: [],
+                    listFeedback: [
+                        {
+                            image: '/images/avatar-devin.png',
+                            likeReply: 2,
+                            nameSeller: 'Devin Townsend',
+                            starOk: false,
+                            starSeller: true,
+                            dateSeller: '08.09.21',
+                            profiSeller: 'Seller',
+                            descriptionSeller: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel et ipsum esse officiis eaque numquam minus. Ut impedit illo, veniam voluptates praesentium autem deserunt, nisi officia quisquam incidunt saepe!',
+                        },
+                    ]
+                },
+                {
+                    id: 2,
+                    iconFeedback: '/images/avatar-josh.jpg',
+                    likeAvatar: 0,
+                    nameFeedback: 'Josh Homme',
+                    feedbackDate: '08.09.21',
+                    descriptionFeedback: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel et ipsum esse officiis eaque numquam minus. Ut impedit illo, veniam voluptates praesentium autem deserunt, nisi officia quisquam incidunt saepe! Libero?',
+                    starFeedback: true,
+                    imageFeedback: [ '/images/bf-1.jpg', '/images/bf-2.jpg', '/images/bf-3.jpg'],
+                    listFeedback: [
+                        {
+                            image: '/images/avatar-devin.png',
+                            likeReply: 2,
+                            nameSeller: 'Devin Townsend',
+                            starOk: false,
+                            starSeller: true,
+                            dateSeller: '08.09.21',
+                            profiSeller: 'Seller',
+                            descriptionSeller: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel et ipsum esse officiis eaque numquam minus. Ut impedit illo, veniam voluptates praesentium autem deserunt, nisi officia quisquam incidunt saepe!',
+                        },
+                    ]
+                },
+                {
+                    id: 3,
+                    iconFeedback: '/images/avatar-kristoffer.png',
+                    likeAvatar: 0,
+                    nameFeedback: 'Kristoffer Rygg',
+                    feedbackDate: '08.09.21',
+                    descriptionFeedback: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel et ipsum esse officiis eaque numquam minus. Ut impedit illo, veniam voluptates praesentium autem deserunt, nisi officia quisquam incidunt saepe! Libero?',
+                    starFeedback: true,
+                    imageFeedback: [],
+                    listFeedback: []
+                },
+                {
+                    id: 4,
+                    iconFeedback: '/images/avatar-josh.jpg',
+                    likeAvatar: 0,
+                    nameFeedback: 'Josh Homme',
+                    feedbackDate: '08.09.21',
+                    descriptionFeedback: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel et ipsum esse officiis eaque numquam minus. Ut impedit illo, veniam voluptates praesentium autem deserunt, nisi officia quisquam incidunt saepe! Libero?',
+                    starFeedback: true,
+                    imageFeedback: [ '/images/bf-1.jpg', '/images/bf-2.jpg', '/images/bf-3.jpg'],
+                    listFeedback: [
+                        {
+                            image: '/images/avatar-devin.png',
+                            likeReply: 2,
+                            nameSeller: 'Devin Townsend',
+                            starOk: false,
+                            starSeller: true,
+                            dateSeller: '08.09.21',
+                            profiSeller: 'Seller',
+                            descriptionSeller: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel et ipsum esse officiis eaque numquam minus. Ut impedit illo, veniam voluptates praesentium autem deserunt, nisi officia quisquam incidunt saepe!',
+                        },
+                    ]
+                },
+                {
+                    id: 5,
+                    iconFeedback: '/images/avatar-kristoffer.png',
+                    likeAvatar: 0,
+                    nameFeedback: 'Kristoffer Rygg',
+                    feedbackDate: '08.09.21',
+                    descriptionFeedback: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel et ipsum esse officiis eaque numquam minus. Ut impedit illo, veniam voluptates praesentium autem deserunt, nisi officia quisquam incidunt saepe! Libero?',
+                    starFeedback: true,
+                    imageFeedback: [],
+                    listFeedback: []
+                },
+                {
+                    id: 6,
+                    iconFeedback: '/images/ask-foto.jpg',
+                    likeAvatar: 0,
+                    nameFeedback: 'Peter Hayes (you)',
+                    feedbackDate: '08.09.21',
+                    descriptionFeedback: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel et ipsum esse officiis eaque numquam minus. Ut impedit illo, veniam voluptates praesentium autem deserunt, nisi officia quisquam incidunt saepe! Libero?',
+                    starFeedback: true,
+                    imageFeedback: [],
+                    listFeedback: [
+                        {
+                            image: '/images/avatar-devin.png',
+                            likeReply: 2,
+                            nameSeller: 'Devin Townsend',
+                            starOk: false,
+                            starSeller: true,
+                            dateSeller: '08.09.21',
+                            profiSeller: 'Seller',
+                            descriptionSeller: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel et ipsum esse officiis eaque numquam minus. Ut impedit illo, veniam voluptates praesentium autem deserunt, nisi officia quisquam incidunt saepe!',
+                        },
+                    ]
+                },
+                {
+                    id: 7,
+                    iconFeedback: '/images/avatar-josh.jpg',
+                    likeAvatar: 0,
+                    nameFeedback: 'Josh Homme',
+                    feedbackDate: '08.09.21',
+                    descriptionFeedback: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel et ipsum esse officiis eaque numquam minus. Ut impedit illo, veniam voluptates praesentium autem deserunt, nisi officia quisquam incidunt saepe! Libero?',
+                    starFeedback: true,
+                    imageFeedback: [ '/images/bf-1.jpg', '/images/bf-2.jpg', '/images/bf-3.jpg'],
+                    listFeedback: [
+                        {
+                            image: '/images/avatar-devin.png',
+                            likeReply: 2,
+                            nameSeller: 'Devin Townsend',
+                            starOk: false,
+                            starSeller: true,
+                            dateSeller: '08.09.21',
+                            profiSeller: 'Seller',
+                            descriptionSeller: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel et ipsum esse officiis eaque numquam minus. Ut impedit illo, veniam voluptates praesentium autem deserunt, nisi officia quisquam incidunt saepe!',
+                        },
+                    ]
+                },
+                {
+                    id: 8,
+                    iconFeedback: '/images/avatar-kristoffer.png',
+                    likeAvatar: 0,
+                    nameFeedback: 'Kristoffer Rygg',
+                    feedbackDate: '08.09.21',
+                    descriptionFeedback: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel et ipsum esse officiis eaque numquam minus. Ut impedit illo, veniam voluptates praesentium autem deserunt, nisi officia quisquam incidunt saepe! Libero?',
+                    starFeedback: true,
+                    imageFeedback: [],
+                    listFeedback: []
+                },
+                {
+                    id: 9,
+                    iconFeedback: '/images/avatar-josh.jpg',
+                    likeAvatar: 0,
+                    nameFeedback: 'Josh Homme',
+                    feedbackDate: '08.09.21',
+                    descriptionFeedback: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel et ipsum esse officiis eaque numquam minus. Ut impedit illo, veniam voluptates praesentium autem deserunt, nisi officia quisquam incidunt saepe! Libero?',
+                    starFeedback: true,
+                    imageFeedback: [ '/images/bf-1.jpg', '/images/bf-2.jpg', '/images/bf-3.jpg'],
+                    listFeedback: [
+                        {
+                            image: '/images/avatar-devin.png',
+                            likeReply: 2,
+                            nameSeller: 'Devin Townsend',
+                            starOk: false,
+                            starSeller: true,
+                            dateSeller: '08.09.21',
+                            profiSeller: 'Seller',
+                            descriptionSeller: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel et ipsum esse officiis eaque numquam minus. Ut impedit illo, veniam voluptates praesentium autem deserunt, nisi officia quisquam incidunt saepe!',
+                        },
+                    ]
+                },
+                {
+                    id: 10,
+                    iconFeedback: '/images/avatar-kristoffer.png',
+                    likeAvatar: 0,
+                    nameFeedback: 'Kristoffer Rygg',
+                    feedbackDate: '08.09.21',
+                    descriptionFeedback: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel et ipsum esse officiis eaque numquam minus. Ut impedit illo, veniam voluptates praesentium autem deserunt, nisi officia quisquam incidunt saepe! Libero?',
+                    starFeedback: true,
+                    imageFeedback: [],
+                    listFeedback: []
+                },
+                {
+                    id: 11,
+                    iconFeedback: '/images/ask-foto.jpg',
+                    likeAvatar: 0,
+                    nameFeedback: 'Peter Hayes (you)',
+                    feedbackDate: '08.09.21',
+                    descriptionFeedback: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel et ipsum esse officiis eaque numquam minus. Ut impedit illo, veniam voluptates praesentium autem deserunt, nisi officia quisquam incidunt saepe! Libero?',
+                    starFeedback: true,
+                    imageFeedback: [],
+                    listFeedback: [
+                        {
+                            image: '/images/avatar-devin.png',
+                            likeReply: 2,
+                            nameSeller: 'Devin Townsend',
+                            starOk: false,
+                            starSeller: true,
+                            dateSeller: '08.09.21',
+                            profiSeller: 'Seller',
+                            descriptionSeller: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel et ipsum esse officiis eaque numquam minus. Ut impedit illo, veniam voluptates praesentium autem deserunt, nisi officia quisquam incidunt saepe!',
+                        },
+                    ]
+                },
+                {
+                    id: 12,
+                    iconFeedback: '/images/avatar-josh.jpg',
+                    likeAvatar: 0,
+                    nameFeedback: 'Josh Homme',
+                    feedbackDate: '08.09.21',
+                    descriptionFeedback: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel et ipsum esse officiis eaque numquam minus. Ut impedit illo, veniam voluptates praesentium autem deserunt, nisi officia quisquam incidunt saepe! Libero?',
+                    starFeedback: true,
+                    imageFeedback: [ '/images/bf-1.jpg', '/images/bf-2.jpg', '/images/bf-3.jpg'],
+                    listFeedback: [
+                        {
+                            image: '/images/avatar-devin.png',
+                            likeReply: 2,
+                            nameSeller: 'Devin Townsend',
+                            starOk: false,
+                            starSeller: true,
+                            dateSeller: '08.09.21',
+                            profiSeller: 'Seller',
+                            descriptionSeller: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel et ipsum esse officiis eaque numquam minus. Ut impedit illo, veniam voluptates praesentium autem deserunt, nisi officia quisquam incidunt saepe!',
+                        },
+                    ]
+                },
+                {
+                    id: 13,
+                    iconFeedback: '/images/avatar-kristoffer.png',
+                    likeAvatar: 0,
+                    nameFeedback: 'Kristoffer Rygg',
+                    feedbackDate: '08.09.21',
+                    descriptionFeedback: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel et ipsum esse officiis eaque numquam minus. Ut impedit illo, veniam voluptates praesentium autem deserunt, nisi officia quisquam incidunt saepe! Libero?',
+                    starFeedback: true,
+                    imageFeedback: [],
+                    listFeedback: []
+                },
+                {
+                    id: 14,
+                    iconFeedback: '/images/avatar-josh.jpg',
+                    likeAvatar: 0,
+                    nameFeedback: 'Josh Homme',
+                    feedbackDate: '08.09.21',
+                    descriptionFeedback: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel et ipsum esse officiis eaque numquam minus. Ut impedit illo, veniam voluptates praesentium autem deserunt, nisi officia quisquam incidunt saepe! Libero?',
+                    starFeedback: true,
+                    imageFeedback: [ '/images/bf-1.jpg', '/images/bf-2.jpg', '/images/bf-3.jpg'],
+                    listFeedback: [
+                        {
+                            image: '/images/avatar-devin.png',
+                            likeReply: 2,
+                            nameSeller: 'Devin Townsend',
+                            starOk: false,
+                            starSeller: true,
+                            dateSeller: '08.09.21',
+                            profiSeller: 'Seller',
+                            descriptionSeller: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel et ipsum esse officiis eaque numquam minus. Ut impedit illo, veniam voluptates praesentium autem deserunt, nisi officia quisquam incidunt saepe!',
+                        },
+                    ]
+                },
+                {
+                    id: 15,
+                    iconFeedback: '/images/avatar-kristoffer.png',
+                    likeAvatar: 0,
+                    nameFeedback: 'Kristoffer Rygg',
+                    feedbackDate: '08.09.21',
+                    descriptionFeedback: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel et ipsum esse officiis eaque numquam minus. Ut impedit illo, veniam voluptates praesentium autem deserunt, nisi officia quisquam incidunt saepe! Libero?',
+                    starFeedback: true,
+                    imageFeedback: [],
+                    listFeedback: []
+                },
+                {
+                    id: 16,
+                    iconFeedback: '/images/ask-foto.jpg',
+                    likeAvatar: 0,
+                    nameFeedback: 'Peter Hayes (you)',
+                    feedbackDate: '08.09.21',
+                    descriptionFeedback: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel et ipsum esse officiis eaque numquam minus. Ut impedit illo, veniam voluptates praesentium autem deserunt, nisi officia quisquam incidunt saepe! Libero?',
+                    starFeedback: true,
+                    imageFeedback: [],
+                    listFeedback: [
+                        {
+                            image: '/images/avatar-devin.png',
+                            likeReply: 2,
+                            nameSeller: 'Devin Townsend',
+                            starOk: false,
+                            starSeller: true,
+                            dateSeller: '08.09.21',
+                            profiSeller: 'Seller',
+                            descriptionSeller: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel et ipsum esse officiis eaque numquam minus. Ut impedit illo, veniam voluptates praesentium autem deserunt, nisi officia quisquam incidunt saepe!',
+                        },
+                    ]
+                },
+                {
+                    id: 17,
+                    iconFeedback: '/images/avatar-josh.jpg',
+                    likeAvatar: 0,
+                    nameFeedback: 'Josh Homme',
+                    feedbackDate: '08.09.21',
+                    descriptionFeedback: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel et ipsum esse officiis eaque numquam minus. Ut impedit illo, veniam voluptates praesentium autem deserunt, nisi officia quisquam incidunt saepe! Libero?',
+                    starFeedback: true,
+                    imageFeedback: [ '/images/bf-1.jpg', '/images/bf-2.jpg', '/images/bf-3.jpg'],
+                    listFeedback: [
+                        {
+                            image: '/images/avatar-devin.png',
+                            likeReply: 2,
+                            nameSeller: 'Devin Townsend',
+                            starOk: false,
+                            starSeller: true,
+                            dateSeller: '08.09.21',
+                            profiSeller: 'Seller',
+                            descriptionSeller: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel et ipsum esse officiis eaque numquam minus. Ut impedit illo, veniam voluptates praesentium autem deserunt, nisi officia quisquam incidunt saepe!',
+                        },
+                    ]
+                },
+                {
+                    id: 18,
+                    iconFeedback: '/images/avatar-kristoffer.png',
+                    likeAvatar: 0,
+                    nameFeedback: 'Kristoffer Rygg',
+                    feedbackDate: '08.09.21',
+                    descriptionFeedback: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel et ipsum esse officiis eaque numquam minus. Ut impedit illo, veniam voluptates praesentium autem deserunt, nisi officia quisquam incidunt saepe! Libero?',
+                    starFeedback: true,
+                    imageFeedback: [],
+                    listFeedback: []
+                },
+                {
+                    id: 19,
+                    iconFeedback: '/images/avatar-josh.jpg',
+                    likeAvatar: 0,
+                    nameFeedback: 'Josh Homme',
+                    feedbackDate: '08.09.21',
+                    descriptionFeedback: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel et ipsum esse officiis eaque numquam minus. Ut impedit illo, veniam voluptates praesentium autem deserunt, nisi officia quisquam incidunt saepe! Libero?',
+                    starFeedback: true,
+                    imageFeedback: [ '/images/bf-1.jpg', '/images/bf-2.jpg', '/images/bf-3.jpg'],
+                    listFeedback: [
+                        {
+                            image: '/images/avatar-devin.png',
+                            likeReply: 2,
+                            nameSeller: 'Devin Townsend',
+                            starOk: false,
+                            starSeller: true,
+                            dateSeller: '08.09.21',
+                            profiSeller: 'Seller',
+                            descriptionSeller: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel et ipsum esse officiis eaque numquam minus. Ut impedit illo, veniam voluptates praesentium autem deserunt, nisi officia quisquam incidunt saepe!',
+                        },
+                    ]
+                },
+                {
+                    id: 20,
+                    iconFeedback: '/images/avatar-kristoffer.png',
+                    likeAvatar: 0,
+                    nameFeedback: 'Kristoffer Rygg',
+                    feedbackDate: '08.09.21',
+                    descriptionFeedback: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel et ipsum esse officiis eaque numquam minus. Ut impedit illo, veniam voluptates praesentium autem deserunt, nisi officia quisquam incidunt saepe! Libero?',
+                    starFeedback: true,
+                    imageFeedback: [],
+                    listFeedback: []
+                },
+                {
+                    id: 21,
+                    iconFeedback: '/images/avatar-kristoffer.png',
+                    likeAvatar: 0,
+                    nameFeedback: 'Kristoffer Rygg',
+                    feedbackDate: '08.09.21',
+                    descriptionFeedback: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel et ipsum esse officiis eaque numquam minus. Ut impedit illo, veniam voluptates praesentium autem deserunt, nisi officia quisquam incidunt saepe! Libero?',
+                    starFeedback: true,
+                    imageFeedback: [],
+                    listFeedback: []
+                },
+            ],
+            currentPage: 1,
         }
     },
+    computed: {
+        toBeShown() {
+            return this.feedbackList.slice(0, this.currentPage * 10);
+        },
+        totalPages() {
+            return Math.ceil(this.feedbackList.length / 10);
+        }
+    },
+    methods: {
+        nextPage() {
+            if(this.currentPage < this.totalPages) {
+                this.currentPage++
+            }
+        },
+        prevPage() {
+            this.currentPage = this.currentPage - 1 || 1;
+        }
+    }
 };
 </script>
 
@@ -602,6 +900,7 @@ export default {
     justify-content: flex-start;
     align-items: center;
     margin: 20px 0;
+    position: relative;
 }
 .tabs_buyer_reply {
     width: 100%;
@@ -626,6 +925,16 @@ export default {
     font-size: 14px;
     line-height: 17px;
     color: #000000;
+}
+.tabs_buyer_edit_link {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    color: #000000;
+    position: absolute;
+    right: 0;
 }
 .tabs_buyer_edit_image {
     width: 52px;

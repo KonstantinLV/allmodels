@@ -14,7 +14,7 @@
             <i class="fa fa-angle-down" style="color: black;" aria-hidden="true"></i>
         </div>                        
         <div class="tabs_comments">
-            <div class="tabs_buyer" v-for="comment in commentQA" :key="comment">
+            <div class="tabs_buyer" v-for="comment in toBeShown" :key="comment">
                 <div class="q_a_name">
                     <p class="q_a_name_text">Q:</p>
                 </div>
@@ -59,7 +59,9 @@
                 </div>                                
             </div>
             <div class="tabs_button">
-                <button type="submit" class="tabs_button_show">Show all 8</button>
+                <button type="submit" @click="nextPage" v-if="currentPage != totalPages" class="tabs_button_show">Show all 8</button>
+                <button type="submit" @click="prevPage" v-else-if="currentPage != 1" class="tabs_button_show">Show less</button>
+                <p v-else></p>
             </div>
         </div>
     </div>
@@ -121,7 +123,50 @@ export default {
                     alertActive: false,
                     listComment: []
                 },
-            ]
+                { 
+                    id: 6, 
+                    titleComment: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit? ',
+                    like: 0,
+                    alert: false,
+                    alertActive: true,
+                    listComment: []
+                },
+                { 
+                    id: 7, 
+                    titleComment: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel et ipsum esse officiis eaque numquam minus. Ut impedit illo, veniam voluptates.',
+                    like: 0,
+                    alert: true,
+                    alertActive: false,
+                    listComment: []
+                },
+                { 
+                    id: 7, 
+                    titleComment: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel et ipsum esse officiis eaque numquam minus. Ut impedit illo, veniam voluptates.',
+                    like: 0,
+                    alert: true,
+                    alertActive: false,
+                    listComment: []
+                },
+            ],
+            currentPage: 1,
+        }
+    },
+    computed: {
+        toBeShown() {
+            return this.commentQA.slice(0, this.currentPage * 5);
+        },
+        totalPages() {
+            return Math.ceil(this.commentQA.length / 5);
+        }
+    },
+    methods: {
+        nextPage() {
+            if(this.currentPage < this.totalPages) {
+                this.currentPage++
+            }
+        },
+        prevPage() {
+            this.currentPage = this.currentPage - 1 || 1;
         }
     }
 };

@@ -1,6 +1,6 @@
 <template>
     <div class="review_group">
-        <div class="review_block" v-for="(doc, index) in reviewDescription" :key="index.userId">
+        <div class="review_block" v-for="(doc, index) in toBeShown" :key="index.userId">
             <div class="review_info">
                 <div class="review_info_avatar">
                     <img :src="doc.imageUser" alt="josh" class="review_info_avatar_foto">
@@ -70,7 +70,9 @@
             </div>
         </div>
         <div class="review_show">
-            <button type="submit" @click="reviewsShow += 3;" class="review_show_button">Show 3 more</button>
+            <button type="submit" @click="nextPage" v-if="currentPage != totalPages" class="review_show_button">Show 3 more</button>
+            <button type="submit" @click="prevPage" v-else-if="currentPage != 1" class="review_show_button">Show less</button>
+            <p v-else></p>
         </div>
     </div>    
 </template>
@@ -148,8 +150,86 @@ export default {
                         },
                     ]
                 },
+                {
+                    userId: 4,
+                    imageUser: '/images/avatar-josh.jpg',
+                    nameUser: 'Daniel Gildenlow',
+                    profiUser: 'Professional Maker',
+                    date: '08.09.21',
+                    nameArticle: 'Article Header',
+                    disctiptionProduct: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus delectus quasi eaque! Doloribus fugit quod beatae, commodi minima quia enim nisi voluptate odit mollitia voluptatibus assumenda saepe atque, laboriosam ut.',
+                    fotoProduct: '/images/article-header.jpg',
+                    listDescription: [
+                        {
+                            titleText: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. In pellentesque massa placerat duis ultricies lacus sed turpis tincidunt. Eu feugiat pretium nibh ipsum. Sed tempus urna et pharetra. Felis eget velit aliquet sagittis id consectetur purus. Auctor elit sed vulputate mi sit amet mauris commodo quis. Vulputate odio ut enim blandit volutpat maecenas volutpat blandit aliquam.',
+                            titleItalic: 'Dui nunc mattis enim ut tellus. Nisl vel pretium lectus quam. In fermentum posuere urna nec tincidunt praesent semper feugiat. Tincidunt lobortis feugiat vivamus at augue. Nullam vehicula ipsum a arcu cursus vitae congue mauris rhoncus.',
+                            titleText2: 'Ornare arcu odio ut sem nulla pharetra. Magna fringilla urna porttitor rhoncus dolor purus. Non sodales neque sodales ut etiam sit. Condimentum id venenatis a condimentum vitae. Facilisi nullam vehicula ipsum a arcu cursus vitae congue mauris. Gravida in fermentum et sollicitudin ac orci phasellus egestas. Sed lectus vestibulum mattis ullamcorper.',
+                            titleText3: 'Ante metus dictum at tempor commodo ullamcorper a. Ac turpis egestas sed tempus. Semper eget duis at tellus. Nunc sed blandit libero volutpat sed. Interdum varius sit amet mattis vulputate. Amet consectetur adipiscing elit ut aliquam purus sit amet luctus. Neque viverra justo nec ultrices. Faucibus pulvinar elementum integer enim neque volutpat ac tincidunt. Ac felis donec et odio pellentesque. Phasellus vestibulum lorem sed risus. Condimentum lacinia quis vel eros. Volutpat lacus laoreet non curabitur gravida arcu ac tortor dignissim. Nec nam aliquam sem et. Libero enim sed faucibus turpis. Sed lectus vestibulum mattis ullamcorper velit. Consectetur libero id faucibus nisl tincidunt eget nullam non. Molestie nunc non blandit massa enim. Mi tempus imperdiet nulla malesuada pellentesque. Feugiat sed lectus vestibulum mattis ullamcorper. Eleifend mi in nulla posuere sollicitudin aliquam.',
+                            titleItalic2: '>> Quisque id diam vel quam elementum pulvinar etiam.',
+                            titleText4: 'Ut pharetra sit amet aliquam id diam maecenas ultricies mi. Integer feugiat scelerisque varius morbi enim nunc faucibus a. Eu scelerisque felis imperdiet proin fermentum leo vel orci porta. Et sollicitudin ac orci phasellus. Tincidunt ornare massa eget egestas purus. Viverra tellus in hac habitasse platea. Nunc eget lorem dolor sed viverra ipsum nunc aliquet. Mauris nunc congue nisi vitae suscipit tellus mauris. Pellentesque sit amet porttitor eget dolor morbi non arcu. Ipsum consequat nisl vel pretium lectus quam. Quis risus sed vulputate odio ut. Lacus sed turpis tincidunt id aliquet. ',
+                        },
+                    ]
+                },
+                {
+                    userId: 5,
+                    imageUser: '/images/avatar-mark.jpg',
+                    nameUser: 'Mark Sandman',
+                    profiUser: 'Murder for the Money',
+                    date: '08.09.21',
+                    nameArticle: 'Review Name - Article Header',
+                    disctiptionProduct: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus delectus quasi eaque! Doloribus fugit quod beatae, commodi minima quia enim nisi voluptate odit mollitia voluptatibus assumenda saepe atque, laboriosam ut.',
+                    fotoProduct: '/images/review-name.jpg',
+                    listDescription: [
+                        {
+                            titleText: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. In pellentesque massa placerat duis ultricies lacus sed turpis tincidunt. Eu feugiat pretium nibh ipsum. Sed tempus urna et pharetra. Felis eget velit aliquet sagittis id consectetur purus. Auctor elit sed vulputate mi sit amet mauris commodo quis. Vulputate odio ut enim blandit volutpat maecenas volutpat blandit aliquam.',
+                            titleItalic: 'Dui nunc mattis enim ut tellus. Nisl vel pretium lectus quam. In fermentum posuere urna nec tincidunt praesent semper feugiat. Tincidunt lobortis feugiat vivamus at augue. Nullam vehicula ipsum a arcu cursus vitae congue mauris rhoncus.',
+                            titleText2: 'Ornare arcu odio ut sem nulla pharetra. Magna fringilla urna porttitor rhoncus dolor purus. Non sodales neque sodales ut etiam sit. Condimentum id venenatis a condimentum vitae. Facilisi nullam vehicula ipsum a arcu cursus vitae congue mauris. Gravida in fermentum et sollicitudin ac orci phasellus egestas. Sed lectus vestibulum mattis ullamcorper.',
+                            titleText3: 'Ante metus dictum at tempor commodo ullamcorper a. Ac turpis egestas sed tempus. Semper eget duis at tellus. Nunc sed blandit libero volutpat sed. Interdum varius sit amet mattis vulputate. Amet consectetur adipiscing elit ut aliquam purus sit amet luctus. Neque viverra justo nec ultrices. Faucibus pulvinar elementum integer enim neque volutpat ac tincidunt. Ac felis donec et odio pellentesque. Phasellus vestibulum lorem sed risus. Condimentum lacinia quis vel eros. Volutpat lacus laoreet non curabitur gravida arcu ac tortor dignissim. Nec nam aliquam sem et. Libero enim sed faucibus turpis. Sed lectus vestibulum mattis ullamcorper velit. Consectetur libero id faucibus nisl tincidunt eget nullam non. Molestie nunc non blandit massa enim. Mi tempus imperdiet nulla malesuada pellentesque. Feugiat sed lectus vestibulum mattis ullamcorper. Eleifend mi in nulla posuere sollicitudin aliquam.',
+                            titleItalic2: '>> Quisque id diam vel quam elementum pulvinar etiam.',
+                            titleText4: 'Ut pharetra sit amet aliquam id diam maecenas ultricies mi. Integer feugiat scelerisque varius morbi enim nunc faucibus a. Eu scelerisque felis imperdiet proin fermentum leo vel orci porta. Et sollicitudin ac orci phasellus. Tincidunt ornare massa eget egestas purus. Viverra tellus in hac habitasse platea. Nunc eget lorem dolor sed viverra ipsum nunc aliquet. Mauris nunc congue nisi vitae suscipit tellus mauris. Pellentesque sit amet porttitor eget dolor morbi non arcu. Ipsum consequat nisl vel pretium lectus quam. Quis risus sed vulputate odio ut. Lacus sed turpis tincidunt id aliquet. ',
+                        },
+                    ]
+                },
+                {
+                    userId: 6,
+                    imageUser: '/images/avatar-daniel.jpg',
+                    nameUser: 'Josh Homme',
+                    profiUser: 'Industry Insider',
+                    date: '08.09.21',
+                    nameArticle: 'Review Name - Article Header',
+                    disctiptionProduct: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus delectus quasi eaque! Doloribus fugit quod beatae, commodi minima quia enim nisi voluptate odit mollitia voluptatibus assumenda saepe atque, laboriosam ut.',
+                    fotoProduct: '/images/daniel-article.jpg',
+                    listDescription: [
+                        {
+                            titleText: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. In pellentesque massa placerat duis ultricies lacus sed turpis tincidunt. Eu feugiat pretium nibh ipsum. Sed tempus urna et pharetra. Felis eget velit aliquet sagittis id consectetur purus. Auctor elit sed vulputate mi sit amet mauris commodo quis. Vulputate odio ut enim blandit volutpat maecenas volutpat blandit aliquam.',
+                            titleItalic: 'Dui nunc mattis enim ut tellus. Nisl vel pretium lectus quam. In fermentum posuere urna nec tincidunt praesent semper feugiat. Tincidunt lobortis feugiat vivamus at augue. Nullam vehicula ipsum a arcu cursus vitae congue mauris rhoncus.',
+                            titleText2: 'Ornare arcu odio ut sem nulla pharetra. Magna fringilla urna porttitor rhoncus dolor purus. Non sodales neque sodales ut etiam sit. Condimentum id venenatis a condimentum vitae. Facilisi nullam vehicula ipsum a arcu cursus vitae congue mauris. Gravida in fermentum et sollicitudin ac orci phasellus egestas. Sed lectus vestibulum mattis ullamcorper.',
+                            titleText3: 'Ante metus dictum at tempor commodo ullamcorper a. Ac turpis egestas sed tempus. Semper eget duis at tellus. Nunc sed blandit libero volutpat sed. Interdum varius sit amet mattis vulputate. Amet consectetur adipiscing elit ut aliquam purus sit amet luctus. Neque viverra justo nec ultrices. Faucibus pulvinar elementum integer enim neque volutpat ac tincidunt. Ac felis donec et odio pellentesque. Phasellus vestibulum lorem sed risus. Condimentum lacinia quis vel eros. Volutpat lacus laoreet non curabitur gravida arcu ac tortor dignissim. Nec nam aliquam sem et. Libero enim sed faucibus turpis. Sed lectus vestibulum mattis ullamcorper velit. Consectetur libero id faucibus nisl tincidunt eget nullam non. Molestie nunc non blandit massa enim. Mi tempus imperdiet nulla malesuada pellentesque. Feugiat sed lectus vestibulum mattis ullamcorper. Eleifend mi in nulla posuere sollicitudin aliquam.',
+                            titleItalic2: '>> Quisque id diam vel quam elementum pulvinar etiam.',
+                            titleText4: 'Ut pharetra sit amet aliquam id diam maecenas ultricies mi. Integer feugiat scelerisque varius morbi enim nunc faucibus a. Eu scelerisque felis imperdiet proin fermentum leo vel orci porta. Et sollicitudin ac orci phasellus. Tincidunt ornare massa eget egestas purus. Viverra tellus in hac habitasse platea. Nunc eget lorem dolor sed viverra ipsum nunc aliquet. Mauris nunc congue nisi vitae suscipit tellus mauris. Pellentesque sit amet porttitor eget dolor morbi non arcu. Ipsum consequat nisl vel pretium lectus quam. Quis risus sed vulputate odio ut. Lacus sed turpis tincidunt id aliquet. ',
+                        },
+                    ]
+                },
             ],
-            reviewsShow: 3,
+            currentPage: 1,
+        }
+    },
+    computed: {
+        toBeShown() {
+            return this.reviewDescription.slice(0, this.currentPage * 3);
+        },
+        totalPages() {
+            return Math.ceil(this.reviewDescription.length / 3);
+        }
+    },
+    methods: {
+        nextPage() {
+            if(this.currentPage < this.totalPages) {
+                this.currentPage++
+            }
+        },
+        prevPage() {
+            this.currentPage = this.currentPage - 1 || 1;
         }
     }
 };

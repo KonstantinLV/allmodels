@@ -10,7 +10,7 @@
         </div>
         <div class="tabs_group">
             <div class="tabs_comments">
-                <div class="tabs_buyer" v-for="(item, index) in commentList" :key="index.id">
+                <div class="tabs_buyer" v-for="(item, index) in toBeShown" :key="index.id">
                     <div class="tabs_buyer_avatar">
                         <img :src="item.img" alt="avatar" class="tabs_buyer_avatar_icon">
                         <div class="tabs_buyer_like">
@@ -89,7 +89,9 @@
                     </div>
                 </div>
                 <div class="tabs_button">
-                    <button type="submit" class="tabs_button_show">Show 10 more</button>
+                    <button type="submit" @click="nextPage" v-if="currentPage != totalPages" class="tabs_button_show">Show 10 more</button>
+                    <button type="submit" @click="prevPage" v-else-if="currentPage != 1" class="tabs_button_show">Show 10 less</button>
+                    <p v-else></p>
                 </div>
             </div>
         </div>
@@ -166,9 +168,480 @@ export default {
                     date: '08.09.21',
                     description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel et ipsum esse officiis eaque numquam minus. Ut impedit illo, veniam voluptates praesentium autem deserunt, nisi officia quisquam incidunt saepe!',
                 },
-            ]
+                {
+                    id: 4,
+                    img: '/images/avatar-layne.png', 
+                    like: 1, 
+                    name: 'Layne Staley',
+                    star: true,
+                    date: '08.09.21',
+                    description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel et ipsum esse officiis eaque numquam minus. Ut impedit illo, veniam voluptates praesentium autem deserunt, nisi officia quisquam incidunt saepe!',
+                    list: [
+                        {
+                            idSeller: 1,
+                            image: '/images/avatar-devin.png',
+                            likeReply: 2,
+                            nameSeller: 'Devin Townsend',
+                            starOk: true,
+                            starSeller: true,
+                            dateSeller: '08.09.21',
+                            profiSeller: 'Seller',
+                            descriptionSeller: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel et ipsum esse officiis eaque numquam minus. Ut impedit illo, veniam voluptates praesentium autem deserunt, nisi officia quisquam incidunt saepe!',
+                        }
+                    ]
+                },
+                {
+                    id: 5,
+                    img: '/images/avatar-mikael.png', 
+                    like: 0, 
+                    name: 'Devin Townsend',
+                    star: false,
+                    date: '08.09.21',
+                    description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel et ipsum esse officiis eaque numquam minus. Ut impedit illo, veniam voluptates praesentium autem deserunt, nisi officia quisquam incidunt saepe!',
+                    list: [
+                        {
+                            image: '/images/avatar-devin.png',
+                            likeReply: 2,
+                            nameSeller: 'Devin Townsend',
+                            starOk: false,
+                            starSeller: true,
+                            dateSeller: '08.09.21',
+                            profiSeller: 'Seller',
+                            descriptionSeller: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel et ipsum esse officiis eaque numquam minus. Ut impedit illo, veniam voluptates praesentium autem deserunt, nisi officia quisquam incidunt saepe!',
+                        },
+                        {
+                            image: '/images/avatar-devin.png',
+                            likeReply: 1,
+                            nameSeller: 'Devin Townsend',
+                            starOk: true,
+                            starSeller: false,
+                            dateSeller: '08.09.21',
+                            profiSeller: 'Seller',
+                            descriptionSeller: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel et ipsum esse officiis eaque numquam minus. Ut impedit illo, veniam voluptates praesentium autem deserunt, nisi officia quisquam incidunt saepe!',
+                        },
+                    ]
+                },
+                {
+                    id: 6,
+                    img: '/images/avatar-kristoffer.png', 
+                    like: 0, 
+                    name: 'Kristoffer Rygg',
+                    star: false,
+                    date: '08.09.21',
+                    description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel et ipsum esse officiis eaque numquam minus. Ut impedit illo, veniam voluptates praesentium autem deserunt, nisi officia quisquam incidunt saepe!',
+                },
+                {
+                    id: 7,
+                    img: '/images/avatar-layne.png', 
+                    like: 1, 
+                    name: 'Layne Staley',
+                    star: true,
+                    date: '08.09.21',
+                    description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel et ipsum esse officiis eaque numquam minus. Ut impedit illo, veniam voluptates praesentium autem deserunt, nisi officia quisquam incidunt saepe!',
+                    list: [
+                        {
+                            idSeller: 1,
+                            image: '/images/avatar-devin.png',
+                            likeReply: 2,
+                            nameSeller: 'Devin Townsend',
+                            starOk: true,
+                            starSeller: true,
+                            dateSeller: '08.09.21',
+                            profiSeller: 'Seller',
+                            descriptionSeller: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel et ipsum esse officiis eaque numquam minus. Ut impedit illo, veniam voluptates praesentium autem deserunt, nisi officia quisquam incidunt saepe!',
+                        }
+                    ]
+                },
+                {
+                    id: 8,
+                    img: '/images/avatar-mikael.png', 
+                    like: 0, 
+                    name: 'Devin Townsend',
+                    star: false,
+                    date: '08.09.21',
+                    description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel et ipsum esse officiis eaque numquam minus. Ut impedit illo, veniam voluptates praesentium autem deserunt, nisi officia quisquam incidunt saepe!',
+                    list: [
+                        {
+                            image: '/images/avatar-devin.png',
+                            likeReply: 2,
+                            nameSeller: 'Devin Townsend',
+                            starOk: false,
+                            starSeller: true,
+                            dateSeller: '08.09.21',
+                            profiSeller: 'Seller',
+                            descriptionSeller: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel et ipsum esse officiis eaque numquam minus. Ut impedit illo, veniam voluptates praesentium autem deserunt, nisi officia quisquam incidunt saepe!',
+                        },
+                        {
+                            image: '/images/avatar-devin.png',
+                            likeReply: 1,
+                            nameSeller: 'Devin Townsend',
+                            starOk: true,
+                            starSeller: false,
+                            dateSeller: '08.09.21',
+                            profiSeller: 'Seller',
+                            descriptionSeller: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel et ipsum esse officiis eaque numquam minus. Ut impedit illo, veniam voluptates praesentium autem deserunt, nisi officia quisquam incidunt saepe!',
+                        },
+                    ]
+                },
+                {
+                    id: 9,
+                    img: '/images/avatar-kristoffer.png', 
+                    like: 0, 
+                    name: 'Kristoffer Rygg',
+                    star: false,
+                    date: '08.09.21',
+                    description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel et ipsum esse officiis eaque numquam minus. Ut impedit illo, veniam voluptates praesentium autem deserunt, nisi officia quisquam incidunt saepe!',
+                },
+                {
+                    id: 10,
+                    img: '/images/avatar-layne.png', 
+                    like: 1, 
+                    name: 'Layne Staley',
+                    star: true,
+                    date: '08.09.21',
+                    description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel et ipsum esse officiis eaque numquam minus. Ut impedit illo, veniam voluptates praesentium autem deserunt, nisi officia quisquam incidunt saepe!',
+                    list: [
+                        {
+                            idSeller: 1,
+                            image: '/images/avatar-devin.png',
+                            likeReply: 2,
+                            nameSeller: 'Devin Townsend',
+                            starOk: true,
+                            starSeller: true,
+                            dateSeller: '08.09.21',
+                            profiSeller: 'Seller',
+                            descriptionSeller: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel et ipsum esse officiis eaque numquam minus. Ut impedit illo, veniam voluptates praesentium autem deserunt, nisi officia quisquam incidunt saepe!',
+                        }
+                    ]
+                },
+                {
+                    id: 11,
+                    img: '/images/avatar-mikael.png', 
+                    like: 0, 
+                    name: 'Devin Townsend',
+                    star: false,
+                    date: '08.09.21',
+                    description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel et ipsum esse officiis eaque numquam minus. Ut impedit illo, veniam voluptates praesentium autem deserunt, nisi officia quisquam incidunt saepe!',
+                    list: [
+                        {
+                            image: '/images/avatar-devin.png',
+                            likeReply: 2,
+                            nameSeller: 'Devin Townsend',
+                            starOk: false,
+                            starSeller: true,
+                            dateSeller: '08.09.21',
+                            profiSeller: 'Seller',
+                            descriptionSeller: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel et ipsum esse officiis eaque numquam minus. Ut impedit illo, veniam voluptates praesentium autem deserunt, nisi officia quisquam incidunt saepe!',
+                        },
+                        {
+                            image: '/images/avatar-devin.png',
+                            likeReply: 1,
+                            nameSeller: 'Devin Townsend',
+                            starOk: true,
+                            starSeller: false,
+                            dateSeller: '08.09.21',
+                            profiSeller: 'Seller',
+                            descriptionSeller: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel et ipsum esse officiis eaque numquam minus. Ut impedit illo, veniam voluptates praesentium autem deserunt, nisi officia quisquam incidunt saepe!',
+                        },
+                    ]
+                },
+                {
+                    id: 12,
+                    img: '/images/avatar-kristoffer.png', 
+                    like: 0, 
+                    name: 'Kristoffer Rygg',
+                    star: false,
+                    date: '08.09.21',
+                    description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel et ipsum esse officiis eaque numquam minus. Ut impedit illo, veniam voluptates praesentium autem deserunt, nisi officia quisquam incidunt saepe!',
+                },
+                {
+                    id: 13,
+                    img: '/images/avatar-kristoffer.png', 
+                    like: 0, 
+                    name: 'Kristoffer Rygg',
+                    star: false,
+                    date: '08.09.21',
+                    description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel et ipsum esse officiis eaque numquam minus. Ut impedit illo, veniam voluptates praesentium autem deserunt, nisi officia quisquam incidunt saepe!',
+                },
+                {
+                    id: 14,
+                    img: '/images/avatar-layne.png', 
+                    like: 1, 
+                    name: 'Layne Staley',
+                    star: true,
+                    date: '08.09.21',
+                    description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel et ipsum esse officiis eaque numquam minus. Ut impedit illo, veniam voluptates praesentium autem deserunt, nisi officia quisquam incidunt saepe!',
+                    list: [
+                        {
+                            idSeller: 1,
+                            image: '/images/avatar-devin.png',
+                            likeReply: 2,
+                            nameSeller: 'Devin Townsend',
+                            starOk: true,
+                            starSeller: true,
+                            dateSeller: '08.09.21',
+                            profiSeller: 'Seller',
+                            descriptionSeller: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel et ipsum esse officiis eaque numquam minus. Ut impedit illo, veniam voluptates praesentium autem deserunt, nisi officia quisquam incidunt saepe!',
+                        }
+                    ]
+                },
+                {
+                    id: 15,
+                    img: '/images/avatar-mikael.png', 
+                    like: 0, 
+                    name: 'Devin Townsend',
+                    star: false,
+                    date: '08.09.21',
+                    description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel et ipsum esse officiis eaque numquam minus. Ut impedit illo, veniam voluptates praesentium autem deserunt, nisi officia quisquam incidunt saepe!',
+                    list: [
+                        {
+                            image: '/images/avatar-devin.png',
+                            likeReply: 2,
+                            nameSeller: 'Devin Townsend',
+                            starOk: false,
+                            starSeller: true,
+                            dateSeller: '08.09.21',
+                            profiSeller: 'Seller',
+                            descriptionSeller: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel et ipsum esse officiis eaque numquam minus. Ut impedit illo, veniam voluptates praesentium autem deserunt, nisi officia quisquam incidunt saepe!',
+                        },
+                        {
+                            image: '/images/avatar-devin.png',
+                            likeReply: 1,
+                            nameSeller: 'Devin Townsend',
+                            starOk: true,
+                            starSeller: false,
+                            dateSeller: '08.09.21',
+                            profiSeller: 'Seller',
+                            descriptionSeller: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel et ipsum esse officiis eaque numquam minus. Ut impedit illo, veniam voluptates praesentium autem deserunt, nisi officia quisquam incidunt saepe!',
+                        },
+                    ]
+                },
+                {
+                    id: 16,
+                    img: '/images/avatar-kristoffer.png', 
+                    like: 0, 
+                    name: 'Kristoffer Rygg',
+                    star: false,
+                    date: '08.09.21',
+                    description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel et ipsum esse officiis eaque numquam minus. Ut impedit illo, veniam voluptates praesentium autem deserunt, nisi officia quisquam incidunt saepe!',
+                },
+                {
+                    id: 17,
+                    img: '/images/avatar-layne.png', 
+                    like: 1, 
+                    name: 'Layne Staley',
+                    star: true,
+                    date: '08.09.21',
+                    description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel et ipsum esse officiis eaque numquam minus. Ut impedit illo, veniam voluptates praesentium autem deserunt, nisi officia quisquam incidunt saepe!',
+                    list: [
+                        {
+                            idSeller: 1,
+                            image: '/images/avatar-devin.png',
+                            likeReply: 2,
+                            nameSeller: 'Devin Townsend',
+                            starOk: true,
+                            starSeller: true,
+                            dateSeller: '08.09.21',
+                            profiSeller: 'Seller',
+                            descriptionSeller: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel et ipsum esse officiis eaque numquam minus. Ut impedit illo, veniam voluptates praesentium autem deserunt, nisi officia quisquam incidunt saepe!',
+                        }
+                    ]
+                },
+                {
+                    id: 18,
+                    img: '/images/avatar-mikael.png', 
+                    like: 0, 
+                    name: 'Devin Townsend',
+                    star: false,
+                    date: '08.09.21',
+                    description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel et ipsum esse officiis eaque numquam minus. Ut impedit illo, veniam voluptates praesentium autem deserunt, nisi officia quisquam incidunt saepe!',
+                    list: [
+                        {
+                            image: '/images/avatar-devin.png',
+                            likeReply: 2,
+                            nameSeller: 'Devin Townsend',
+                            starOk: false,
+                            starSeller: true,
+                            dateSeller: '08.09.21',
+                            profiSeller: 'Seller',
+                            descriptionSeller: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel et ipsum esse officiis eaque numquam minus. Ut impedit illo, veniam voluptates praesentium autem deserunt, nisi officia quisquam incidunt saepe!',
+                        },
+                        {
+                            image: '/images/avatar-devin.png',
+                            likeReply: 1,
+                            nameSeller: 'Devin Townsend',
+                            starOk: true,
+                            starSeller: false,
+                            dateSeller: '08.09.21',
+                            profiSeller: 'Seller',
+                            descriptionSeller: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel et ipsum esse officiis eaque numquam minus. Ut impedit illo, veniam voluptates praesentium autem deserunt, nisi officia quisquam incidunt saepe!',
+                        },
+                    ]
+                },
+                {
+                    id: 19,
+                    img: '/images/avatar-kristoffer.png', 
+                    like: 0, 
+                    name: 'Kristoffer Rygg',
+                    star: false,
+                    date: '08.09.21',
+                    description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel et ipsum esse officiis eaque numquam minus. Ut impedit illo, veniam voluptates praesentium autem deserunt, nisi officia quisquam incidunt saepe!',
+                },
+                {
+                    id: 20,
+                    img: '/images/avatar-layne.png', 
+                    like: 1, 
+                    name: 'Layne Staley',
+                    star: true,
+                    date: '08.09.21',
+                    description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel et ipsum esse officiis eaque numquam minus. Ut impedit illo, veniam voluptates praesentium autem deserunt, nisi officia quisquam incidunt saepe!',
+                    list: [
+                        {
+                            idSeller: 1,
+                            image: '/images/avatar-devin.png',
+                            likeReply: 2,
+                            nameSeller: 'Devin Townsend',
+                            starOk: true,
+                            starSeller: true,
+                            dateSeller: '08.09.21',
+                            profiSeller: 'Seller',
+                            descriptionSeller: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel et ipsum esse officiis eaque numquam minus. Ut impedit illo, veniam voluptates praesentium autem deserunt, nisi officia quisquam incidunt saepe!',
+                        }
+                    ]
+                },
+                {
+                    id: 21,
+                    img: '/images/avatar-mikael.png', 
+                    like: 0, 
+                    name: 'Devin Townsend',
+                    star: false,
+                    date: '08.09.21',
+                    description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel et ipsum esse officiis eaque numquam minus. Ut impedit illo, veniam voluptates praesentium autem deserunt, nisi officia quisquam incidunt saepe!',
+                    list: [
+                        {
+                            image: '/images/avatar-devin.png',
+                            likeReply: 2,
+                            nameSeller: 'Devin Townsend',
+                            starOk: false,
+                            starSeller: true,
+                            dateSeller: '08.09.21',
+                            profiSeller: 'Seller',
+                            descriptionSeller: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel et ipsum esse officiis eaque numquam minus. Ut impedit illo, veniam voluptates praesentium autem deserunt, nisi officia quisquam incidunt saepe!',
+                        },
+                        {
+                            image: '/images/avatar-devin.png',
+                            likeReply: 1,
+                            nameSeller: 'Devin Townsend',
+                            starOk: true,
+                            starSeller: false,
+                            dateSeller: '08.09.21',
+                            profiSeller: 'Seller',
+                            descriptionSeller: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel et ipsum esse officiis eaque numquam minus. Ut impedit illo, veniam voluptates praesentium autem deserunt, nisi officia quisquam incidunt saepe!',
+                        },
+                    ]
+                },
+                {
+                    id: 22,
+                    img: '/images/avatar-kristoffer.png', 
+                    like: 0, 
+                    name: 'Kristoffer Rygg',
+                    star: false,
+                    date: '08.09.21',
+                    description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel et ipsum esse officiis eaque numquam minus. Ut impedit illo, veniam voluptates praesentium autem deserunt, nisi officia quisquam incidunt saepe!',
+                },
+                {
+                    id: 23,
+                    img: '/images/avatar-layne.png', 
+                    like: 1, 
+                    name: 'Layne Staley',
+                    star: true,
+                    date: '08.09.21',
+                    description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel et ipsum esse officiis eaque numquam minus. Ut impedit illo, veniam voluptates praesentium autem deserunt, nisi officia quisquam incidunt saepe!',
+                    list: [
+                        {
+                            idSeller: 1,
+                            image: '/images/avatar-devin.png',
+                            likeReply: 2,
+                            nameSeller: 'Devin Townsend',
+                            starOk: true,
+                            starSeller: true,
+                            dateSeller: '08.09.21',
+                            profiSeller: 'Seller',
+                            descriptionSeller: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel et ipsum esse officiis eaque numquam minus. Ut impedit illo, veniam voluptates praesentium autem deserunt, nisi officia quisquam incidunt saepe!',
+                        }
+                    ]
+                },
+                {
+                    id: 24,
+                    img: '/images/avatar-mikael.png', 
+                    like: 0, 
+                    name: 'Devin Townsend',
+                    star: false,
+                    date: '08.09.21',
+                    description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel et ipsum esse officiis eaque numquam minus. Ut impedit illo, veniam voluptates praesentium autem deserunt, nisi officia quisquam incidunt saepe!',
+                    list: [
+                        {
+                            image: '/images/avatar-devin.png',
+                            likeReply: 2,
+                            nameSeller: 'Devin Townsend',
+                            starOk: false,
+                            starSeller: true,
+                            dateSeller: '08.09.21',
+                            profiSeller: 'Seller',
+                            descriptionSeller: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel et ipsum esse officiis eaque numquam minus. Ut impedit illo, veniam voluptates praesentium autem deserunt, nisi officia quisquam incidunt saepe!',
+                        },
+                        {
+                            image: '/images/avatar-devin.png',
+                            likeReply: 1,
+                            nameSeller: 'Devin Townsend',
+                            starOk: true,
+                            starSeller: false,
+                            dateSeller: '08.09.21',
+                            profiSeller: 'Seller',
+                            descriptionSeller: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel et ipsum esse officiis eaque numquam minus. Ut impedit illo, veniam voluptates praesentium autem deserunt, nisi officia quisquam incidunt saepe!',
+                        },
+                    ]
+                },
+                {
+                    id: 25,
+                    img: '/images/avatar-kristoffer.png', 
+                    like: 0, 
+                    name: 'Kristoffer Rygg',
+                    star: false,
+                    date: '08.09.21',
+                    description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel et ipsum esse officiis eaque numquam minus. Ut impedit illo, veniam voluptates praesentium autem deserunt, nisi officia quisquam incidunt saepe!',
+                },
+                {
+                    id: 26,
+                    img: '/images/avatar-kristoffer.png', 
+                    like: 0, 
+                    name: 'Kristoffer Rygg',
+                    star: false,
+                    date: '08.09.21',
+                    description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel et ipsum esse officiis eaque numquam minus. Ut impedit illo, veniam voluptates praesentium autem deserunt, nisi officia quisquam incidunt saepe!',
+                },
+            ],
+            currentPage: 1,
         }
     },
+    computed: {
+        toBeShown() {
+            return this.commentList.slice(0, this.currentPage * 10);
+        },
+        totalPages() {
+            return Math.ceil(this.commentList.length / 10);
+        }
+    },
+    methods: {
+        nextPage() {
+            if(this.currentPage < this.totalPages) {
+                this.currentPage++
+            }
+        },
+        prevPage() {
+            this.currentPage = this.currentPage - 1 || 1;
+        }
+    }
 };
 </script>
 
@@ -250,6 +723,7 @@ export default {
     display: flex;
     margin-bottom: 20px;
     justify-content: space-between;
+    transition: all 0.9s else;
 }
 .tabs_buyer_avatar {
     display: flex;
@@ -402,11 +876,9 @@ export default {
     top: 50%;
     right: 0;
 }
-.fade-enter-active {
-    transition: all .8s ease;
-}
+.fade-enter-active,
 .fade-leave-active {
-    transition: opacity .5s;
+    transition: opacity .8s easi-in-out;
 }
 .fade-enter, .fade-leave-to {
     opacity: 0;
